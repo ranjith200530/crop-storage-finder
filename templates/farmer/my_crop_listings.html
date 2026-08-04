@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>My Crop Listings</h2>
+
+
+{% for crop in listings %}
+
+<div>
+
+    <h3>{{ crop.crop_name }}</h3>
+
+    <p>
+        Quantity:
+        {{ crop.quantity }}
+        {{ crop.get_quantity_unit_display }}
+    </p>
+
+
+    <p>
+        Expected Price:
+        ₹{{ crop.price }}
+        {{ crop.get_price_unit_display }}
+    </p>
+
+
+    <p>
+        Location:
+        {{ crop.subdistrict.name }},
+        {{ crop.district.name }},
+        {{ crop.state.name }}
+    </p>
+
+
+    <p>
+        Posted on:
+        {{ crop.created_at }}
+    </p>
+
+</div>
+
+<hr>
+
+{% empty %}
+
+<p>No crop listings added yet.</p>
+
+{% endfor %}
+</body>
+</html>

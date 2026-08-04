@@ -12,8 +12,51 @@
 
     {% csrf_token %}
 
-    {% include "locations/locations_dropdown.html" %}
 
+    <!-- User Details -->
+    <label>Full Name</label>
+    <input type="text" name="Fullname" placeholder="Enter full name ">
+<br><br>
+
+
+    <label>Mobile Number</label>
+    <input type="text" name="Contact" placeholder="Enter your contact number ">
+<br><br>
+<label>Crop Name</label>
+    <input type="text" name="crop_name" placeholder="Enter crop name ">
+
+<br><br>
+    <label>Quantity</label>
+    <input type="number" name="quantity">
+
+
+    <label>Unit</label>
+    <select name="quantity_unit">
+        <option value="Kg">Kg</option>
+        <option value="Quintal">Quintal</option>
+        <option value="Ton">Ton</option>
+    </select>
+<br><br>
+
+    <label>Expected Price</label>
+    <input type="number" name="price">
+
+
+
+    <label>Price Unit</label>
+    <select name="price_unit">
+        <option value="Kg">Per Kg</option>
+        <option value="Quintal">Per Quintal</option>
+        <option value="Ton">Per Ton</option>
+    </select>
+<br><br>
+
+    
+    
+
+
+    {% include "locations/locations_dropdown.html" %}
+<br><br>
     <button type="submit">Submit</button>
 
 </form>

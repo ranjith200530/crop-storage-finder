@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+Farmers Available for {{ requirement.crop_name }}
+</h2>
+
+
+{% for farmer in farmers %}
+
+<div>
+
+<h3>
+{{ farmer.full_name }}
+</h3>
+
+
+<p>
+Contact:
+{{ farmer.contact_number }}
+</p>
+
+
+<p>
+Crop:
+{{ farmer.crop_name }}
+</p>
+
+
+<p>
+Quantity:
+{{ farmer.quantity }}
+{{ farmer.get_quantity_unit_display }}
+</p>
+
+
+<p>
+Price:
+₹{{ farmer.price }}
+{{ farmer.get_price_unit_display }}
+</p>
+
+
+<p>
+Location:
+{{ farmer.subdistrict.name }},
+{{ farmer.district.name }},
+{{ farmer.state.name }}
+</p>
+
+
+</div>
+
+<hr>
+
+
+{% empty %}
+
+<p>
+No farmers found for this requirement.
+</p>
+
+{% endfor %}
+</body>
+</html>

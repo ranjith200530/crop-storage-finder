@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>My Crop Requirements</h2>
+
+
+{% for requirement in requirements %}
+
+<div>
+
+    <h3>{{ requirement.crop_name }}</h3>
+
+
+    <p>
+        Required Quantity:
+        {{ requirement.quantity }}
+        {{ requirement.get_quantity_unit_display }}
+    </p>
+
+
+    <p>
+        Expected Price:
+        ₹{{ requirement.price }}
+        {{ requirement.get_price_unit_display }}
+    </p>
+
+
+    <p>
+        Location:
+        {{ requirement.subdistrict.name }},
+        {{ requirement.district.name }},
+        {{ requirement.state.name }}
+    </p>
+
+
+</div>
+
+<a href="{% url 'find_farmers' requirement.id %}">
+    Find Farmers
+</a>
+<br>
+<hr>
+
+
+{% empty %}
+
+<p>No requirements added yet.</p>
+
+
+{% endfor %}
+</body>
+</html>
