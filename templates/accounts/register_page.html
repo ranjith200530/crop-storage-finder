@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+</head>
+
+<body>
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h2>Create Account</h2>
+
+<form method="POST" action="">
+{% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" required>
+    <br><br>
+
+
+    <label>Password:</label>
+    <input type="password" name="password" required>
+    <br><br>
+
+
+    <label>Re-enter Password:</label>
+    <input type="password" name="confirm_password" required>
+    <br><br>
+
+
+    
+
+
+    <label>Select Role:</label>
+
+    <select name="role" required>
+        <option value="">--Select Role--</option>
+        <option value="Farmer">Farmer</option>
+        <option value="Buyer">Buyer</option>
+       
+    </select>
+
+    <br><br>
+
+
+    <button type="submit">
+        Register
+    </button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+
+    <div class="col-md-4">
+
+        <label>State</label>
+
+        <select id="state" name="state" class="form-control">
+
+            <option value="">Select State</option>
+
+            {% for state in states %}
+                <option value="{{ state.id }}">{{ state.name }}</option>
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <label>District</label>
+
+        <select id="district" name="district" class="form-control">
+
+            <option value="">Select District</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <label>Sub District</label>
+
+        <select id="sub_district" name="sub_district" class="form-control">
+
+            <option value="">Select Sub District</option>
+
+        </select>
+
+    </div>
+
+</div>
+<script src="{% static 'js/locations.js' %}"></script>
+</body>
+</html>
