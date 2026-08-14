@@ -140,13 +140,13 @@ def edit_farmer_crop(request, id):
 
     return render(
         request,
-        "buyer/edit_crop_requirement.html",
+        "farmer/edit_farmer_crop.html",
         {
             "listing": listing
         }
     )
     
-def delete_requirement(request, id):
+def delete_farmer_requirement(request, id):
 
     requirement = get_object_or_404(
         FarmerCropListing,

@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer results</title>
+    <title>Buyers Available</title>
 </head>
+
 <body>
+
     <h2>
         Buyers Available for {{ listing.crop_name }}
     </h2>
- {% for crop in buyers %}
 
-    <h3>{{ crop.crop_name }}</h3>
 
-    <p>
-        Quantity:
-        {{ crop.quantity }}
-        {{ crop.get_quantity_unit_display }}
-    </p>
+    {% for buyer in buyers %}
 
-    <p>
-        Price:
-        ₹{{ crop.price }}
-        {{ crop.get_price_unit_display }}
-    </p>
+    <div>
 
-    <a href="{% url 'find_buyers' crop.id %}">
-        Find Buyers
-    </a>
+        <h3>
+            {{ buyer.full_name }}
+        </h3>
 
-    <br><br>
+        <p>
+            Contact:
+            {{ buyer.contact_number }}
+        </p>
 
-    <a href="{% url 'edit_farmer_crop' crop.id %}">
-        Edit Listing
-    </a>
+        <p>
+            Crop:
+            {{ buyer.crop_name }}
+        </p>
 
-    <br><br>
+        <p>
+            Required Quantity:
+            {{ buyer.quantity }}
+            {{ buyer.get_quantity_unit_display }}
+        </p>
 
-    <a href="{% url 'delete_farmer_crop' crop.id %}">
-        Delete Listing
-    </a>
+        <p>
+            Expected Price:
+            ₹{{ buyer.price }}
+            {{ buyer.get_price_unit_display }}
+        </p>
+
+        <p>
+            Location:
+            {{ buyer.subdistrict.name }},
+            {{ buyer.district.name }},
+            {{ buyer.state.name }}
+        </p>
+
+    </div>
 
     <hr>
-{% empty %}
 
-<p>
-No farmers found for this requirement.
-</p>
+    {% empty %}
 
-{% endfor %}   
+    <p>
+        No buyers found for this crop.
+    </p>
+
+    {% endfor %}
+
 </body>
+
 </html>
