@@ -4,39 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Register Storage</title>
 </head>
+
 <body>
-    <form method="POST">
+
+<form method="POST">
 
     {% csrf_token %}
 
-    <label>Storage Name</label>
-    <input type="text" name="storage_name">
-<br><br>
-    <label>Storage Type</label>
-    <select name="storage_type">
+    <h2>Register Storage</h2>
+
+    <!-- =========================
+         STORAGE INFORMATION
+    ========================== -->
+
+    <h3>Storage Information</h3>
+
+    <label for="storage_name">Storage Name</label>
+    <input
+        type="text"
+        id="storage_name"
+        name="storage_name"
+        placeholder="Enter storage name"
+        required
+    >
+
+    <br><br>
+
+
+    <label for="storage_type">Storage Type</label>
+    <select
+        id="storage_type"
+        name="storage_type"
+        required
+    >
         <option value="">Select Storage Type</option>
-        <option value="cold_storage">Cold Storage</option>
-        <option value="warehouse">Warehouse</option>
+
+        <option value="cold_storage">
+            Cold Storage
+        </option>
+
+        <option value="warehouse">
+            Warehouse
+        </option>
     </select>
-<br><br>
-    <label>Total Capacity</label>
-    <input type="number" name="capacity">
-<br><br>
-    <label>Capacity Unit</label>
-    <select name="capacity_unit">
-        <option value="tons">Tons</option>
+
+    <br><br>
+
+
+    <!-- =========================
+         CAPACITY
+    ========================== -->
+
+    <label for="capacity">Total Capacity</label>
+    <input
+        type="number"
+        id="capacity"
+        name="capacity"
+        min="1"
+        step="0.01"
+        placeholder="Enter total capacity"
+        required
+    >
+
+    <br><br>
+
+
+    <label for="capacity_unit">Capacity Unit</label>
+    <select
+        id="capacity_unit"
+        name="capacity_unit"
+        required
+    >
+        
+        <option value="">select</option>
+        <option value="Ton">Ton</option>
+        <option value="MT">MT</option>
     </select>
-<br><br>
-    <!-- Common Location Dropdown -->
+
+    <br><br>
+
+
+    <!-- =========================
+         STORAGE CHARGE
+    ========================== -->
+
+    <label for="price_per_kg">
+        Storage Charge
+    </label>
+
+    <br>
+
+    <input
+        type="number"
+        id="price_per_kg"
+        name="price_per_kg"
+        min="0"
+        step="0.01"
+        placeholder="Enter charge"
+        required
+    >
+
+    <span>₹ per kg / month</span>
+
+    <br><br>
+
+
+    <!-- =========================
+         LOCATION
+    ========================== -->
+
+    <h3>Storage Location</h3>
+
+    <!-- State, District, Sub-District/Mandal -->
     {% include "locations/locations_dropdown.html" %}
-<br><br>
-    <label>Complete Address</label>
-    <textarea name="address"></textarea>
-<br><br>
-    <button type="submit">Register Storage</button>
+
+    <br><br>
+
+
+    <label for="address">
+        Complete Local Address
+    </label>
+
+    <br>
+
+    <textarea
+        id="address"
+        name="address"
+        rows="4"
+        cols="40"
+        placeholder="Enter complete local address"
+        required
+    ></textarea>
+
+    <br><br>
+
+
+    <!-- =========================
+         CONTACT INFORMATION
+    ========================== -->
+
+    <h3>Contact Information</h3>
+
+    <label for="main_contact_number">
+        Main Contact Number
+    </label>
+
+    <br>
+
+    <input
+        type="tel"
+        id="main_contact_number"
+        name="main_contact_number"
+        placeholder="Enter main contact number"
+        required
+    >
+
+    <br><br>
+
+
+    <label for="additional_contact_number">
+        Additional Contact Number
+    </label>
+
+    <br>
+
+    <input
+        type="tel"
+        id="additional_contact_number"
+        name="additional_contact_number"
+        placeholder="Enter additional contact number"
+    >
+
+    <br><br>
+
+
+    <!-- =========================
+         SUBMIT
+    ========================== -->
+
+    <button type="submit">
+        Register Storage
+    </button>
 
 </form>
+<script src="{% static 'js/locations.js' %}"></script>
 </body>
 </html>
