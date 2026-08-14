@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+
+    {% csrf_token %}
+
+    <label>Storage Name</label>
+    <input type="text" name="storage_name">
+<br><br>
+    <label>Storage Type</label>
+    <select name="storage_type">
+        <option value="">Select Storage Type</option>
+        <option value="cold_storage">Cold Storage</option>
+        <option value="warehouse">Warehouse</option>
+    </select>
+<br><br>
+    <label>Total Capacity</label>
+    <input type="number" name="capacity">
+<br><br>
+    <label>Capacity Unit</label>
+    <select name="capacity_unit">
+        <option value="tons">Tons</option>
+    </select>
+<br><br>
+    <!-- Common Location Dropdown -->
+    {% include "locations/locations_dropdown.html" %}
+<br><br>
+    <label>Complete Address</label>
+    <textarea name="address"></textarea>
+<br><br>
+    <button type="submit">Register Storage</button>
+
+</form>
+</body>
+</html>

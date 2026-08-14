@@ -43,8 +43,21 @@
     </p>
 
 </div>
+<a href="{% url 'find_buyers' crop.id %}">
+    Find Buyers
+</a>
+<br><br>
+<a href="{% url 'edit_farmer_crop' crop.id %}">
+    Edit Requirement
+</a>
+<br><br>
+<a href="{% url 'delete_crop' crop.id %}">
+    Delete Requirement
+</a>
+<br>
 
 <hr>
+
 
 {% empty %}
 

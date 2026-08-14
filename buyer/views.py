@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from .models import BuyerCropRequirement
 from accounts.models import State, District, SubDistrict
+from django.shortcuts import render, get_object_or_404
+from farmer.models import FarmerCropListing
 
 
 def requiremnt_listing(request):
@@ -84,8 +86,7 @@ def my_requirements(request):
     
 
 
-from django.shortcuts import render, get_object_or_404
-from farmer.models import FarmerCropListing
+
 
 
 def find_farmers(request, requirement_id):
@@ -125,3 +126,45 @@ def find_farmers(request, requirement_id):
             "farmers": farmers
         }
     )
+    
+
+
+def edit_crop_requirement(request, id):
+
+    listing = get_object_or_404(
+        BuyerCropRequirement,
+        id=id,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        listing.quantity = request.POST.get("quantity")
+        listing.quantity_unit = request.POST.get("quantity_unit")
+
+        listing.price = request.POST.get("price")
+        listing.price_unit = request.POST.get("price_unit")
+
+        listing.save()
+
+        return redirect("my_requirements")
+
+    return render(
+        request,
+        "buyer/edit_crop_requirement.html",
+        {
+            "listing": listing
+        }
+    )
+    
+def delete_requirement(request, id):
+
+    requirement = get_object_or_404(
+        BuyerCropRequirement,
+        id=id,
+        user=request.user
+    )
+
+    requirement.delete()
+
+    return redirect("my_requirements")

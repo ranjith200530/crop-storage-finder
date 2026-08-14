@@ -1,6 +1,7 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import FarmerCropListing
+from buyer.models import BuyerCropRequirement
 from accounts.models import State, District, SubDistrict
 
 
@@ -80,3 +81,79 @@ def my_crop_listings(request):
             "listings": listings
         }
     )
+
+
+
+def find_buyers(request, id):
+
+    # Get farmer's crop listing
+    listing = get_object_or_404(
+        FarmerCropListing,
+        id=id,
+        user=request.user
+    )
+
+    # First priority: Same subdistrict
+    buyers = BuyerCropRequirement.objects.filter(
+        crop_name=listing.crop_name,
+        subdistrict=listing.subdistrict
+    )
+
+    # If no buyers found, search district level
+    if not buyers.exists():
+
+        buyers = BuyerCropRequirement.objects.filter(
+            crop_name=listing.crop_name,
+            district=listing.district
+        )
+
+    return render(
+        request,
+        "farmer/buyer_results.html",
+        {
+            "listing": listing,
+            "buyers": buyers
+        }
+    )
+
+
+
+def edit_farmer_crop(request, id):
+
+    listing = get_object_or_404(
+        FarmerCropListing,
+        id=id,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        listing.quantity = request.POST.get("quantity")
+        listing.quantity_unit = request.POST.get("quantity_unit")
+
+        listing.price = request.POST.get("price")
+        listing.price_unit = request.POST.get("price_unit")
+
+        listing.save()
+
+        return redirect("my_crop_listings")
+
+    return render(
+        request,
+        "buyer/edit_crop_requirement.html",
+        {
+            "listing": listing
+        }
+    )
+    
+def delete_requirement(request, id):
+
+    requirement = get_object_or_404(
+        FarmerCropListing,
+        id=id,
+        user=request.user
+    )
+
+    requirement.delete()
+
+    return redirect("my_crop_listings")
