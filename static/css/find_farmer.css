@@ -1,0 +1,338 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7f5;
+
+    color: #222;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    width: 92%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 35px 0;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.page-header h2 {
+    font-size: 30px;
+
+    color: #1f5f3b;
+
+    margin-bottom: 8px;
+}
+
+
+.page-header h2 span {
+    color: #1f7a4d;
+
+    text-transform: capitalize;
+}
+
+
+.page-header p {
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   FARMERS GRID
+========================================= */
+
+.farmers-container {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   FARMER CARD
+========================================= */
+
+.farmer-card {
+    background: #ffffff;
+
+    border: 1px solid #e1e6e3;
+
+    border-radius: 12px;
+
+    padding: 24px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+
+.farmer-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
+}
+
+
+/* =========================================
+   FARMER HEADER
+========================================= */
+
+.farmer-header {
+    padding-bottom: 16px;
+
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid #e8ece9;
+}
+
+
+.farmer-header h3 {
+    font-size: 21px;
+
+    color: #1f5f3b;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================
+   FARMER INFORMATION
+========================================= */
+
+.farmer-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+.info-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.info-label {
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+.info-value {
+    font-size: 15px;
+
+    color: #333;
+
+    font-weight: 500;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.price {
+    color: #1f7a4d;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.location-item {
+    grid-column: 1 / -1;
+}
+
+
+.location {
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   EMPTY MESSAGE
+========================================= */
+
+.empty-message {
+    background: #ffffff;
+
+    border: 1px solid #e1e6e3;
+
+    border-radius: 12px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.empty-message h3 {
+    color: #1f5f3b;
+
+    font-size: 22px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-message p {
+    color: #777;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 94%;
+
+        padding: 25px 0;
+    }
+
+
+    .page-header h2 {
+        font-size: 26px;
+    }
+
+
+    .farmers-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .farmer-card {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        width: 94%;
+
+        padding: 20px 0;
+    }
+
+
+    .page-header {
+        margin-bottom: 22px;
+    }
+
+
+    .page-header h2 {
+        font-size: 23px;
+
+        line-height: 1.4;
+    }
+
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+
+    .farmer-card {
+        padding: 18px;
+
+        border-radius: 10px;
+    }
+
+
+    .farmer-header {
+        padding-bottom: 14px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .farmer-header h3 {
+        font-size: 19px;
+    }
+
+
+    .farmer-info {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+
+    .location-item {
+        grid-column: auto;
+    }
+
+
+    .info-value {
+        font-size: 14px;
+    }
+
+
+    .empty-message {
+        padding: 35px 18px;
+    }
+}
+

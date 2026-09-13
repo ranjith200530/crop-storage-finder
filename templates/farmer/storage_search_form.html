@@ -1,0 +1,213 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Storage</title>
+
+    <link rel="stylesheet" href="{% static 'css/find_storage.css' %}">
+
+</head>
+
+<body>
+
+    <main class="page-container">
+
+        <div class="form-card">
+
+            <div class="form-header">
+
+                <h2>Find Storage</h2>
+
+                <p>
+                    Enter your crop details and location to find suitable storage facilities.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- FARMER DETAILS -->
+
+                <div class="form-section">
+
+                    <h3>Farmer Details</h3>
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="mobile">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="Enter mobile number"
+                            maxlength="10"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- CROP DETAILS -->
+
+                <div class="form-section">
+
+                    <h3>Crop Details</h3>
+
+
+                    <div class="form-group">
+
+                        <label for="crop_name">
+                            Crop Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="crop_name"
+                            name="crop_name"
+                            placeholder="e.g. Rice"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="quantity">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            placeholder="Enter quantity"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="quantity_unit">
+                            Quantity Unit
+                        </label>
+
+                        <select
+                            id="quantity_unit"
+                            name="quantity_unit"
+                            required
+                        >
+
+                            <option value="" selected disabled>
+                                Select Unit
+                            </option>
+
+                            <option value="Kg">
+                                Kg
+                            </option>
+
+                            <option value="Quintal">
+                                Quintal
+                            </option>
+
+                            <option value="Ton">
+                                Ton
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CROP LOCATION -->
+
+                <div class="form-section">
+
+                    <h3>Crop Location</h3>
+
+
+                    <div class="location-dropdown">
+
+                        {% include "locations/locations_dropdown.html" %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address / Nearby Landmark
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="Enter nearby landmark or address"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Search Storage
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script src="{% static 'js/locations.js' %}"></script>
+
+</body>
+
+</html>
+

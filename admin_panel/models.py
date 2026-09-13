@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
 from accounts.models import SubDistrict,State,District
+from django.contrib.auth.models import User
 
 
 class Storage(models.Model):
@@ -17,10 +17,6 @@ class Storage(models.Model):
 
     storage_type = models.CharField(
         max_length=50,
-        choices=[
-            ("cold_storage", "Cold Storage"),
-            ("warehouse", "Warehouse"),
-        ]
     )
 
     # =========================
@@ -34,13 +30,11 @@ class Storage(models.Model):
 
     capacity_unit = models.CharField(
         max_length=20,
-        choices=[
-            ("kg", "Kg"),
-            ("quintal", "Quintal"),
-            ("ton", "Ton"),
-        ]
     )
-
+    available_capacity = models.DecimalField(
+    max_digits=12,
+    decimal_places=2
+)
     # =========================
     # STORAGE CHARGE
     # =========================
@@ -127,3 +121,25 @@ class Storage(models.Model):
 
     def __str__(self):
         return self.storage_name
+    
+    
+    
+
+
+
+class StaffAssignment(models.Model):
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="staff_assignment"
+    )
+
+    storage = models.ForeignKey(
+        Storage,
+        on_delete=models.CASCADE,
+        related_name="staff_members"
+    )
+
+    def __str__(self):
+        return f"{self.user.username} - {self.storage.storage_name}"

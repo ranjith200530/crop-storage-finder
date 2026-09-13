@@ -1,102 +1,188 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Edit Crop Listing</title>
+
+    <link rel="stylesheet" href="{% static 'css/edit_crop_listing.css' %}">
+
 </head>
 
 <body>
 
-<h2>Edit Crop Listing</h2>
+    <div class="page-container">
 
-<form method="POST">
+        <div class="form-card">
 
-    {% csrf_token %}
+            <div class="form-header">
+                <h2>Edit Crop Listing</h2>
+                <p>Update the quantity and price of your crop.</p>
+            </div>
 
-    <label>Crop Name</label>
-    <input
-        type="text"
-        value="{{ listing.crop_name }}"
-        readonly
-    >
 
-    <br><br>
+            <form method="POST">
 
-    <label>Quantity</label>
-    <input
-        type="number"
-        step="0.01"
-        name="quantity"
-        value="{{ listing.quantity }}"
-        required
-    >
+                {% csrf_token %}
 
-    <br><br>
 
-    <label>Quantity Unit</label>
+                <!-- CROP NAME -->
 
-    <select name="quantity_unit" required>
+                <div class="form-group">
 
-        <option value="Kg"
-            {% if listing.quantity_unit == "Kg" %}selected{% endif %}>
-            Kg
-        </option>
+                    <label for="crop_name">
+                        Crop Name
+                    </label>
 
-        <option value="Quintal"
-            {% if listing.quantity_unit == "Quintal" %}selected{% endif %}>
-            Quintal
-        </option>
+                    <input
+                        type="text"
+                        id="crop_name"
+                        value="{{ listing.crop_name }}"
+                        readonly
+                    >
 
-        <option value="Ton"
-            {% if listing.quantity_unit == "Ton" %}selected{% endif %}>
-            Ton
-        </option>
+                </div>
 
-    </select>
 
-    <br><br>
+                <!-- QUANTITY -->
 
-    <label>Price</label>
+                <div class="form-group">
 
-    <input
-        type="number"
-        step="0.01"
-        name="price"
-        value="{{ listing.price }}"
-        required
-    >
+                    <label for="quantity">
+                        Quantity
+                    </label>
 
-    <br><br>
+                    <input
+                        type="number"
+                        id="quantity"
+                        step="0.01"
+                        name="quantity"
+                        value="{{ listing.quantity }}"
+                        required
+                    >
 
-    <label>Price Unit</label>
+                </div>
 
-    <select name="price_unit" required>
 
-        <option value="Kg"
-            {% if listing.price_unit == "kg" %}selected{% endif %}>
-            Per Kg
-        </option>
+                <!-- QUANTITY UNIT -->
 
-        <option value="Quintal"
-            {% if listing.price_unit == "Quintal" %}selected{% endif %}>
-            Per Quintal
-        </option>
+                <div class="form-group">
 
-        <option value="Ton"
-            {% if listing.price_unit == "Ton" %}selected{% endif %}>
-            Per Ton
-        </option>
+                    <label for="quantity_unit">
+                        Quantity Unit
+                    </label>
 
-    </select>
+                    <select
+                        id="quantity_unit"
+                        name="quantity_unit"
+                        required
+                    >
 
-    <br><br>
+                        <option value="Kg"
+                            {% if listing.quantity_unit == "Kg" %}
+                                selected
+                            {% endif %}>
+                            Kg
+                        </option>
 
-    <button type="submit">
-        Save Changes
-    </button>
+                        <option value="Quintal"
+                            {% if listing.quantity_unit == "Quintal" %}
+                                selected
+                            {% endif %}>
+                            Quintal
+                        </option>
 
-</form>
+                        <option value="Ton"
+                            {% if listing.quantity_unit == "Ton" %}
+                                selected
+                            {% endif %}>
+                            Ton
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label for="price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        step="0.01"
+                        name="price"
+                        value="{{ listing.price }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PRICE UNIT -->
+
+                <div class="form-group">
+
+                    <label for="price_unit">
+                        Price Unit
+                    </label>
+
+                    <select
+                        id="price_unit"
+                        name="price_unit"
+                        required
+                    >
+
+                        <option value="Kg"
+                            {% if listing.price_unit == "Kg" %}
+                                selected
+                            {% endif %}>
+                            Per Kg
+                        </option>
+
+                        <option value="Quintal"
+                            {% if listing.price_unit == "Quintal" %}
+                                selected
+                            {% endif %}>
+                            Per Quintal
+                        </option>
+
+                        <option value="Ton"
+                            {% if listing.price_unit == "Ton" %}
+                                selected
+                            {% endif %}>
+                            Per Ton
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
+

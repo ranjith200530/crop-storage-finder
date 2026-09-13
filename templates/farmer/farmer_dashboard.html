@@ -1,18 +1,121 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Farmer Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/farmer_dashboard.css' %}">
+
 </head>
+
 <body>
-    <h1> This is farmer dashboard </h1>
-    <p> welcome </p>
-    <br>
-  <a href="{% url 'logout' %}"> logout </a>
-<br><br>
-  <a href="{% url 'crop_listing' %}">List a crop </a>
-  <br><br>
-  <a href="{% url 'my_crop_listings' %}">Show my crops</a>
+
+    <main class="dashboard-container">
+
+        <!-- HEADER -->
+
+        <section class="dashboard-header">
+
+            <h1>
+                Farmer Dashboard
+            </h1>
+
+            <p>
+                Welcome! {{user}}
+            </p>
+
+        </section>
+
+
+        <!-- DASHBOARD OPTIONS -->
+
+        <section class="dashboard-options">
+
+            <a href="{% url 'crop_listing' %}" class="dashboard-card">
+
+                <div class="card-content">
+
+                    <h2>
+                        List a Crop
+                    </h2>
+
+                    <p>
+                        Add a new crop and make it available to buyers.
+                    </p>
+
+                </div>
+
+                <span class="card-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a href="{% url 'my_crop_listings' %}" class="dashboard-card">
+
+                <div class="card-content">
+
+                    <h2>
+                        My Crops
+                    </h2>
+
+                    <p>
+                        View and manage your listed crops.
+                    </p>
+
+                </div>
+
+                <span class="card-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a href="{% url 'find-storage' %}" class="dashboard-card">
+
+                <div class="card-content">
+
+                    <h2>
+                        Find Nearby Storage
+                    </h2>
+
+                    <p>
+                        Find storage facilities near your location.
+                    </p>
+
+                </div>
+
+                <span class="card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+        <!-- LOGOUT -->
+
+        <div class="logout-container">
+
+            <a href="{% url 'logout' %}" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </main>
+
 </body>
+
 </html>
+

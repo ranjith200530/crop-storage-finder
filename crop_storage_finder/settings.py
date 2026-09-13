@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'farmer',
     'buyer',
     'admin_panel',
+    'staff',
 ]
 
 MIDDLEWARE = [

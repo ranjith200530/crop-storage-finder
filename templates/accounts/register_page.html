@@ -1,55 +1,186 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>User Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Crop Storage Finder</title>
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
 <body>
-{% if messages %}
-    {% for message in messages %}
-        <p>{{ message }}</p>
-    {% endfor %}
-{% endif %}
 
-<h2>Create Account</h2>
+    <main class="register-page">
 
-<form method="POST" action="">
-{% csrf_token %}
-    <label>Username:</label>
-    <input type="text" name="username" required>
-    <br><br>
+        <section class="register-card">
 
+            <!-- Project Name -->
+            <div class="brand">
 
-    <label>Password:</label>
-    <input type="password" name="password" required>
-    <br><br>
+                <h1>Crop Storage Finder</h1>
+
+                <p>Farmer–Buyer Marketplace</p>
+
+            </div>
 
 
-    <label>Re-enter Password:</label>
-    <input type="password" name="confirm_password" required>
-    <br><br>
+            <!-- Heading -->
+            <div class="register-heading">
+
+                <h2>Create Account</h2>
+
+                <p>Register to access the platform</p>
+
+            </div>
 
 
-    
+            <!-- Messages -->
+            {% if messages %}
+
+                <div class="messages-container">
+
+                    {% for message in messages %}
+
+                        <div class="message {{ message.tags }}">
+
+                            <span class="message-icon">!</span>
+
+                            <span class="message-text">
+                                {{ message }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
 
 
-    <label>Select Role:</label>
+            <!-- Registration Form -->
+            <form method="POST" action="" class="register-form">
 
-    <select name="role" required>
-        <option value="">--Select Role--</option>
-        <option value="Farmer">Farmer</option>
-        <option value="Buyer">Buyer</option>
-       
-    </select>
-
-    <br><br>
+                {% csrf_token %}
 
 
-    <button type="submit">
-        Register
-    </button>
+                <!-- Username -->
+                <div class="form-group">
 
-</form>
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Re-enter Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Role -->
+                <div class="form-group">
+
+                    <label for="role">
+                        Select Role
+                    </label>
+
+                    <select
+                        id="role"
+                        name="role"
+                        required
+                    >
+
+                        <option value="" selected disabled>
+                            -- Select Role --
+                        </option>
+
+                        <option value="Farmer">
+                            Farmer
+                        </option>
+
+                        <option value="Buyer">
+                            Buyer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Register Button -->
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+            <div class="login-section">
+
+                <p>Already have an account?</p>
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

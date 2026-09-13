@@ -1,70 +1,187 @@
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>My Crop Listings</title>
+
+    <link rel="stylesheet" href="{% static 'css/my_crop_listings.css' %}">
+
 </head>
+
 <body>
-    <h2>My Crop Listings</h2>
+
+    <main class="page-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <h1>My Crop Listings</h1>
+
+            <p>
+                View and manage the crops you have listed for buyers.
+            </p>
+
+        </section>
 
 
-{% for crop in listings %}
+        <!-- CROP LISTINGS -->
 
-<div>
+        {% if listings %}
 
-    <h3>{{ crop.crop_name }}</h3>
+        <section class="crop-grid">
 
-    <p>
-        Quantity:
-        {{ crop.quantity }}
-        {{ crop.get_quantity_unit_display }}
-    </p>
+            {% for crop in listings %}
 
+            <article class="crop-card">
 
-    <p>
-        Expected Price:
-        ₹{{ crop.price }}
-        {{ crop.get_price_unit_display }}
-    </p>
+                <!-- CARD HEADER -->
 
+                <div class="crop-header">
 
-    <p>
-        Location:
-        {{ crop.subdistrict.name }},
-        {{ crop.district.name }},
-        {{ crop.state.name }}
-    </p>
+                    <div>
+                        <p class="crop-label">
+                            Crop
+                        </p>
 
+                        <h2>
+                            {{ crop.crop_name }}
+                        </h2>
+                    </div>
 
-    <p>
-        Posted on:
-        {{ crop.created_at }}
-    </p>
-
-</div>
-<a href="{% url 'find_buyer' crop.id %}">
-    Find Buyers
-</a>
-<br><br>
-<a href="{% url 'edit_farmer_crop' crop.id %}">
-    Edit Requirement
-</a>
-<br><br>
-<a href="{% url 'delete_crop' crop.id %}">
-    Delete Requirement
-</a>
-<br>
-
-<hr>
+                </div>
 
 
-{% empty %}
+                <!-- CROP DETAILS -->
 
-<p>No crop listings added yet.</p>
+                <div class="crop-details">
 
-{% endfor %}
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Quantity
+                        </span>
+
+                        <span class="detail-value">
+                            {{ crop.quantity }}
+                            {{ crop.get_quantity_unit_display }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Expected Price
+                        </span>
+
+                        <span class="detail-value price">
+                            ₹{{ crop.price }}
+                            {{ crop.get_price_unit_display }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item location-item">
+
+                        <span class="detail-label">
+                            Location
+                        </span>
+
+                        <span class="detail-value location">
+                            {{ crop.subdistrict.name }},
+                            {{ crop.district.name }},
+                            {{ crop.state.name }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Posted On
+                        </span>
+
+                        <span class="detail-value">
+                            {{ crop.created_at }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="card-actions">
+
+                    <a
+                        href="{% url 'find_buyer' crop.id %}"
+                        class="btn btn-primary"
+                    >
+                        Find Buyers
+                    </a>
+
+
+                    <a
+                        href="{% url 'edit_farmer_crop' crop.id %}"
+                        class="btn btn-secondary"
+                    >
+                        Edit Listing
+                    </a>
+
+
+                    <a
+                        href="{% url 'delete_crop' crop.id %}"
+                        class="btn btn-danger"
+                    >
+                        Delete Listing
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </section>
+
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <section class="empty-state">
+
+            <div class="empty-icon">
+                +
+            </div>
+
+            <h2>
+                No Crop Listings Yet
+            </h2>
+
+            <p>
+                You haven't added any crops for sale yet.
+            </p>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
 </body>
+
 </html>
+

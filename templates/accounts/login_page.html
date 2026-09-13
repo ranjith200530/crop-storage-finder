@@ -1,31 +1,136 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page</title>
+
+    <title>Login | CropConnect</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
+
 <body>
-    {% if messages %}
 
-    {% for message in messages %}
+    <main class="login-page">
 
-        <p>{{ message }}</p>
+        <section class="login-card">
 
-    {% endfor %}
+            <!-- Application Branding -->
+            <div class="brand">
 
-{% endif %}
-    <h1> Log in</h1>
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-  UserName : <input type="Text" name="username" placeholder="Enter User Name">
-  <br><br>
-  password : <input type="password" name="password" placeholder="Enter password">
-  <br><br>
-  <button type="submit">Login</button>
-    </form>
-    <p> New user ? </p>
-    <br>
-    <a href="{% url 'register' %}">Register </a>
+                <h1>CropConnect</h1>
+
+                <p>
+                    Crop Storage Finder & Farmer–Buyer Marketplace
+                </p>
+
+            </div>
+
+
+            <!-- Login Heading -->
+            <div class="login-heading">
+
+                <h2>Welcome Back</h2>
+
+                <p>Login to continue to your account</p>
+
+            </div>
+
+
+            <!-- Messages -->
+            {% if messages %}
+
+                <div class="messages-container">
+
+                    {% for message in messages %}
+
+                        <div class="message {{ message.tags }}">
+
+                            <span class="message-icon">!</span>
+
+                            <span class="message-text">
+                                {{ message }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Login Form -->
+            <form method="POST" action="{% url 'login' %}" class="login-form">
+
+                {% csrf_token %}
+
+
+                <!-- Username -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Login Button -->
+                <button type="submit" class="login-button">
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- Registration -->
+            <div class="register-section">
+
+                <p>New User?</p>
+
+                <a href="{% url 'register' %}">
+                    Create an account
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
 </body>
+
 </html>

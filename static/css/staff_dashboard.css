@@ -1,0 +1,602 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f8f3;
+
+    color: #263326;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 45px 20px;
+}
+
+
+/* =========================================
+   DASHBOARD CARD
+========================================= */
+
+.dashboard-card {
+    width: 100%;
+    max-width: 850px;
+
+    background: #ffffff;
+
+    border: 1px solid #e0e8df;
+
+    border-radius: 14px;
+
+    padding: 35px;
+
+    box-shadow: 0 5px 18px rgba(36, 73, 39, 0.07);
+}
+
+
+/* =========================================
+   DASHBOARD HEADER
+========================================= */
+
+.dashboard-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   PAGE LABEL
+========================================= */
+
+.page-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #2e7d32;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   MAIN HEADING
+========================================= */
+
+.dashboard-header h1 {
+    color: #1f3322;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================
+   HEADER DESCRIPTION
+========================================= */
+
+.dashboard-header p {
+    margin-top: 10px;
+
+    color: #687468;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   STORAGE SECTION
+========================================= */
+
+.storage-section {
+    padding: 25px;
+
+    background: #f8fbf7;
+
+    border: 1px solid #e2ebe1;
+
+    border-radius: 12px;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e4ebe3;
+}
+
+
+/* =========================================
+   SECTION ICON
+========================================= */
+
+.section-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    font-size: 22px;
+}
+
+
+/* =========================================
+   SECTION HEADING TEXT
+========================================= */
+
+.section-heading h2 {
+    color: #263326;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.section-heading p {
+    margin-top: 4px;
+
+    color: #788278;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   STORAGE NAME
+========================================= */
+
+.storage-name {
+    padding: 22px 0;
+
+    border-bottom: 1px solid #e4ebe3;
+}
+
+
+.storage-name h3 {
+    color: #2e7d32;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   STORAGE DETAILS
+========================================= */
+
+.storage-details {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    padding-top: 20px;
+}
+
+
+/* =========================================
+   DETAIL CARD
+========================================= */
+
+.detail-card {
+    min-width: 0;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e9df;
+
+    border-radius: 9px;
+}
+
+
+/* =========================================
+   DETAIL LABEL
+========================================= */
+
+.detail-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #7a8379;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================
+   DETAIL VALUE
+========================================= */
+
+.detail-value {
+    color: #303b31;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   CAPACITY
+========================================= */
+
+.detail-value.capacity {
+    color: #2e7d32;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   ACTIONS SECTION
+========================================= */
+
+.actions-section {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   DASHBOARD BUTTON
+========================================= */
+
+.dashboard-button {
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-align: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.primary-button {
+    background: #2e7d32;
+
+    color: #ffffff;
+}
+
+
+.primary-button:hover {
+    background: #256b29;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(46, 125, 50, 0.20);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.secondary-button {
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    border: 1px solid #c8e0ca;
+}
+
+
+.secondary-button:hover {
+    background: #dceddd;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(46, 125, 50, 0.10);
+}
+
+.logout-container {
+display: flex;
+
+justify-content: center;
+
+margin-bottom: 25px;
+
+
+}
+
+/* =========================================
+LOGOUT BUTTON
+========================================= */
+
+.logout-btn {
+min-width: 130px;
+
+display: inline-block;
+
+padding: 10px 18px;
+
+background: #ffffff;
+
+border: 1px solid #d8dfd7;
+
+border-radius: 7px;
+
+color: #596359;
+
+text-decoration: none;
+
+font-size: 14px;
+
+font-weight: 600;
+
+text-align: center;
+
+transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+
+}
+
+/* =========================================
+LOGOUT HOVER
+========================================= */
+
+.logout-btn:hover {
+background: #fff5f5;
+
+
+border-color: #e0bcbc;
+
+color: #c62828;
+
+transform: translateY(-2px);
+
+
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    .page-container {
+        padding: 35px 18px;
+    }
+
+
+    .dashboard-card {
+        padding: 30px 25px;
+    }
+
+
+    .storage-details {
+        grid-template-columns: 1fr;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .page-container {
+        padding: 25px 14px;
+    }
+
+
+    .dashboard-card {
+        padding: 25px 18px;
+
+        border-radius: 12px;
+    }
+
+
+    .dashboard-header {
+        margin-bottom: 25px;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+
+    .dashboard-header p {
+        font-size: 13px;
+    }
+
+
+    .storage-section {
+        padding: 20px 16px;
+    }
+
+
+    .section-heading {
+        gap: 11px;
+    }
+
+
+    .section-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 19px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+
+    .section-heading p {
+        font-size: 12px;
+    }
+
+
+    .storage-name {
+        padding: 18px 0;
+    }
+
+
+    .storage-name h3 {
+        font-size: 21px;
+    }
+
+
+    .detail-card {
+        padding: 16px;
+    }
+
+
+    .actions-section {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-top: 20px;
+    }
+
+
+    .dashboard-button {
+        width: 100%;
+
+        min-height: 48px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 350px) {
+
+    .page-container {
+        padding: 20px 10px;
+    }
+
+
+    .dashboard-card {
+        padding: 22px 15px;
+    }
+
+
+    .storage-section {
+        padding: 18px 14px;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 22px;
+    }
+
+
+    .storage-name h3 {
+        font-size: 19px;
+    }
+
+}
+

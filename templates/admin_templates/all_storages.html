@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Show All Storages</title>
+
+    <link rel="stylesheet" href="{% static 'css/all_storages.css' %}">
+
+</head>
+
+<body>
+
+    <main class="page-container">
+
+        <header class="page-header">
+            <span class="page-label">ADMIN PANEL</span>
+
+            <h1>All Storages</h1>
+
+            <p>
+                View all registered storage facilities and their assigned staff.
+            </p>
+        </header>
+
+
+        {% if storages %}
+
+        <section class="table-section">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>S.No</th>
+                            <th>Storage Name</th>
+                            <th>Staff Count</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for storage in storages %}
+
+                        <tr>
+
+                            <td data-label="S.No">
+                                {{ forloop.counter }}
+                            </td>
+
+                            <td data-label="Storage Name">
+                                <span class="storage-name">
+                                    {{ storage.storage_name }}
+                                </span>
+                            </td>
+
+                            <td data-label="Staff Count">
+                                <span class="staff-count">
+                                    {{ storage.staff_count }}
+                                </span>
+                            </td>
+
+                            <td data-label="Action">
+
+                                <a
+                                    href="{% url 'show_my_staff' storage.id %}"
+                                    class="show-staff-button">
+                                    Show Staff
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        {% else %}
+
+        <section class="empty-state">
+
+            <div class="empty-icon">📦</div>
+
+            <h2>No Storages Found</h2>
+
+            <p>
+                There are currently no registered storage facilities.
+            </p>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

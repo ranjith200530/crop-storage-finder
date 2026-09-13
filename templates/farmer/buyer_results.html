@@ -1,68 +1,219 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Buyers Available</title>
+
+    <link rel="stylesheet" href="{% static 'css/buyer_result.css' %}">
+
 </head>
+
 
 <body>
 
-    <h2>
-        Buyers Available for {{ listing.crop_name }}
-    </h2>
+    <main class="page-container">
 
 
-    {% for buyer in buyers %}
+        <!-- PAGE HEADER -->
 
-    <div>
+        <section class="page-header">
 
-        <h3>
-            {{ buyer.full_name }}
-        </h3>
+            <span class="page-label">
+                BUYER SEARCH
+            </span>
 
-        <p>
-            Contact:
-            {{ buyer.contact_number }}
-        </p>
+            <h1>
+                Buyers Available for
+                <span>{{ listing.crop_name }}</span>
+            </h1>
 
-        <p>
-            Crop:
-            {{ buyer.crop_name }}
-        </p>
+            <p>
+                Find buyers who are looking for your crop
+                and compare their requirements.
+            </p>
 
-        <p>
-            Required Quantity:
-            {{ buyer.quantity }}
-            {{ buyer.get_quantity_unit_display }}
-        </p>
+        </section>
 
-        <p>
-            Expected Price:
-            ₹{{ buyer.price }}
-            {{ buyer.get_price_unit_display }}
-        </p>
 
-        <p>
-            Location:
-            {{ buyer.subdistrict.name }},
-            {{ buyer.district.name }},
-            {{ buyer.state.name }}
-        </p>
 
-    </div>
+        <!-- BUYERS -->
 
-    <hr>
+        {% if buyers %}
 
-    {% empty %}
+        <section class="buyers-grid">
 
-    <p>
-        No buyers found for this crop.
-    </p>
 
-    {% endfor %}
+            {% for buyer in buyers %}
+
+            <div class="buyer-card">
+
+
+                <!-- BUYER HEADER -->
+
+                <div class="buyer-header">
+
+                    <div class="buyer-avatar">
+                        {{ buyer.full_name|first|upper }}
+                    </div>
+
+                    <div class="buyer-info">
+
+                        <h2>
+                            {{ buyer.full_name }}
+                        </h2>
+
+                        <p>
+                            Buyer
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BUYER DETAILS -->
+
+                <div class="buyer-details">
+
+
+                    <!-- CONTACT -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Contact
+                        </span>
+
+                        <span class="detail-value">
+                            {{ buyer.contact_number }}
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CROP -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Crop
+                        </span>
+
+                        <span class="detail-value crop-name">
+                            {{ buyer.crop_name }}
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Required Quantity
+                        </span>
+
+                        <span class="detail-value">
+                            {{ buyer.quantity }}
+                            {{ buyer.get_quantity_unit_display }}
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- PRICE -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Expected Price
+                        </span>
+
+                        <span class="detail-value price">
+
+                            ₹{{ buyer.price }}
+
+                            <small>
+                                {{ buyer.get_price_unit_display }}
+                            </small>
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="detail-item location-item">
+
+                        <span class="detail-label">
+                            Location
+                        </span>
+
+                        <span class="detail-value location">
+
+                            {{ buyer.subdistrict.name }},
+                            {{ buyer.district.name }},
+                            {{ buyer.state.name }}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            {% endfor %}
+
+
+        </section>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <section class="empty-state">
+
+            <div class="empty-icon">
+                🔍
+            </div>
+
+            <h2>
+                No Buyers Found
+            </h2>
+
+            <p>
+                No buyers are currently looking for
+                <strong>{{ listing.crop_name }}</strong>.
+            </p>
+
+        </section>
+
+
+        {% endif %}
+
+
+    </main>
 
 </body>
 
 </html>
+

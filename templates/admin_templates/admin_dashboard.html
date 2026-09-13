@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin dashboard</title>
-</head>
-<body>
-    <h1> Admin dashboard </h1>
-    <br><br>
-<a href="{% url 'storage_register' %}"> register storage </a>
-<br><br>
-<a href="#"> create staff and assign the storage </a>
-<br><br> 
-<a href="#"> show my storages</a>
-<br><br>
-<a href="#">show my staff members</a>
-
-
-
-
-</body>
+{% load static %} 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+    <title>Admin Dashboard</title> 
+ 
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}"> 
+</head> 
+ 
+<body> 
+ 
+    <div class="admin-dashboard"> 
+ 
+        <div class="dashboard-header"> 
+            <h1>Admin Dashboard</h1> 
+        </div> 
+ 
+        <div class="dashboard-menu"> 
+ 
+            <a href="{% url 'storage_register' %}" class="dashboard-link"> 
+                Register Storage 
+            </a> 
+ 
+            <a href="{% url 'create_staff' %}" class="dashboard-link"> 
+                Create Staff and Assign Storage 
+            </a> 
+ 
+            <a href="{% url 'show-storages' %}" class="dashboard-link"> 
+                Show My Storages 
+            </a> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</body> 
 </html>

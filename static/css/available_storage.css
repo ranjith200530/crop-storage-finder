@@ -1,0 +1,665 @@
+/* =========================================
+   GENERAL
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    color: #26352d;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PAGE HEADER
+   ========================================= */
+
+.page-header {
+    text-align: center;
+    padding: 35px 20px 25px;
+}
+
+
+.page-header h1 {
+    font-size: 32px;
+    color: #1f6b45;
+    margin-bottom: 8px;
+}
+
+
+.page-header p {
+    color: #6b776f;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   STORAGE SECTION
+   ========================================= */
+
+.storage-section {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto 45px;
+    padding: 0 25px;
+}
+
+
+/* =========================================
+   SECTION HEADING
+   ========================================= */
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+
+.section-heading h2 {
+    font-size: 23px;
+    color: #254f3a;
+    margin-bottom: 5px;
+}
+
+
+.section-heading p {
+    color: #7a857e;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   STORAGE GRID
+   ========================================= */
+
+.storage-grid {
+    width: 100%;
+
+    display: grid;
+
+    /*
+       Automatically creates as many columns
+       as can fit on the screen.
+    */
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================
+   STORAGE CARD
+   ========================================= */
+
+.storage-card {
+    width: 100%;
+    min-width: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e8e3;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.storage-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.10);
+
+    border-color: #b9d7c5;
+}
+
+
+/* =========================================
+   CARD HEADER
+   ========================================= */
+
+.card-header {
+    margin-bottom: 15px;
+}
+
+
+.storage-name {
+    color: #205d3d;
+
+    font-size: 18px;
+
+    line-height: 1.35;
+
+    margin-bottom: 10px;
+
+    /*
+       Prevent very long names from
+       breaking the card.
+    */
+
+    overflow-wrap: anywhere;
+}
+
+
+.storage-type {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #e9f5ed;
+
+    color: #247047;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================
+   LOCATION
+   ========================================= */
+
+.storage-location {
+    min-height: 70px;
+
+    margin-bottom: 10px;
+}
+
+
+.address {
+    color: #4f5d55;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+.location-details {
+    color: #78847d;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-top: 5px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   CONTACT
+   ========================================= */
+
+.contact {
+    color: #4f5d55;
+
+    font-size: 14px;
+
+    margin: 8px 0 15px;
+
+    overflow-wrap: anywhere;
+}
+
+
+.not-available {
+    color: #8a938e;
+}
+
+
+/* =========================================
+   CAPACITY
+   ========================================= */
+
+.capacity-section {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.capacity-box {
+    background: #f5f9f6;
+
+    border: 1px solid #e3ebe5;
+
+    border-radius: 9px;
+
+    padding: 12px 10px;
+
+    text-align: center;
+
+    min-width: 0;
+}
+
+
+.capacity-label {
+    display: block;
+
+    color: #727d76;
+
+    font-size: 11px;
+
+    margin-bottom: 7px;
+}
+
+
+.capacity-box strong {
+    display: block;
+
+    color: #235e40;
+
+    font-size: 15px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   PRICE
+   ========================================= */
+
+.price-section {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 0;
+
+    border-top: 1px solid #edf0ee;
+
+    border-bottom: 1px solid #edf0ee;
+
+    margin-bottom: 15px;
+}
+
+
+.price-label {
+    color: #69756e;
+
+    font-size: 13px;
+}
+
+
+.price {
+    color: #1e7045;
+
+    font-size: 16px;
+
+    text-align: right;
+}
+
+
+.price small {
+    font-size: 11px;
+
+    font-weight: normal;
+
+    color: #78847d;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+   ========================================= */
+
+.action-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: auto;
+
+    margin-bottom: 12px;
+}
+
+
+.action-btn {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 40px;
+
+    padding: 9px 10px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border: 1px solid #2c7a4e;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.call-btn {
+    background: #ffffff;
+
+    color: #247047;
+}
+
+
+.call-btn:hover {
+    background: #edf8f1;
+}
+
+
+.navigation-btn {
+    background: #28764b;
+
+    color: #ffffff;
+}
+
+
+.navigation-btn:hover {
+    background: #1f603c;
+}
+
+
+.disabled-btn {
+    background: #f0f2f1;
+
+    color: #9aa29d;
+
+    border-color: #dfe4e1;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   BOOKING BUTTON
+   ========================================= */
+
+.booking-form {
+    width: 100%;
+}
+
+
+.booking-btn {
+    width: 100%;
+
+    min-height: 43px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1f7045;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.booking-btn:hover {
+    background: #185c39;
+
+    transform: translateY(-1px);
+}
+
+
+.booking-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   API BOOKING MESSAGE
+   ========================================= */
+
+.api-booking-message {
+    background: #f8f9f8;
+
+    border: 1px solid #e3e8e4;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    margin-top: 0;
+
+    color: #68736d;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.api-booking-message strong {
+    display: block;
+
+    color: #506158;
+
+    margin-bottom: 5px;
+}
+
+
+.api-booking-message p {
+    margin-top: 4px;
+}
+
+
+/* =========================================
+   NO STORAGE
+   ========================================= */
+
+.no-storage {
+    width: calc(100% - 40px);
+
+    max-width: 650px;
+
+    margin: 50px auto;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #e1e8e3;
+
+    border-radius: 14px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+.no-storage-icon {
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.no-storage h2 {
+    color: #28583e;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+
+.no-storage p {
+    color: #727d76;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   LARGE DESKTOP
+   ========================================= */
+
+@media (min-width: 1500px) {
+
+    .storage-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 1200px) and (max-width: 1499px) {
+
+    .storage-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   TABLET / SMALL LAPTOP
+   ========================================= */
+
+@media (min-width: 700px) and (max-width: 1199px) {
+
+    .storage-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 699px) {
+
+    .page-header {
+        padding: 25px 15px 20px;
+    }
+
+
+    .page-header h1 {
+        font-size: 27px;
+    }
+
+
+    .storage-section {
+        padding: 0 15px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+
+    .storage-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .storage-card {
+        padding: 17px;
+    }
+
+
+    .storage-name {
+        font-size: 17px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 400px) {
+
+    .capacity-section {
+        grid-template-columns: 1fr;
+    }
+
+
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+
+
+    .price-section {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .price {
+        text-align: left;
+    }
+
+}

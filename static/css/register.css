@@ -1,0 +1,822 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f3f6f4;
+
+    color: #26332a;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   REGISTER PAGE
+========================================= */
+
+.register-page {
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+/* =========================================
+   REGISTER CARD
+========================================= */
+
+.register-card {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    background-color: #ffffff;
+
+    padding: 32px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e0e6e2;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand {
+
+    text-align: center;
+
+    margin-bottom: 22px;
+}
+
+
+.brand h1 {
+
+    color: #286b3c;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.brand p {
+
+    margin-top: 6px;
+
+    color: #6b756e;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   REGISTER HEADING
+========================================= */
+
+.register-heading {
+
+    margin-bottom: 18px;
+}
+
+
+.register-heading h2 {
+
+    font-size: 24px;
+
+    color: #26332a;
+
+    margin-bottom: 5px;
+}
+
+
+.register-heading p {
+
+    color: #737b76;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.messages-container {
+
+    margin-bottom: 16px;
+}
+
+
+.message {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 14px;
+
+    margin-bottom: 8px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    animation: messageSlide 0.35s ease-out;
+}
+
+
+/* Error message */
+
+.message.error {
+
+    background-color: #fff1f1;
+
+    color: #a52828;
+
+    border: 1px solid #f1caca;
+}
+
+
+/* Success message */
+
+.message.success {
+
+    background-color: #effaf2;
+
+    color: #26733b;
+
+    border: 1px solid #cce8d3;
+}
+
+
+/* Message icon */
+
+.message-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 22px;
+
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background-color: currentColor;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* Message animation */
+
+@keyframes messageSlide {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.register-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #35423a;
+}
+
+
+/* =========================================
+   TEXT & PASSWORD INPUTS
+========================================= */
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #26332a;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+
+    color: #9aa39d;
+}
+
+
+.form-group input:focus {
+
+    border-color: #3d7f50;
+
+    box-shadow:
+        0 0 0 3px rgba(61, 127, 80, 0.12);
+}
+
+
+/* =========================================
+   SELECT / ROLE
+========================================= */
+
+.form-group select {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #26332a;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Select placeholder */
+
+.form-group select:invalid {
+
+    color: #26332a;
+}
+
+
+/* Dropdown options */
+
+.form-group select option {
+
+    color: #26332a;
+
+    background-color: #ffffff;
+
+    font-size: 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Selected option */
+
+.form-group select option:checked {
+
+    color: #ffffff;
+
+    background-color: #286b3c;
+}
+
+
+/* Select focus */
+
+.form-group select:focus {
+
+    border-color: #3d7f50;
+
+    box-shadow:
+        0 0 0 3px rgba(61, 127, 80, 0.12);
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+========================================= */
+
+.register-button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 3px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: #286b3c;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.register-button:hover {
+
+    background-color: #205a31;
+}
+
+
+.register-button:active {
+
+    transform: scale(0.99);
+}
+
+
+/* =========================================
+   LOGIN SECTION
+========================================= */
+
+.login-section {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #e8ece9;
+}
+
+
+.login-section p {
+
+    display: inline;
+
+    color: #737b76;
+
+    font-size: 14px;
+}
+
+
+.login-section a {
+
+    margin-left: 5px;
+
+    color: #286b3c;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.login-section a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .register-page {
+
+        padding: 18px;
+    }
+
+
+    .register-card {
+
+        max-width: 450px;
+
+        padding: 28px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 28px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .register-page {
+
+        padding: 12px;
+    }
+
+
+    .register-card {
+
+        padding: 24px 20px;
+
+        border-radius: 9px;
+    }
+
+
+    .brand {
+
+        margin-bottom: 20px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 25px;
+    }
+
+
+    .brand p {
+
+        font-size: 13px;
+    }
+
+
+    .register-heading {
+
+        margin-bottom: 16px;
+    }
+
+
+    .register-heading h2 {
+
+        font-size: 21px;
+    }
+
+
+    .register-heading p {
+
+        font-size: 13px;
+    }
+
+
+    .register-form {
+
+        gap: 13px;
+    }
+
+
+    .form-group {
+
+        gap: 6px;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        padding: 11px 12px;
+
+        font-size: 14px;
+    }
+
+
+    .register-button {
+
+        padding: 12px;
+
+        font-size: 15px;
+    }
+
+
+    .login-section {
+
+        margin-top: 18px;
+
+        padding-top: 15px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 350px) {
+
+    .register-card {
+
+        padding: 20px 16px;
+    }
+
+
+    .brand {
+
+        margin-bottom: 16px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 22px;
+    }
+
+
+    .brand p {
+
+        font-size: 12px;
+    }
+
+
+    .register-heading {
+
+        margin-bottom: 13px;
+    }
+
+
+    .register-heading h2 {
+
+        font-size: 20px;
+    }
+
+
+    .register-form {
+
+        gap: 11px;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        padding: 10px 11px;
+    }
+
+
+    .register-button {
+
+        padding: 11px;
+    }
+
+
+    .login-section {
+
+        margin-top: 15px;
+
+        padding-top: 13px;
+    }
+}
+
+
+/* =========================================
+   SHORT HEIGHT SCREENS
+   Helps prevent unnecessary vertical scrolling
+========================================= */
+
+@media (max-height: 700px) {
+
+    .register-page {
+
+        padding-top: 10px;
+
+        padding-bottom: 10px;
+    }
+
+
+    .register-card {
+
+        padding-top: 24px;
+
+        padding-bottom: 24px;
+    }
+
+
+    .brand {
+
+        margin-bottom: 16px;
+    }
+
+
+    .register-heading {
+
+        margin-bottom: 14px;
+    }
+
+
+    .register-form {
+
+        gap: 11px;
+    }
+
+
+    .form-group {
+
+        gap: 5px;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        padding-top: 10px;
+
+        padding-bottom: 10px;
+    }
+
+
+    .login-section {
+
+        margin-top: 16px;
+
+        padding-top: 13px;
+    }
+}
+
+
+/* =========================================
+   VERY SHORT SCREENS
+========================================= */
+
+@media (max-height: 600px) {
+
+    .register-page {
+
+        align-items: flex-start;
+
+        padding-top: 10px;
+
+        padding-bottom: 10px;
+    }
+
+
+    .register-card {
+
+        padding-top: 20px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .brand {
+
+        margin-bottom: 12px;
+    }
+
+
+    .brand p {
+
+        margin-top: 4px;
+    }
+
+
+    .register-heading {
+
+        margin-bottom: 11px;
+    }
+
+
+    .register-form {
+
+        gap: 9px;
+    }
+
+
+    .form-group {
+
+        gap: 4px;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        padding-top: 9px;
+
+        padding-bottom: 9px;
+    }
+
+
+    .register-button {
+
+        padding-top: 10px;
+
+        padding-bottom: 10px;
+    }
+
+
+    .login-section {
+
+        margin-top: 12px;
+
+        padding-top: 10px;
+    }
+}
+

@@ -1,0 +1,500 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Available Storage</title>
+
+    <link rel="stylesheet" href="{% static 'css/available_storage.css' %}">
+</head>
+
+<body>
+
+    <!-- ==============================
+         PAGE HEADER
+         ============================== -->
+
+    <header class="page-header">
+
+        <h1>Available Storages</h1>
+
+        <p>
+            Find suitable storage facilities for your crops
+        </p>
+
+    </header>
+
+
+    <!-- ==============================
+         REGISTERED STORAGES
+         ============================== -->
+
+    {% if recommended_storages %}
+
+    <section class="storage-section">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Recommended Storage</h2>
+
+                <p>
+                    Storage facilities registered on our platform
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- STORAGE GRID -->
+
+        <div class="storage-grid">
+
+            {% for storage in recommended_storages %}
+
+            <div class="storage-card">
+
+                <!-- Storage Name -->
+
+                <div class="card-header">
+
+                    <h3 class="storage-name">
+                        🏢 {{ storage.storage_name }}
+                    </h3>
+
+                    <span class="storage-type">
+                        {{ storage.storage_type }}
+                    </span>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="storage-location">
+
+                    <p class="address">
+                        📍 {{ storage.address }}
+                    </p>
+
+                    <p class="location-details">
+                        {{ storage.sub_district }},
+                        {{ storage.district }},
+                        {{ storage.state }}
+                    </p>
+
+                </div>
+
+
+                <!-- Contact -->
+
+                {% if storage.main_contact_number %}
+
+                <p class="contact">
+                    📞 {{ storage.main_contact_number }}
+                </p>
+
+                {% else %}
+
+                <p class="contact not-available">
+                    📞 Phone: Not available
+                </p>
+
+                {% endif %}
+
+
+                <!-- Capacity -->
+
+                <div class="capacity-section">
+
+                    <div class="capacity-box">
+
+                        <span class="capacity-label">
+                            Total Capacity
+                        </span>
+
+                        <strong>
+                            {{ storage.capacity }}
+                            {{ storage.capacity_unit }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="capacity-box">
+
+                        <span class="capacity-label">
+                            Available Capacity
+                        </span>
+
+                        <strong>
+                            {{ storage.available_capacity }}
+                            {{ storage.capacity_unit }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Price -->
+
+                <div class="price-section">
+
+                    <span class="price-label">
+                        Storage Charge
+                    </span>
+
+                    <strong class="price">
+                        ₹{{ storage.price_per_kg }}
+                        <small>/ kg / month</small>
+                    </strong>
+
+                </div>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="action-buttons">
+
+                    {% if storage.main_contact_number %}
+
+                    <a
+                        href="tel:{{ storage.main_contact_number }}"
+                        class="action-btn call-btn"
+                    >
+                        📞 Call
+                    </a>
+
+                    {% else %}
+
+                    <button
+                        type="button"
+                        class="action-btn disabled-btn"
+                        disabled
+                    >
+                        📞 Call
+                    </button>
+
+                    {% endif %}
+
+
+                    <!-- Navigation -->
+
+                    <a
+                        href="https://www.google.com/maps/dir/?api=1&destination={{ storage.storage_name|urlencode }},{{ storage.subdistrict.name|urlencode }},{{ storage.state.name|urlencode }},India&travelmode=driving"
+                        target="_blank"
+                        class="action-btn navigation-btn"
+                    >
+                        📍 Navigation
+                    </a>
+
+                </div>
+
+
+                <!-- BOOKING -->
+
+                <form
+                    method="POST"
+                    action="{% url 'booking_request' %}"
+                    class="booking-form"
+                >
+
+                    {% csrf_token %}
+
+                    <input
+                        type="hidden"
+                        name="farmer_name"
+                        value="{{ name }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="mobile"
+                        value="{{ mobile }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="crop_name"
+                        value="{{ crop_name }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="quantity"
+                        value="{{ quantity }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="quantity_unit"
+                        value="{{ quantity_unit }}"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="storage_id"
+                        value="{{ storage.id }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="booking-btn"
+                    >
+                        Request Booking
+                    </button>
+
+                </form>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+    <!-- ==============================
+         NEARBY API STORAGES
+         ============================== -->
+
+    {% if api_storages %}
+
+    <section class="storage-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Nearby Storages</h2>
+
+                <p>
+                    Other storage facilities found nearby
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- STORAGE GRID -->
+
+        <div class="storage-grid">
+
+            {% for storage in api_storages %}
+
+            <div class="storage-card">
+
+                <!-- Storage Name -->
+
+                <div class="card-header">
+
+                    <h3 class="storage-name">
+                        🏢 {{ storage.name }}
+                    </h3>
+
+                    <span class="storage-type">
+                        {{ storage.storage_type }}
+                    </span>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="storage-location">
+
+                    <p class="address">
+                        📍 {{ storage.address }}
+                    </p>
+
+                </div>
+
+
+                <!-- Contact -->
+
+                {% if storage.contact %}
+
+                <p class="contact">
+                    📞 {{ storage.contact }}
+                </p>
+
+                {% else %}
+
+                <p class="contact not-available">
+                    📞 Phone: Not available
+                </p>
+
+                {% endif %}
+
+
+                <!-- Capacity -->
+
+                <div class="capacity-section">
+
+                    <div class="capacity-box">
+
+                        <span class="capacity-label">
+                            Total Capacity
+                        </span>
+
+                        <strong class="not-available">
+                            Not available
+                        </strong>
+
+                    </div>
+
+
+                    <div class="capacity-box">
+
+                        <span class="capacity-label">
+                            Available Capacity
+                        </span>
+
+                        <strong class="not-available">
+                            Not available
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Price -->
+
+                <div class="price-section">
+
+                    <span class="price-label">
+                        Storage Charge
+                    </span>
+
+                    <strong class="not-available">
+                        Not available
+                    </strong>
+
+                </div>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="action-buttons">
+
+                    {% if storage.contact %}
+
+                    <a
+                        href="tel:{{ storage.contact }}"
+                        class="action-btn call-btn"
+                    >
+                        📞 Call
+                    </a>
+
+                    {% else %}
+
+                    <button
+                        type="button"
+                        class="action-btn disabled-btn"
+                        disabled
+                    >
+                        📞 Call
+                    </button>
+
+                    {% endif %}
+
+
+                    <!-- Navigation -->
+
+                    {% if storage.place_id %}
+
+                    <a
+                        href="https://www.google.com/maps/dir/?api=1&destination_place_id={{ storage.place_id }}&destination={{ storage.name|urlencode }}&travelmode=driving"
+                        target="_blank"
+                        class="action-btn navigation-btn"
+                    >
+                        📍 Navigation
+                    </a>
+
+                    {% elif storage.latitude and storage.longitude %}
+
+                    <a
+                        href="https://www.google.com/maps/dir/?api=1&destination={{ storage.latitude }},{{ storage.longitude }}&travelmode=driving"
+                        target="_blank"
+                        class="action-btn navigation-btn"
+                    >
+                        📍 Navigation
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- API BOOKING MESSAGE -->
+
+                <div class="api-booking-message">
+
+                    <strong>
+                        ℹ Booking unavailable
+                    </strong>
+
+                    <p>
+                        Booking through this platform is unavailable
+                        for this storage.
+                    </p>
+
+                    <p>
+                        Please contact the storage directly for
+                        availability and booking.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+
+    <!-- ==============================
+         NO STORAGE FOUND
+         ============================== -->
+
+    {% if not recommended_storages and not api_storages %}
+
+    <div class="no-storage">
+
+        <div class="no-storage-icon">
+            🏢
+        </div>
+
+        <h2>
+            No Suitable Storage Found
+        </h2>
+
+        <p>
+            No storage facility with sufficient available capacity
+            was found in the selected location.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+</body>
+
+</html>

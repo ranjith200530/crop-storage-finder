@@ -1,70 +1,161 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Available Farmers</title>
+
+    <link rel="stylesheet" href="{% static 'css/find_farmer.css' %}">
 </head>
+
 <body>
-    <h2>
-Farmers Available for {{ requirement.crop_name }}
-</h2>
+
+    <main class="container">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <h2>
+                Farmers Available for
+                <span>{{ requirement.crop_name }}</span>
+            </h2>
+
+            <p>
+                Farmers matching your crop requirement
+            </p>
+
+        </div>
 
 
-{% for farmer in farmers %}
+        <!-- FARMERS -->
 
-<div>
+        {% if farmers %}
 
-<h3>
-{{ farmer.full_name }}
-</h3>
+        <div class="farmers-container">
 
+            {% for farmer in farmers %}
 
-<p>
-Contact:
-{{ farmer.contact_number }}
-</p>
+            <div class="farmer-card">
 
+                <!-- FARMER NAME -->
 
-<p>
-Crop:
-{{ farmer.crop_name }}
-</p>
+                <div class="farmer-header">
 
+                    <h3>
+                        {{ farmer.full_name }}
+                    </h3>
 
-<p>
-Quantity:
-{{ farmer.quantity }}
-{{ farmer.get_quantity_unit_display }}
-</p>
+                </div>
 
 
-<p>
-Price:
-₹{{ farmer.price }}
-{{ farmer.get_price_unit_display }}
-</p>
+                <!-- FARMER INFORMATION -->
+
+                <div class="farmer-info">
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Contact
+                        </span>
+
+                        <span class="info-value">
+                            {{ farmer.contact_number }}
+                        </span>
+
+                    </div>
 
 
-<p>
-Location:
-{{ farmer.subdistrict.name }},
-{{ farmer.district.name }},
-{{ farmer.state.name }}
-</p>
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Crop
+                        </span>
+
+                        <span class="info-value">
+                            {{ farmer.crop_name }}
+                        </span>
+
+                    </div>
 
 
-</div>
+                    <div class="info-item">
 
-<hr>
+                        <span class="info-label">
+                            Quantity
+                        </span>
+
+                        <span class="info-value">
+                            {{ farmer.quantity }}
+                            {{ farmer.get_quantity_unit_display }}
+                        </span>
+
+                    </div>
 
 
-{% empty %}
+                    <div class="info-item">
 
-<p>
-No farmers found for this requirement.
-</p>
+                        <span class="info-label">
+                            Price
+                        </span>
 
-{% endfor %}
+                        <span class="info-value price">
+                            ₹{{ farmer.price }}
+                            {{ farmer.get_price_unit_display }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-item location-item">
+
+                        <span class="info-label">
+                            Location
+                        </span>
+
+                        <span class="info-value location">
+                            {{ farmer.subdistrict.name }},
+                            {{ farmer.district.name }},
+                            {{ farmer.state.name }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <div class="empty-message">
+
+            <h3>
+                No Farmers Found
+            </h3>
+
+            <p>
+                No farmers were found for this crop requirement.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </main>
+
 </body>
+
 </html>
+

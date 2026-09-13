@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Staff Members</title>
+
+    <link rel="stylesheet" href="{% static 'css/storage_staff.css' %}">
+
+</head>
+
+<body>
+
+    <main class="page-container">
+
+        <!-- Page Header -->
+
+        <header class="page-header">
+
+            <span class="page-label">
+                ADMIN PANEL
+            </span>
+
+            <h1>
+                Staff Members
+            </h1>
+
+            <p>
+                Staff members assigned to this storage facility.
+            </p>
+
+        </header>
+
+
+        <!-- Storage Information -->
+
+        <section class="storage-info">
+
+            <span class="storage-label">
+                STORAGE
+            </span>
+
+            <h2>
+                {{ storage.storage_name }}
+            </h2>
+
+        </section>
+
+
+        <!-- Staff Table -->
+
+        {% if staff_members %}
+
+        <section class="table-section">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Staff ID</th>
+
+                            <th>Username</th>
+
+                            <th>Assigned Storage</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for staff in staff_members %}
+
+                        <tr>
+
+                            <!-- Serial Number -->
+
+                            <td data-label="S.No">
+                                {{ forloop.counter }}
+                            </td>
+
+
+                            <!-- Staff ID -->
+
+                            <td data-label="Staff ID">
+                                {{ staff.user.id }}
+                            </td>
+
+
+                            <!-- Username -->
+
+                            <td data-label="Username">
+
+                                <span class="username">
+                                    {{ staff.user.username }}
+                                </span>
+
+                            </td>
+
+
+                            <!-- Storage Name -->
+
+                            <td data-label="Assigned Storage">
+                                {{ staff.storage.storage_name }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        {% else %}
+
+        <!-- Empty State -->
+
+        <section class="empty-state">
+
+            <div class="empty-icon">
+                👤
+            </div>
+
+            <h2>
+                No Staff Members
+            </h2>
+
+            <p>
+                No staff members are currently assigned to this storage.
+            </p>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

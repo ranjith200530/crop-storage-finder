@@ -1,28 +1,48 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User,Group
 
 from django.contrib.auth import authenticate,login,logout
 from . import models
-
+from admin_panel.models import StaffAssignment
 import re
 from django.contrib import messages
 # Create your views here.
 
 def buyer(req):
-    return render(req,"buyer/buyer_dashborad.html")
+    return render(req,"buyer/buyer_dashborad.html",{"user":req.user})
 def farmer(req):
-    return render(req,"farmer/farmer_dashboard.html")
+    return render(req,"farmer/farmer_dashboard.html",{"user":req.user})
 
+
+def staff(request):
+
+    staff_assignment = StaffAssignment.objects.get(
+        user=request.user
+    )
+
+    storage = staff_assignment.storage
+
+    return render(
+        request,
+        "staff_templates/staff_home.html",
+        {
+            "storage": storage,
+        }
+    )
 def login_view(request):
-
+    if request.user.is_superuser:
+        return redirect("admin_home")
     # If user is already logged in
     if request.user.is_authenticated:
 
         if request.user.groups.filter(name="Farmer").exists():
             return redirect("farmer")
+        if request.user.groups.filter(name="Storage_staff").exists():
+            return redirect("staff_dashboard")
 
         elif request.user.groups.filter(name="Buyer").exists():
             return redirect("buyer")
+        
 
     
 

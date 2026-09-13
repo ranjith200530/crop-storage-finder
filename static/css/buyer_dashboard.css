@@ -1,0 +1,690 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f3f6f4;
+
+    color: #26332a;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   DASHBOARD PAGE
+========================================= */
+
+.dashboard-page {
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 20px;
+}
+
+
+/* =========================================
+   DASHBOARD CARD
+========================================= */
+
+.dashboard-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background-color: #ffffff;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e0e6e2;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   DASHBOARD HEADER
+========================================= */
+
+.dashboard-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #e8ece9;
+}
+
+
+/* =========================================
+   WELCOME ICON
+========================================= */
+
+.welcome-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #eff7f1;
+
+    color: #286b3c;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   HEADER CONTENT
+========================================= */
+
+.welcome-content h1 {
+
+    color: #286b3c;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.welcome-content p {
+
+    margin-top: 6px;
+
+    color: #737b76;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   DASHBOARD OPTIONS
+========================================= */
+
+.dashboard-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   DASHBOARD OPTION
+========================================= */
+
+.dashboard-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 17px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dfe6e1;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.dashboard-option:hover {
+
+    background-color: #f8fbf9;
+
+    border-color: #9ebaa6;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   OPTION ICON
+========================================= */
+
+.option-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background-color: #eff7f1;
+
+    color: #286b3c;
+
+    font-size: 24px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   OPTION CONTENT
+========================================= */
+
+.option-content {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.option-content h2 {
+
+    color: #26332a;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+.option-content p {
+
+    margin-top: 5px;
+
+    color: #737b76;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   OPTION ARROW
+========================================= */
+
+.option-arrow {
+
+    flex-shrink: 0;
+
+    color: #286b3c;
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    transition: transform 0.2s ease;
+}
+
+
+.dashboard-option:hover .option-arrow {
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   LOGOUT SECTION
+========================================= */
+
+.logout-section {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e8ece9;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   LOGOUT BUTTON
+========================================= */
+
+.logout-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 120px;
+
+    padding: 11px 22px;
+
+    border-radius: 7px;
+
+    border: 1px solid #d7dfda;
+
+    background-color: #ffffff;
+
+    color: #6f7772;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.logout-button:hover {
+
+    background-color: #fff5f5;
+
+    border-color: #e2bcbc;
+
+    color: #a52828;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-page {
+
+        padding: 25px 18px;
+    }
+
+
+    .dashboard-card {
+
+        max-width: 580px;
+
+        padding: 30px;
+    }
+
+
+    .welcome-content h1 {
+
+        font-size: 27px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .dashboard-page {
+
+        padding: 15px 12px;
+    }
+
+
+    .dashboard-card {
+
+        padding: 24px 20px;
+
+        border-radius: 9px;
+    }
+
+
+    .dashboard-header {
+
+        gap: 12px;
+
+        padding-bottom: 20px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .welcome-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 22px;
+    }
+
+
+    .welcome-content h1 {
+
+        font-size: 23px;
+    }
+
+
+    .welcome-content p {
+
+        font-size: 13px;
+    }
+
+
+    .dashboard-options {
+
+        gap: 11px;
+    }
+
+
+    .dashboard-option {
+
+        padding: 14px;
+
+        gap: 12px;
+    }
+
+
+    .option-icon {
+
+        width: 39px;
+
+        height: 39px;
+
+        font-size: 21px;
+    }
+
+
+    .option-content h2 {
+
+        font-size: 15px;
+    }
+
+
+    .option-content p {
+
+        font-size: 12px;
+
+        margin-top: 4px;
+    }
+
+
+    .option-arrow {
+
+        font-size: 19px;
+    }
+
+
+    .logout-section {
+
+        margin-top: 20px;
+
+        padding-top: 16px;
+    }
+
+
+    .logout-button {
+
+        padding: 10px 20px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 350px) {
+
+    .dashboard-card {
+
+        padding: 20px 16px;
+    }
+
+
+    .dashboard-header {
+
+        padding-bottom: 16px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .welcome-icon {
+
+        width: 44px;
+
+        height: 44px;
+
+        font-size: 20px;
+    }
+
+
+    .welcome-content h1 {
+
+        font-size: 21px;
+    }
+
+
+    .dashboard-option {
+
+        padding: 12px;
+    }
+
+
+    .option-icon {
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 19px;
+    }
+
+
+    .option-content h2 {
+
+        font-size: 14px;
+    }
+
+
+    .option-content p {
+
+        font-size: 11px;
+    }
+
+
+    .logout-section {
+
+        margin-top: 16px;
+
+        padding-top: 13px;
+    }
+}
+
+
+/* =========================================
+   SHORT HEIGHT SCREENS
+========================================= */
+
+@media (max-height: 650px) {
+
+    .dashboard-page {
+
+        padding-top: 12px;
+
+        padding-bottom: 12px;
+    }
+
+
+    .dashboard-card {
+
+        padding-top: 25px;
+
+        padding-bottom: 25px;
+    }
+
+
+    .dashboard-header {
+
+        padding-bottom: 18px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .dashboard-options {
+
+        gap: 10px;
+    }
+
+
+    .dashboard-option {
+
+        padding: 13px;
+    }
+
+
+    .logout-section {
+
+        margin-top: 17px;
+
+        padding-top: 14px;
+    }
+}
+
+
+/* =========================================
+   VERY SHORT SCREENS
+========================================= */
+
+@media (max-height: 550px) {
+
+    .dashboard-page {
+
+        align-items: flex-start;
+
+        padding-top: 8px;
+
+        padding-bottom: 8px;
+    }
+
+
+    .dashboard-card {
+
+        padding-top: 20px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .dashboard-header {
+
+        padding-bottom: 13px;
+
+        margin-bottom: 13px;
+    }
+
+
+    .welcome-icon {
+
+        width: 45px;
+
+        height: 45px;
+    }
+
+
+    .dashboard-options {
+
+        gap: 8px;
+    }
+
+
+    .dashboard-option {
+
+        padding: 11px;
+    }
+
+
+    .option-content p {
+
+        margin-top: 3px;
+    }
+
+
+    .logout-section {
+
+        margin-top: 12px;
+
+        padding-top: 10px;
+    }
+}
+

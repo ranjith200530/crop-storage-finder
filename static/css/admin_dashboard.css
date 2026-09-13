@@ -1,0 +1,249 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f4f6f8;
+
+    color: #333;
+
+    min-height: 100vh;
+
+    padding: 40px 20px;
+}
+
+
+
+.admin-dashboard {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+
+
+
+.dashboard-header {
+    width: 100%;
+
+    background-color: #1f2937;
+
+    border-radius: 8px;
+
+    padding: 25px 30px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+
+.dashboard-header h1 {
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+
+.dashboard-menu {
+
+  
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 16px;
+}
+
+
+
+
+.dashboard-link {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 20px 24px;
+
+    background-color: white;
+
+    color: #1f2937;
+
+    text-decoration: none;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    border: 1px solid #dfe3e8;
+
+    border-left: 5px solid #2563eb;
+
+    border-radius: 7px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+
+.dashboard-link:hover {
+
+    background-color: #f8fafc;
+
+    color: #2563eb;
+
+    transform: translateX(5px);
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.10);
+}
+
+
+
+
+.dashboard-link:active {
+
+    transform: translateX(2px);
+}
+
+
+
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 30px 18px;
+    }
+
+
+    .dashboard-header {
+
+        padding: 22px 20px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .dashboard-header h1 {
+
+        font-size: 25px;
+    }
+
+
+    .dashboard-menu {
+
+        gap: 13px;
+    }
+
+
+    .dashboard-link {
+
+        padding: 17px 20px;
+
+        font-size: 16px;
+    }
+}
+
+
+
+
+@media (max-width: 480px) {
+
+    body {
+
+        padding: 15px 10px;
+    }
+
+
+    .dashboard-header {
+
+        padding: 18px 15px;
+
+        margin-bottom: 20px;
+
+        border-radius: 6px;
+    }
+
+
+    .dashboard-header h1 {
+
+        font-size: 21px;
+    }
+
+
+    .dashboard-menu {
+
+        gap: 11px;
+    }
+
+
+    .dashboard-link {
+
+        padding: 15px 16px;
+
+        font-size: 15px;
+
+        border-left-width: 4px;
+
+        border-radius: 6px;
+    }
+
+
+    .dashboard-link:hover {
+
+        transform: none;
+    }
+}
+
+
+
+@media (max-width: 350px) {
+
+    body {
+
+        padding: 10px 8px;
+    }
+
+
+    .dashboard-header {
+
+        padding: 16px 10px;
+    }
+
+
+    .dashboard-header h1 {
+
+        font-size: 19px;
+    }
+
+
+    .dashboard-link {
+
+        padding: 14px;
+
+        font-size: 14px;
+    }
+}

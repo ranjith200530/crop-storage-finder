@@ -4,47 +4,30 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-
     user = models.OneToOneField(
         User,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='profile'
     )
 
-    full_name = models.CharField(
-        max_length=100
+    username = models.CharField(
+        max_length=150
     )
 
-    contact_number = models.CharField(
-        max_length=10
+    role = models.CharField(
+        max_length=20
     )
 
-    state = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True
-    )
-  
-
-    district = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True
-    )
-
-    city = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True
-    )
-
-    address = models.TextField(
-        blank=True,
-        null=True
-    )
-
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['username', 'role'],
+                name='unique_username_per_role'
+            )
+        ]
 
     def __str__(self):
-        return self.full_name
+        return f"{self.username} - {self.role}"
     
 
 

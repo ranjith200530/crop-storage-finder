@@ -1,0 +1,401 @@
+/* =========================================
+RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+/* =========================================
+BODY
+========================================= */
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #f5f7f6;
+color: #1f2933;
+min-height: 100vh;
+}
+
+/* =========================================
+MAIN CONTAINER
+========================================= */
+
+.page-container {
+width: 100%;
+max-width: 1100px;
+margin: 0 auto;
+padding: 35px 25px;
+}
+
+/* =========================================
+PAGE HEADER
+========================================= */
+
+.page-header {
+   text-align: center;
+margin-bottom: 28px;
+}
+
+.page-label {
+display: inline-block;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 1.5px;
+color: #2e7d32;
+margin-bottom: 8px;
+}
+
+.page-header h1 {
+font-size: 32px;
+font-weight: 700;
+color: #172b1b;
+margin-bottom: 8px;
+}
+
+.page-header p {
+font-size: 15px;
+color: #6b7280;
+}
+
+/* =========================================
+BOOKINGS CONTAINER
+========================================= */
+
+.bookings-container {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
+}
+
+/* =========================================
+BOOKING CARD
+========================================= */
+
+.booking-card {
+background: #ffffff;
+border: 1px solid #e2e8e3;
+border-radius: 14px;
+padding: 22px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+BOOKING HEADER
+========================================= */
+
+.booking-header {
+display: flex;
+align-items: center;
+gap: 14px;
+padding-bottom: 18px;
+border-bottom: 1px solid #edf1ee;
+}
+
+.farmer-avatar {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: #e8f5e9;
+color: #2e7d32;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+font-size: 19px;
+font-weight: 700;
+
+flex-shrink: 0;
+
+
+}
+
+.farmer-info {
+min-width: 0;
+}
+
+.booking-label {
+display: block;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 1.2px;
+color: #7b8580;
+margin-bottom: 4px;
+}
+
+.farmer-info h2 {
+font-size: 19px;
+font-weight: 600;
+color: #172b1b;
+
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+
+
+}
+
+/* =========================================
+BOOKING DETAILS
+========================================= */
+
+.booking-details {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 16px;
+padding: 20px 0;
+}
+
+.detail-item {
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.detail-label {
+font-size: 12px;
+font-weight: 600;
+color: #7b8580;
+}
+
+.detail-value {
+font-size: 14px;
+font-weight: 600;
+color: #26352a;
+word-break: break-word;
+}
+
+.crop-name {
+color: #2e7d32;
+text-transform: capitalize;
+}
+
+/* =========================================
+ACTION BUTTONS
+========================================= */
+
+.booking-actions {
+display: flex;
+gap: 10px;
+padding-top: 17px;
+border-top: 1px solid #edf1ee;
+}
+
+.action-button {
+flex: 1;
+
+
+min-height: 40px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 8px;
+
+text-decoration: none;
+
+font-size: 14px;
+font-weight: 600;
+
+transition: all 0.2s ease;
+
+
+}
+
+/* =========================================
+CALCULATE BUTTON
+========================================= */
+
+.calculate-button {
+background: #2e7d32;
+color: #ffffff;
+}
+
+.calculate-button:hover {
+background: #256b29;
+}
+
+/* =========================================
+REMOVE BUTTON
+========================================= */
+
+.remove-button {
+background: #ffffff;
+color: #c62828;
+border: 1px solid #e3bcbc;
+}
+
+.remove-button:hover {
+background: #fff5f5;
+border-color: #c62828;
+}
+
+/* =========================================
+EMPTY STATE
+========================================= */
+
+.empty-state {
+background: #ffffff;
+border: 1px solid #e2e8e3;
+border-radius: 14px;
+
+
+padding: 60px 25px;
+
+text-align: center;
+
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+
+
+}
+
+.empty-icon {
+width: 65px;
+height: 65px;
+
+
+margin: 0 auto 18px;
+
+border-radius: 50%;
+
+background: #eef5ef;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+font-size: 28px;
+
+
+}
+
+.empty-state h2 {
+font-size: 21px;
+color: #26352a;
+margin-bottom: 8px;
+}
+
+.empty-state p {
+max-width: 450px;
+
+
+margin: 0 auto;
+
+font-size: 14px;
+line-height: 1.6;
+
+color: #737b76;
+
+}
+
+/* =========================================
+TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+
+.page-container {
+    padding: 28px 20px;
+}
+
+.bookings-container {
+    grid-template-columns: 1fr;
+}
+
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+
+.page-container {
+    padding: 22px 15px;
+}
+
+.page-header {
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 26px;
+}
+
+.page-header p {
+    font-size: 14px;
+}
+
+.booking-card {
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.booking-details {
+    gap: 14px;
+    padding: 17px 0;
+}
+
+.farmer-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+}
+
+.farmer-info h2 {
+    font-size: 17px;
+}
+
+.detail-label {
+    font-size: 11px;
+}
+
+.detail-value {
+    font-size: 13px;
+}
+
+.action-button {
+    min-height: 42px;
+    font-size: 13px;
+}
+
+
+}
+
+/* =========================================
+VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+
+.booking-details {
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.booking-actions {
+    flex-direction: column;
+}
+
+.action-button {
+    width: 100%;
+}
+
+
+}

@@ -1,0 +1,391 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7f5;
+
+    color: #222;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PAGE CONTAINER
+========================================= */
+
+.page-container {
+    width: 92%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 35px 0;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+    background: #ffffff;
+
+    padding: 32px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e1e6e3;
+
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   FORM HEADER
+========================================= */
+
+.form-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.form-header h2 {
+    font-size: 29px;
+
+    color: #1f5f3b;
+
+    margin-bottom: 8px;
+}
+
+
+.form-header p {
+    font-size: 14px;
+
+    color: #777;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form-section {
+    margin-bottom: 28px;
+}
+
+
+.form-section h3 {
+    font-size: 19px;
+
+    color: #1f5f3b;
+
+    margin-bottom: 18px;
+
+    padding-bottom: 9px;
+
+    border-bottom: 1px solid #e5ebe7;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================
+   INPUTS & SELECT
+========================================= */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #333;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1f7a4d;
+
+    box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.12);
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   LOCATION DROPDOWN
+========================================= */
+
+/*
+   This styles the dropdowns inside
+   locations_dropdown.html.
+
+   If those dropdowns already have their
+   own classes, you can customize them
+   separately.
+*/
+
+.location-dropdown {
+    margin-bottom: 18px;
+}
+
+
+/* Make common select elements inside
+   the location section responsive */
+
+.location-dropdown select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #333;
+
+    font-size: 15px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+.location-dropdown select:focus {
+    border-color: #1f7a4d;
+
+    box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.12);
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.submit-btn {
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #1f7a4d;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.submit-btn:hover {
+    background: #17623d;
+}
+
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .page-container {
+        width: 94%;
+
+        padding: 28px 0;
+    }
+
+
+    .form-card {
+        padding: 28px;
+    }
+
+
+    .form-header h2 {
+        font-size: 26px;
+    }
+
+
+    .form-section h3 {
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .page-container {
+        width: 94%;
+
+        padding: 20px 0;
+    }
+
+
+    .form-card {
+        padding: 22px 18px;
+
+        border-radius: 10px;
+    }
+
+
+    .form-header {
+        margin-bottom: 24px;
+    }
+
+
+    .form-header h2 {
+        font-size: 23px;
+    }
+
+
+    .form-header p {
+        font-size: 13px;
+    }
+
+
+    .form-section {
+        margin-bottom: 23px;
+    }
+
+
+    .form-section h3 {
+        font-size: 17px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+
+    .form-group input,
+    .form-group select,
+    .location-dropdown select {
+        height: 43px;
+
+        font-size: 14px;
+    }
+
+
+    .submit-btn {
+        height: 44px;
+
+        font-size: 14px;
+    }
+}
+

@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Staff Account</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'css/create_staff.css' %}">
+
+</head>
+
+
+<body>
+
+<div class="staff-page">
+
+    <div class="staff-card">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <div class="form-header">
+
+            <div class="header-icon">
+                +
+            </div>
+
+            <h2>Create Staff Account</h2>
+
+            <p>
+                Create an account and assign a storage facility
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             FORM
+        ========================== -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- =========================
+                 ACCOUNT INFORMATION
+            ========================== -->
+
+            <div class="form-section">
+
+                <h3>Account Information</h3>
+
+
+                <!-- Username -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Re-enter Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        placeholder="Re-enter password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 STORAGE ASSIGNMENT
+            ========================== -->
+
+            <div class="form-section">
+
+                <h3>Storage Assignment</h3>
+
+                <div class="form-group">
+
+                    <label for="storage">
+                        Assign Storage
+                    </label>
+
+                    <select
+                        id="storage"
+                        name="storage"
+                        required
+                    >
+
+                        <option value="">
+                            -- Select Storage --
+                        </option>
+
+
+                        {% for storage in storages %}
+
+                            <option value="{{ storage.id }}">
+                                {{ storage.storage_name }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <p class="field-help">
+                        Select the storage facility where this staff
+                        member will work.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SUBMIT
+            ========================== -->
+
+            <div class="submit-section">
+
+                <button type="submit">
+                    Create Staff
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

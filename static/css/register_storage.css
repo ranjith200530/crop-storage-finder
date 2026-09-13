@@ -1,0 +1,477 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f6;
+    color: #26332d;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.storage-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.storage-card {
+    width: 100%;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.form-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-header h2 {
+    font-size: 30px;
+    color: #176b3a;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    color: #6b756f;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form-section {
+    padding: 25px 0;
+    border-bottom: 1px solid #e4e9e6;
+}
+
+.form-section:first-of-type {
+    padding-top: 0;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.form-section h3 {
+    font-size: 19px;
+    color: #176b3a;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.form-section h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 4px;
+    height: 20px;
+    background: #2e9d5b;
+    border-radius: 3px;
+}
+
+
+/* =========================================
+   FORM ROW
+========================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #34423a;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   INPUT / SELECT / TEXTAREA
+========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    border: 1px solid #d2dbd5;
+
+    border-radius: 8px;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    background: #ffffff;
+
+    color: #26332d;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: #2e9d5b;
+
+    box-shadow: 0 0 0 3px rgba(46, 157, 91, 0.12);
+
+    background: #fbfffc;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9aa49e;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+
+/* =========================================
+   STORAGE CHARGE
+========================================= */
+
+.input-with-unit {
+    display: flex;
+    align-items: stretch;
+}
+
+.input-with-unit input {
+    border-radius: 8px 0 0 8px;
+}
+
+.input-with-unit span {
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    background: #f0f4f1;
+
+    border: 1px solid #d2dbd5;
+
+    border-left: none;
+
+    border-radius: 0 8px 8px 0;
+
+    color: #5f6b64;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   LOCATION DROPDOWN
+========================================= */
+
+.location-wrapper {
+    margin-bottom: 20px;
+}
+
+
+/*
+   These styles also help your included
+   locations_dropdown.html.
+
+   They will apply to common select/input
+   elements inside the location component.
+*/
+
+.location-wrapper select,
+.location-wrapper input {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d2dbd5;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background: #ffffff;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.location-wrapper select:focus,
+.location-wrapper input:focus {
+
+    border-color: #2e9d5b;
+
+    box-shadow: 0 0 0 3px rgba(46, 157, 91, 0.12);
+}
+
+
+/* =========================================
+   SUBMIT SECTION
+========================================= */
+
+.submit-section {
+    padding-top: 25px;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.submit-section button {
+
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #176b3a;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.submit-section button:hover {
+
+    background: #12582f;
+
+    box-shadow: 0 5px 15px rgba(23, 107, 58, 0.2);
+
+    transform: translateY(-1px);
+}
+
+
+.submit-section button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .storage-page {
+        padding: 25px 15px;
+    }
+
+    .storage-card {
+        padding: 30px 25px;
+    }
+
+    .form-header h2 {
+        font-size: 26px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .storage-page {
+        padding: 15px 10px;
+    }
+
+    .storage-card {
+        padding: 25px 18px;
+
+        border-radius: 10px;
+    }
+
+    .form-header {
+        margin-bottom: 25px;
+    }
+
+    .form-header h2 {
+        font-size: 24px;
+    }
+
+    .form-header p {
+        font-size: 14px;
+    }
+
+    .form-section {
+        padding: 20px 0;
+    }
+
+    .form-section h3 {
+        font-size: 17px;
+        margin-bottom: 16px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 11px 12px;
+        font-size: 14px;
+    }
+
+    /*
+       On very small screens the unit text
+       goes below the input.
+    */
+
+    .input-with-unit {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-with-unit input {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .input-with-unit span {
+
+        justify-content: center;
+
+        padding: 9px;
+
+        border: 1px solid #d2dbd5;
+
+        border-top: none;
+
+        border-radius: 0 0 8px 8px;
+
+        font-size: 13px;
+    }
+
+    .submit-section button {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+}

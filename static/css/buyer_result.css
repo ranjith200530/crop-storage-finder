@@ -1,0 +1,566 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f8f3;
+
+    color: #263326;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 25px 60px;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.page-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #2e7d32;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.page-header h1 {
+    color: #1f3322;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+.page-header h1 span {
+    color: #2e7d32;
+}
+
+
+.page-header p {
+    max-width: 650px;
+
+    margin: 10px auto 0;
+
+    color: #687468;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   BUYERS GRID
+========================================= */
+
+.buyers-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================
+   BUYER CARD
+========================================= */
+
+.buyer-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e0e8df;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    box-shadow: 0 5px 18px rgba(36, 73, 39, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.buyer-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 25px rgba(36, 73, 39, 0.12);
+}
+
+
+/* =========================================
+   BUYER HEADER
+========================================= */
+
+.buyer-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #edf1ec;
+}
+
+
+/* =========================================
+   BUYER AVATAR
+========================================= */
+
+.buyer-avatar {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BUYER INFORMATION
+========================================= */
+
+.buyer-info {
+    min-width: 0;
+}
+
+
+.buyer-info h2 {
+    color: #263326;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    word-break: break-word;
+}
+
+
+.buyer-info p {
+    margin-top: 4px;
+
+    color: #788278;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BUYER DETAILS
+========================================= */
+
+.buyer-details {
+    display: flex;
+
+    flex-direction: column;
+
+    padding-top: 8px;
+}
+
+
+/* =========================================
+   DETAIL ITEM
+========================================= */
+
+.detail-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #f0f3ef;
+}
+
+
+.detail-item:last-child {
+    border-bottom: none;
+
+    padding-bottom: 0;
+}
+
+
+/* =========================================
+   DETAIL LABEL
+========================================= */
+
+.detail-label {
+    flex-shrink: 0;
+
+    color: #7a8379;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   DETAIL VALUE
+========================================= */
+
+.detail-value {
+    max-width: 60%;
+
+    color: #303b31;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1.5;
+
+    text-align: right;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   CROP
+========================================= */
+
+.crop-name {
+    color: #2e7d32;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.detail-value.price {
+    color: #1b5e20;
+
+    font-size: 16px;
+}
+
+
+.price small {
+    color: #697469;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.location-item {
+    align-items: flex-start;
+}
+
+
+.location {
+    max-width: 60%;
+
+    color: #4d584d;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-state {
+    width: 100%;
+    max-width: 550px;
+
+    margin: 50px auto 0;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e0e8df;
+
+    border-radius: 14px;
+
+    box-shadow: 0 5px 18px rgba(36, 73, 39, 0.06);
+}
+
+
+/* =========================================
+   EMPTY ICON
+========================================= */
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    font-size: 28px;
+}
+
+
+/* =========================================
+   EMPTY STATE TEXT
+========================================= */
+
+.empty-state h2 {
+    margin-bottom: 8px;
+
+    color: #263326;
+
+    font-size: 21px;
+}
+
+
+.empty-state p {
+    color: #707970;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.empty-state strong {
+    color: #2e7d32;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+
+    .page-container {
+        padding: 35px 20px 50px;
+    }
+
+
+    .buyers-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 700px;
+
+        margin: 0 auto;
+    }
+
+
+    .page-header h1 {
+        font-size: 28px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .page-container {
+        padding: 28px 15px 40px;
+    }
+
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+
+    .buyers-grid {
+        gap: 16px;
+    }
+
+
+    .buyer-card {
+        padding: 20px;
+
+        border-radius: 12px;
+    }
+
+
+    .buyer-avatar {
+        width: 46px;
+        height: 46px;
+
+        font-size: 18px;
+    }
+
+
+    .buyer-info h2 {
+        font-size: 17px;
+    }
+
+
+    .detail-item {
+        gap: 12px;
+    }
+
+
+    .detail-label {
+        font-size: 12px;
+    }
+
+
+    .detail-value {
+        max-width: 60%;
+
+        font-size: 13px;
+    }
+
+
+    .detail-value.price {
+        font-size: 15px;
+    }
+
+
+    .location {
+        max-width: 60%;
+    }
+
+
+    .empty-state {
+        margin-top: 30px;
+
+        padding: 40px 20px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+    .page-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+    .page-header h1 {
+        font-size: 21px;
+    }
+
+
+    .buyer-card {
+        padding: 17px;
+    }
+
+
+    .buyer-header {
+        gap: 11px;
+    }
+
+
+    .detail-item {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    .detail-value {
+        max-width: 100%;
+
+        text-align: left;
+    }
+
+
+    .location {
+        max-width: 100%;
+    }
+
+}
+
