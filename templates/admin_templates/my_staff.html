@@ -71,7 +71,7 @@
 
                             <th>Staff ID</th>
 
-                            <th>Username</th>
+                            <th>Staff name</th>
 
                             <th>Assigned Storage</th>
 
@@ -105,7 +105,8 @@
                             <td data-label="Username">
 
                                 <span class="username">
-                                    {{ staff.user.username }}
+                                    {{ staff.user.first_name }}
+                                     {{ staff.user.last_name }}
                                 </span>
 
                             </td>

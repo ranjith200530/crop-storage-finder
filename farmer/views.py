@@ -676,7 +676,17 @@ def find_storage(request):
         # =====================================================
 
         recommended_storages = suitable_storages
+        
+        
+        for storage in recommended_storages:
 
+            if storage.available_capacity < 1:
+                storage.available_capacity = storage.available_capacity * 1000
+                storage.display_unit = "Kg"
+            else:
+                storage.display_unit = "MT"
+                
+                
         # =====================================================
         # 10. GOOGLE PLACES API
         # =====================================================
@@ -885,11 +895,13 @@ def find_storage(request):
             "api_storages":
                 api_storages,
         }
+        
 
         return render(
             request,
             "farmer/nearby_storages.html",
-            context
+            context,
+           
         )
 
     return render(

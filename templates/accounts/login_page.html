@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -70,18 +71,18 @@
                 {% csrf_token %}
 
 
-                <!-- Username -->
+                <!-- Email -->
                 <div class="form-group">
 
                     <label for="username">
-                        Username
+                        Email
                     </label>
 
                     <input
-                        type="text"
+                        type="email"
                         id="username"
                         name="username"
-                        placeholder="Enter your username"
+                        placeholder="Enter your email"
                         autocomplete="username"
                         required
                     >
@@ -134,3 +135,4 @@
 </body>
 
 </html>
+

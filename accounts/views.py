@@ -29,37 +29,108 @@ def staff(request):
             "storage": storage,
         }
     )
-def login_view(request):
-    if request.user.is_superuser:
-        return redirect("admin_home")
-    # If user is already logged in
-    if request.user.is_authenticated:
+# def login_view(request):
+#     if request.user.is_superuser:
+#         return redirect("admin_home")
+#     # If user is already logged in
+#     if request.user.is_authenticated:
 
-        if request.user.groups.filter(name="Farmer").exists():
-            return redirect("farmer")
-        if request.user.groups.filter(name="Storage_staff").exists():
-            return redirect("staff_dashboard")
+#         if request.user.groups.filter(name="Farmer").exists():
+#             return redirect("farmer")
+#         if request.user.groups.filter(name="Storage_staff").exists():
+#             return redirect("staff_dashboard")
 
-        elif request.user.groups.filter(name="Buyer").exists():
-            return redirect("buyer")
+#         elif request.user.groups.filter(name="Buyer").exists():
+#             return redirect("buyer")
         
 
     
 
 
+#     if request.method == "POST":
+
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+
+
+#         # Empty field validation
+#         if not username:
+#             messages.error(request,"Please Enter User Name")
+#         if not password:
+#             messages.error(request,"Please Enter Password")
+
+#         # Authenticate user
+#         user = authenticate(
+#             request,
+#             username=username,
+#             password=password
+#         )
+
+
+#         if user is None:
+#             messages.error(request, "Invalid Username or Password.")
+#             return redirect("login")
+
+
+#         # Login user
+#         login(request, user)
+
+
+#         # Redirect according to group
+#         if user.groups.filter(name="Farmer").exists():
+#             return redirect("farmer")
+
+
+#         elif user.groups.filter(name="Buyer").exists():
+#             return redirect("buyer")
+
+
+
+
+#     return render(request, "accounts/login_page.html")
+
+def login_view(request):
+
+    # If user is already logged in
+    if request.user.is_authenticated:
+
+        # Superuser
+        if request.user.is_superuser:
+            return redirect("admin_home")
+
+        # Farmer
+        if request.user.groups.filter(name="Farmer").exists():
+            return redirect("farmer")
+
+        # Storage Staff
+        if request.user.groups.filter(name="Storage_staff").exists():
+            return redirect("staff_dashboard")
+
+        # Buyer
+        elif request.user.groups.filter(name="Buyer").exists():
+            return redirect("buyer")
+
+
     if request.method == "POST":
 
+        # Template uses name="username",
+        # but the user enters their email
         username = request.POST.get("username")
         password = request.POST.get("password")
 
 
         # Empty field validation
         if not username:
-            messages.error(request,"Please Enter User Name")
+            messages.error(request, "Please Enter Email")
+            return redirect("login")
+
         if not password:
-            messages.error(request,"Please Enter Password")
+            messages.error(request, "Please Enter Password")
+            return redirect("login")
+
 
         # Authenticate user
+        # username contains the email
         user = authenticate(
             request,
             username=username,
@@ -67,8 +138,9 @@ def login_view(request):
         )
 
 
+        # Invalid email or password
         if user is None:
-            messages.error(request, "Invalid Username or Password.")
+            messages.error(request, "Invalid Email or Password.")
             return redirect("login")
 
 
@@ -76,96 +148,238 @@ def login_view(request):
         login(request, user)
 
 
-        # Redirect according to group
-        if user.groups.filter(name="Farmer").exists():
+        # Redirect according to user type
+
+        # Superuser
+        if user.is_superuser:
+            return redirect("admin_home")
+
+        # Farmer
+        elif user.groups.filter(name="Farmer").exists():
             return redirect("farmer")
 
+        # Storage Staff
+        elif user.groups.filter(name="Storage_staff").exists():
+            return redirect("staff_dashboard")
 
+        # Buyer
         elif user.groups.filter(name="Buyer").exists():
             return redirect("buyer")
 
 
-
-
     return render(request, "accounts/login_page.html")
+# def register(request):
 
+#     if request.method == "POST":
+
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+#         confirm_password = request.POST.get("confirm_password")
+#         role = request.POST.get("role")
+#         if username == "":
+#             messages.error(request, "Username is required")
+#             return redirect("register")
+
+#         if password == "":
+#             messages.error(request, "Password is required")
+#             return redirect("register")
+
+#         if confirm_password == "":
+#             messages.error(request, "Confirm password is required")
+#             return redirect("register")
+
+#         if role == "":
+#             messages.error(request, "Please select a role")
+#             return redirect("register")
+
+#         # Username validation
+#         if User.objects.filter(username=username).exists():
+#             messages.error(request, "Username already exists")
+#             return redirect("register")
+
+
+#         # Password match validation
+#         if password != confirm_password:
+#             messages.error(request, "Passwords do not match")
+#             return redirect("register")
+#         if len(password) < 8:
+#             messages.error(request, "Password must contain at least 8 characters")
+#             return redirect("register")
+#         if not re.search(r"[A-Z]", password):
+#             messages.error(request, "Password must contain at least one uppercase letter (A-Z)")
+#             return redirect("register")
+
+
+#         if not re.search(r"[a-z]", password):
+#             messages.error(request, "Password must contain at least one lowercase letter (a-z)")
+#             return redirect("register")
+
+
+#         if not re.search(r"[0-9]", password):
+#             messages.error(request, "Password must contain at least one number (0-9)")
+#             return redirect("register")
+
+
+#         if not re.search(r"[@#$%^&+=]", password):
+#             messages.error(request, "Password must contain at least one special character (@#$%^&+=)")
+#             return redirect("register")
+
+
+       
+       
+
+#         # Create User
+#         user = User.objects.create_user(
+#             username=username,
+#             password=password,
+#         )
+        
+
+#         # Add user to respective group
+#         group = Group.objects.get(name=role)
+#         user.groups.add(group)
+
+
+#         messages.success(request, "Registration successful")
+
+#         return redirect("login")
+
+
+#     return render(request, "accounts/register_page.html")
 
 
 def register(request):
 
     if request.method == "POST":
 
-        username = request.POST.get("username")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
         role = request.POST.get("role")
-        if username == "":
-            messages.error(request, "Username is required")
+
+
+        # Required field validation
+
+        if first_name == "":
+            messages.error(request, "First name is required")
             return redirect("register")
+
+
+        if last_name == "":
+            messages.error(request, "Last name is required")
+            return redirect("register")
+
+
+        if email == "":
+            messages.error(request, "Email is required")
+            return redirect("register")
+
 
         if password == "":
             messages.error(request, "Password is required")
             return redirect("register")
 
+
         if confirm_password == "":
             messages.error(request, "Confirm password is required")
             return redirect("register")
+
 
         if role == "":
             messages.error(request, "Please select a role")
             return redirect("register")
 
-        # Username validation
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists")
+
+        # Email validation
+        
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists")
             return redirect("register")
 
 
         # Password match validation
+
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
             return redirect("register")
+
+
         if len(password) < 8:
-            messages.error(request, "Password must contain at least 8 characters")
+            messages.error(
+                request,
+                "Password must contain at least 8 characters"
+            )
             return redirect("register")
+
+
         if not re.search(r"[A-Z]", password):
-            messages.error(request, "Password must contain at least one uppercase letter (A-Z)")
+            messages.error(
+                request,
+                "Password must contain at least one uppercase letter (A-Z)"
+            )
             return redirect("register")
 
 
         if not re.search(r"[a-z]", password):
-            messages.error(request, "Password must contain at least one lowercase letter (a-z)")
+            messages.error(
+                request,
+                "Password must contain at least one lowercase letter (a-z)"
+            )
             return redirect("register")
 
 
         if not re.search(r"[0-9]", password):
-            messages.error(request, "Password must contain at least one number (0-9)")
+            messages.error(
+                request,
+                "Password must contain at least one number (0-9)"
+            )
             return redirect("register")
 
 
         if not re.search(r"[@#$%^&+=]", password):
-            messages.error(request, "Password must contain at least one special character (@#$%^&+=)")
+            messages.error(
+                request,
+                "Password must contain at least one special character (@#$%^&+=)"
+            )
             return redirect("register")
 
 
-       
-       
-
         # Create User
+
         user = User.objects.create_user(
-            username=username,
-            password=password,
+            username=email,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            password=password
         )
-        
+
 
         # Add user to respective group
+
         group = Group.objects.get(name=role)
         user.groups.add(group)
 
 
-        messages.success(request, "Registration successful")
+        # Automatically login the newly registered user
 
-        return redirect("login")
+        login(request, user)
+
+
+        # Redirect according to group
+
+        if user.groups.filter(name="Farmer").exists():
+            return redirect("farmer")
+
+
+        elif user.groups.filter(name="Storage_staff").exists():
+            return redirect("staff_dashboard")
+
+
+        elif user.groups.filter(name="Buyer").exists():
+            return redirect("buyer")
 
 
     return render(request, "accounts/register_page.html")
