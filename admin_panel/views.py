@@ -450,3 +450,56 @@ def show_my_staff(request, id):
             "staff_members": staff_members
         }
     )
+    
+    
+    
+
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
+from .models import StaffAssignment
+
+
+@login_required
+def delete_staff(request, id):
+
+    if request.method != "POST":
+
+        return JsonResponse(
+            {
+                "success": False,
+                "message": "Invalid request method."
+            },
+            status=400
+        )
+
+
+    staff = get_object_or_404(
+        StaffAssignment,
+        user__id=id
+    )
+
+
+    user = staff.user
+
+
+    with transaction.atomic():
+
+       
+
+        staff.delete()
+
+
+        
+
+        user.delete()
+
+
+    return JsonResponse(
+        {
+            "success": True,
+            "message": "Staff member deleted successfully."
+        }
+    )

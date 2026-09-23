@@ -75,6 +75,8 @@
 
                             <th>Assigned Storage</th>
 
+                            <th>Action</th>
+
                         </tr>
 
                     </thead>
@@ -84,7 +86,7 @@
 
                         {% for staff in staff_members %}
 
-                        <tr>
+                        <tr id="staff-row-{{ staff.user.id }}">
 
                             <!-- Serial Number -->
 
@@ -100,13 +102,15 @@
                             </td>
 
 
-                            <!-- Username -->
+                            <!-- Staff Name -->
 
-                            <td data-label="Username">
+                            <td data-label="Staff name">
 
                                 <span class="username">
+
                                     {{ staff.user.first_name }}
-                                     {{ staff.user.last_name }}
+                                    {{ staff.user.last_name }}
+
                                 </span>
 
                             </td>
@@ -116,6 +120,21 @@
 
                             <td data-label="Assigned Storage">
                                 {{ staff.storage.storage_name }}
+                            </td>
+
+
+                            <!-- Action -->
+
+                            <td data-label="Action">
+
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    data-user-id="{{ staff.user.id }}"
+                                >
+                                    Delete
+                                </button>
+
                             </td>
 
                         </tr>
@@ -154,6 +173,11 @@
         {% endif %}
 
     </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="{% static 'js/storage_staff.js' %}"></script>
 
 </body>
 
