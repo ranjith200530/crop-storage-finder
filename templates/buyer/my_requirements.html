@@ -1,122 +1,183 @@
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Crop Requirements</title>
 
     <link rel="stylesheet" href="{% static 'css/buyer_Requirement.css' %}">
+
 </head>
+
 
 <body>
 
+    {% csrf_token %}
+
+
     <main class="container">
+
 
         <!-- PAGE HEADER -->
 
         <div class="page-header">
-            <h2>My Crop Requirements</h2>
+
+            <h2>
+                My Crop Requirements
+            </h2>
 
             <p>
                 Manage your crop requirements and find suitable farmers.
             </p>
+
         </div>
+
 
 
         <!-- REQUIREMENTS -->
 
         {% if requirements %}
 
+
         <div class="requirements-container">
+
 
             {% for requirement in requirements %}
 
-            <div class="requirement-card">
 
-                <h3>{{ requirement.crop_name }}</h3>
+            <div
+                class="requirement-card"
+                id="requirement-card-{{ requirement.id }}"
+            >
+
+
+                <h3>
+                    {{ requirement.crop_name }}
+                </h3>
+
 
 
                 <div class="info">
+
                     <span class="info-label">
                         Required Quantity
                     </span>
 
                     <span class="info-value">
+
                         {{ requirement.quantity }}
                         {{ requirement.get_quantity_unit_display }}
+
                     </span>
+
                 </div>
 
 
+
                 <div class="info">
+
                     <span class="info-label">
                         Expected Price
                     </span>
 
                     <span class="info-value">
+
                         ₹{{ requirement.price }}
                         {{ requirement.get_price_unit_display }}
+
                     </span>
+
                 </div>
 
 
+
                 <div class="info">
+
                     <span class="info-label">
                         Location
                     </span>
 
                     <span class="info-value location">
+
                         {{ requirement.subdistrict.name }},
                         {{ requirement.district.name }},
                         {{ requirement.state.name }}
+
                     </span>
+
                 </div>
+
 
 
                 <!-- ACTION BUTTONS -->
 
                 <div class="actions">
 
-                    <a href="{% url 'find_farmers' requirement.id %}"
-                       class="btn btn-find">
+
+                    <a
+                        href="{% url 'find_farmers' requirement.id %}"
+                        class="btn btn-find"
+                    >
                         Find Farmers
                     </a>
 
-                    <a href="{% url 'edit_requirement' requirement.id %}"
-                       class="btn btn-edit">
+
+
+                    <a
+                        href="{% url 'edit_requirement' requirement.id %}"
+                        class="btn btn-edit"
+                    >
                         Edit Requirement
                     </a>
 
-                    <a href="{% url 'delete_requirement' requirement.id %}"
-                       class="btn btn-delete">
+
+
+                    <a
+                        href="{% url 'delete_requirement' requirement.id %}"
+                        class="btn btn-delete delete-requirement"
+                    >
                         Delete Requirement
                     </a>
 
+
                 </div>
+
 
             </div>
 
+
             {% endfor %}
+
 
         </div>
 
 
         {% else %}
 
+
         <div class="empty-message">
-            <p>No requirements added yet.</p>
+
+            <p>
+                No requirements added yet.
+            </p>
+
         </div>
+
 
         {% endif %}
 
+
     </main>
+
+
+    <script src="{% static 'js/delete_requirement.js' %}"></script>
+
 
 </body>
 
 </html>
-

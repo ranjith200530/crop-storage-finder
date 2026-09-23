@@ -4,7 +4,8 @@ from .models import BuyerCropRequirement
 from accounts.models import State, District, SubDistrict
 from django.shortcuts import render, get_object_or_404
 from farmer.models import FarmerCropListing
-
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 def requiremnt_listing(request):
 
@@ -157,14 +158,27 @@ def edit_crop_requirement(request, id):
         }
     )
     
+
+
+
 def delete_requirement(request, id):
 
-    requirement = get_object_or_404(
-        BuyerCropRequirement,
-        id=id,
-        user=request.user
-    )
+    if request.method == "POST":
 
-    requirement.delete()
+        requirement = get_object_or_404(
+            BuyerCropRequirement,
+            id=id,
+            user=request.user
+        )
 
-    return redirect("my_requirements")
+        requirement.delete()
+
+        return JsonResponse({
+            "success": True,
+            "message": "Requirement deleted successfully."
+        })
+
+    return JsonResponse({
+        "success": False,
+        "message": "Invalid request."
+    }, status=400)

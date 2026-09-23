@@ -7,6 +7,8 @@ from decimal import Decimal
 from admin_panel.models import Storage
 import requests
 from django.conf import settings
+from django.http import JsonResponse
+
 
 def crop_listing(request):
 
@@ -149,17 +151,30 @@ def edit_farmer_crop(request, id):
         }
     )
     
+
+
+
 def delete_farmer_requirement(request, id):
 
-    requirement = get_object_or_404(
-        FarmerCropListing,
-        id=id,
-        user=request.user
-    )
+    if request.method == "POST":
 
-    requirement.delete()
+        requirement = get_object_or_404(
+            FarmerCropListing,
+            id=id,
+            user=request.user
+        )
 
-    return redirect("my_crop_listings")
+        requirement.delete()
+
+        return JsonResponse({
+            "success": True,
+            "message": "Crop listing deleted successfully."
+        })
+
+    return JsonResponse({
+        "success": False,
+        "message": "Invalid request."
+    }, status=400)
 
 
 
