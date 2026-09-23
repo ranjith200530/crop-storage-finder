@@ -5,6 +5,7 @@ from .models import BookingRequest
 from admin_panel.models import Storage
 from django.utils import timezone
 from django.http import JsonResponse
+from decimal import Decimal
 
 def booking_request(request):
 
@@ -372,6 +373,7 @@ def remove_booking(request, id):
         "message": "Booking removed successfully."
     })
 
+
 def calculate_charge(request, id):
 
     booking = get_object_or_404(
@@ -379,15 +381,30 @@ def calculate_charge(request, id):
         id=id
     )
 
-    # Only accepted bookings can be calculated
+    # --------------------------------
+    # Check booking status
+    # --------------------------------
+
     if booking.status != "accepted":
+
         return JsonResponse({
             "success": False,
             "message": "This booking is not accepted."
         })
 
     # --------------------------------
-    # Convert booking quantity to KG
+    # Check accepted date
+    # --------------------------------
+
+    if booking.accepted_on is None:
+
+        return JsonResponse({
+            "success": False,
+            "message": "Booking accepted date is missing."
+        })
+
+    # --------------------------------
+    # Convert quantity to KG
     # --------------------------------
 
     if booking.quantity_unit == "Kg":
@@ -416,32 +433,20 @@ def calculate_charge(request, id):
         })
 
     # --------------------------------
-    # Check accepted date
+    # Calculate storage days
     # --------------------------------
 
-    if not booking.accepted_on:
-
-        return JsonResponse({
-            "success": False,
-            "message": "Booking accepted date is missing."
-        })
-
-    # --------------------------------
-    # Calculate number of days
-    # --------------------------------
-
-    today = timezone.now().date()
+    today = timezone.localdate()
 
     accepted_date = booking.accepted_on.date()
 
-    days = (today - accepted_date).days
-
-    # If accepted today, charge for 1 day
-    if days < 1:
-        days = 1
+    days = (
+        today -
+        accepted_date
+    ).days + 1
 
     # --------------------------------
-    # Calculate charge
+    # Calculate monthly charge
     # --------------------------------
 
     monthly_charge = (
@@ -449,10 +454,18 @@ def calculate_charge(request, id):
         booking.storage.price_per_kg
     )
 
+    # --------------------------------
+    # Calculate daily charge
+    # --------------------------------
+
     daily_charge = (
         monthly_charge /
         Decimal("30")
     )
+
+    # --------------------------------
+    # Calculate total charge
+    # --------------------------------
 
     total_charge = (
         daily_charge *
@@ -460,16 +473,17 @@ def calculate_charge(request, id):
     )
 
     # --------------------------------
-    # Send result to JavaScript
+    # Return result
     # --------------------------------
 
     return JsonResponse({
 
         "success": True,
 
+        "days": days,
+
         "total_charge": float(
             total_charge
-        ),
+        )
 
-        "days": days
     })

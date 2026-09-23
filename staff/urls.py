@@ -25,4 +25,5 @@ path(
     views.calculate_charge,
     name="calculate_charge"
 ),
+
 ]

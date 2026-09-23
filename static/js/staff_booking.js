@@ -1,49 +1,65 @@
+
+    
 function calculateCharge(event, id) {
 
     event.preventDefault();
 
-    // Find the place where charge should be displayed
+    const daysElement = document.getElementById(
+        `days-${id}`
+    );
+
     const chargeElement = document.getElementById(
         `charge-${id}`
     );
 
-   
     fetch(`/staff/calculate-charge/${id}/`)
 
-        .then(response => response.json())
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    "Server returned an error."
+                );
+            }
+
+            return response.json();
+        })
 
         .then(data => {
 
             if (data.success) {
 
-                // Display calculated charge
+                daysElement.innerText =
+                    data.days + " Days";
+
                 chargeElement.innerText =
                     "₹" +
-                    data.total_charge.toFixed(2);
+                    Number(data.total_charge).toFixed(2);
 
             } else {
 
-                chargeElement.innerText =
+                daysElement.innerText =
                     "Not calculated";
 
-                alert(data.message);
+                chargeElement.innerText =
+                    "Not calculated";
             }
         })
 
         .catch(error => {
 
-            console.error(error);
+            console.error(
+                "Calculate charge error:",
+                error
+            );
+
+            daysElement.innerText =
+                "Not calculated";
 
             chargeElement.innerText =
-                "Error";
-
-            alert(
-                "Unable to calculate storage charge."
-            );
+                "Not calculated";
         });
 }
-
-
 
 
 function getCSRFToken() {

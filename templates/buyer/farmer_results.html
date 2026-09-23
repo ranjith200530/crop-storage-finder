@@ -1,25 +1,34 @@
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Available Farmers</title>
 
-    <link rel="stylesheet" href="{% static 'css/find_farmer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/find_farmer.css' %}?v=4">
+
 </head>
+
 
 <body>
 
+
     <main class="container">
+
 
         <!-- PAGE HEADER -->
 
         <div class="page-header">
+
+            <span class="page-label">
+                FARMER SEARCH
+            </span>
 
             <h2>
                 Farmers Available for
@@ -39,58 +48,85 @@
 
         <div class="farmers-container">
 
+
             {% for farmer in farmers %}
+
+
+            <!-- FARMER CARD -->
 
             <div class="farmer-card">
 
-                <!-- FARMER NAME -->
+
+                <!-- FARMER HEADER -->
 
                 <div class="farmer-header">
 
-                    <h3>
-                        {{ farmer.full_name }}
-                    </h3>
+
+                    <div class="farmer-avatar">
+                        {{ farmer.full_name|first|upper }}
+                    </div>
+
+
+                    <div class="farmer-name">
+
+                        <h3>
+                            {{ farmer.full_name }}
+                        </h3>
+
+                        <p>
+                            Farmer
+                        </p>
+
+                    </div>
+
 
                 </div>
 
 
-                <!-- FARMER INFORMATION -->
+                <!-- FARMER DETAILS -->
 
-                <div class="farmer-info">
+                <div class="farmer-details">
 
-                    <div class="info-item">
 
-                        <span class="info-label">
+                    <!-- CONTACT -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
                             Contact
                         </span>
 
-                        <span class="info-value">
+                        <span class="detail-value">
                             {{ farmer.contact_number }}
                         </span>
 
                     </div>
 
 
-                    <div class="info-item">
+                    <!-- CROP -->
 
-                        <span class="info-label">
+                    <div class="detail-item">
+
+                        <span class="detail-label">
                             Crop
                         </span>
 
-                        <span class="info-value">
+                        <span class="detail-value crop-name">
                             {{ farmer.crop_name }}
                         </span>
 
                     </div>
 
 
-                    <div class="info-item">
+                    <!-- QUANTITY -->
 
-                        <span class="info-label">
+                    <div class="detail-item">
+
+                        <span class="detail-label">
                             Quantity
                         </span>
 
-                        <span class="info-value">
+                        <span class="detail-value">
                             {{ farmer.quantity }}
                             {{ farmer.get_quantity_unit_display }}
                         </span>
@@ -98,48 +134,68 @@
                     </div>
 
 
-                    <div class="info-item">
+                    <!-- PRICE -->
 
-                        <span class="info-label">
-                            Price
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Expected Price
                         </span>
 
-                        <span class="info-value price">
+                        <span class="detail-value price">
+
                             ₹{{ farmer.price }}
-                            {{ farmer.get_price_unit_display }}
+
+                            <small>
+                                {{ farmer.get_price_unit_display }}
+                            </small>
+
                         </span>
 
                     </div>
 
 
-                    <div class="info-item location-item">
+                    <!-- LOCATION -->
 
-                        <span class="info-label">
+                    <div class="detail-item location-item">
+
+                        <span class="detail-label">
                             Location
                         </span>
 
-                        <span class="info-value location">
+                        <span class="detail-value location">
+
                             {{ farmer.subdistrict.name }},
                             {{ farmer.district.name }},
                             {{ farmer.state.name }}
+
                         </span>
 
                     </div>
 
+
                 </div>
+
 
             </div>
 
+
             {% endfor %}
+
 
         </div>
 
 
         {% else %}
 
+
         <!-- EMPTY STATE -->
 
         <div class="empty-message">
+
+            <div class="empty-icon">
+                🔍
+            </div>
 
             <h3>
                 No Farmers Found
@@ -151,11 +207,13 @@
 
         </div>
 
+
         {% endif %}
 
+
     </main>
+
 
 </body>
 
 </html>
-
