@@ -7,6 +7,12 @@ from django.contrib import messages
 from django.contrib.auth.models import User,Group
 from .models import Storage, StaffAssignment
 from django.db.models import Count
+from django.db import transaction
+from django.http import JsonResponse
+
+
+
+
 
 # Create your views here.
 def home(request):
@@ -452,17 +458,9 @@ def show_my_staff(request, id):
     )
     
     
-    
-
-from django.contrib.auth.decorators import login_required
-from django.db import transaction
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-
-from .models import StaffAssignment
 
 
-@login_required
+
 def delete_staff(request, id):
 
     if request.method != "POST":

@@ -6,6 +6,9 @@ from . import models
 from admin_panel.models import StaffAssignment
 import re
 from django.contrib import messages
+from django.http import JsonResponse
+from .models import District, SubDistrict
+
 # Create your views here.
 
 def buyer(req):
@@ -388,11 +391,54 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
+def forgot_password(request):
+
+    if request.method == "POST":
+
+        username = request.POST.get("username")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+
+        # Check passwords
+        if new_password != confirm_password:
+
+            messages.error(request, "Passwords do not match.")
+
+            return redirect("forgot_password")
+
+
+        # Find user using username
+        try:
+
+            user = User.objects.get(username=username)
+
+        except User.DoesNotExist:
+
+            messages.error(request, "No account found with this username.")
+
+            return redirect("forgot_password")
+
+
+        # Change password
+        user.set_password(new_password)
+
+        user.save()
+
+
+        messages.success(
+            request,
+            "Password changed successfully. Please login."
+        )
+
+        return redirect("login")
+
+
+    return render(request, "accounts/forgot_password.html")
 
 # locations/views.py
 
-from django.http import JsonResponse
-from .models import District, SubDistrict
+
 
 
 def load_districts(request):
