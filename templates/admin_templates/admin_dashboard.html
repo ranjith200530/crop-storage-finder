@@ -1,41 +1,53 @@
-{% load static %} 
- 
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- 
-    <title>Admin Dashboard</title> 
- 
-    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}"> 
-</head> 
- 
-<body> 
- 
-    <div class="admin-dashboard"> 
- 
-        <div class="dashboard-header"> 
-            <h1>Admin Dashboard</h1> 
-        </div> 
- 
-        <div class="dashboard-menu"> 
- 
-            <a href="{% url 'storage_register' %}" class="dashboard-link"> 
-                Register Storage 
-            </a> 
- 
-            <a href="{% url 'create_staff' %}" class="dashboard-link"> 
-                Create Staff and Assign Storage 
-            </a> 
- 
-            <a href="{% url 'show-storages' %}" class="dashboard-link"> 
-                Show My Storages 
-            </a> 
- 
-        </div> 
- 
-    </div> 
- 
-</body> 
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="admin-dashboard">
+
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <div class="dashboard-menu">
+
+            <a href="{% url 'storage_register' %}" class="dashboard-link">
+                Register Storage
+            </a>
+
+            <a href="{% url 'create_staff' %}" class="dashboard-link">
+                Create Staff and Assign Storage
+            </a>
+
+            <a href="{% url 'show-storages' %}" class="dashboard-link">
+                Show My Storages
+            </a>
+
+        </div>
+        <div class="logout-container">
+            <a href="{% url 'logout' %}" class="logout-btn">
+                Logout
+            </a>
+        </div>
+    </div>
+
+</body>
+
 </html>

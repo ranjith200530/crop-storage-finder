@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Bookings</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/my_bookings.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <main class="bookings-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h1>
+                    My Bookings
+                </h1>
+
+                <p>
+                    View your active storage bookings and booking history.
+                </p>
+
+            </div>
+
+            
+        </section>
+
+
+        <!-- ACTIVE BOOKINGS -->
+
+        <section class="booking-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Active Bookings
+                </h2>
+
+                <span class="count">
+                    {{ active_bookings|length }}
+                </span>
+
+            </div>
+
+
+            {% if active_bookings %}
+
+                <div class="booking-grid">
+
+                    {% for booking in active_bookings %}
+
+                        <article class="booking-card">
+
+                            <div class="booking-card-header">
+
+                                <div>
+
+                                    <h3>
+                                        {{ booking.storage.storage_name }}
+                                    </h3>
+
+                                    <p class="crop-name">
+                                        {{ booking.crop_name }}
+                                    </p>
+
+                                </div>
+
+
+                                {% if booking.status == "pending" %}
+
+                                    <span class="status status-pending">
+                                        Pending
+                                    </span>
+
+                                {% elif booking.status == "accepted" %}
+
+                                    <span class="status status-accepted">
+                                        Accepted
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="booking-details">
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        Quantity
+                                    </span>
+
+                                    <span class="detail-value">
+                                        {{ booking.quantity }}
+                                        {{ booking.quantity_unit }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        Requested On
+                                    </span>
+
+                                    <span class="detail-value">
+                                        {{ booking.requested_at|date:"d M Y, h:i A" }}
+                                    </span>
+
+                                </div>
+
+
+                                {% if booking.accepted_on %}
+
+                                    <div class="detail-item">
+
+                                        <span class="detail-label">
+                                            Accepted On
+                                        </span>
+
+                                        <span class="detail-value">
+                                            {{ booking.accepted_on|date:"d M Y, h:i A" }}
+                                        </span>
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        No active bookings
+                    </h3>
+
+                    <p>
+                        You currently have no pending or accepted bookings.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- BOOKING HISTORY -->
+
+        <section class="booking-section history-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Booking History
+                    </h2>
+
+                    <p>
+                        Previously rejected or completed bookings.
+                    </p>
+
+                </div>
+
+                <span class="count">
+                    {{ booking_history|length }}
+                </span>
+
+            </div>
+
+
+            {% if booking_history %}
+
+                <div class="booking-grid">
+
+                    {% for booking in booking_history %}
+
+                        <article class="booking-card history-card">
+
+                            <div class="booking-card-header">
+
+                                <div>
+
+                                    <h3>
+                                        {{ booking.storage.storage_name }}
+                                    </h3>
+
+                                    <p class="crop-name">
+                                        {{ booking.crop_name }}
+                                    </p>
+
+                                </div>
+
+
+                                {% if booking.status == "rejected" %}
+
+                                    <span class="status status-rejected">
+                                        Rejected
+                                    </span>
+
+                                {% elif booking.status == "completed" %}
+
+                                    <span class="status status-completed">
+                                        Completed
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="booking-details">
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        Quantity
+                                    </span>
+
+                                    <span class="detail-value">
+                                        {{ booking.quantity }}
+                                        {{ booking.quantity_unit }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <span class="detail-label">
+                                        Requested On
+                                    </span>
+
+                                    <span class="detail-value">
+                                        {{ booking.requested_at|date:"d M Y, h:i A" }}
+                                    </span>
+
+                                </div>
+
+
+                                {% if booking.accepted_on %}
+
+                                    <div class="detail-item">
+
+                                        <span class="detail-label">
+                                            Accepted On
+                                        </span>
+
+                                        <span class="detail-value">
+                                            {{ booking.accepted_on|date:"d M Y, h:i A" }}
+                                        </span>
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No booking history
+                    </h3>
+
+                    <p>
+                        Your rejected and completed bookings will appear here.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <div class="page-footer">
+
+            <a
+                href="{% url 'farmer' %}"
+                class="dashboard-link"
+            >
+                ← Back to Farmer Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -8,7 +8,7 @@ from admin_panel.models import Storage
 import requests
 from django.conf import settings
 from django.http import JsonResponse
-
+from staff.models import BookingRequest
 
 def crop_listing(request):
 
@@ -927,3 +927,30 @@ def find_storage(request):
         }
     )
 
+
+
+
+def my_bookings(request):
+
+    bookings = BookingRequest.objects.filter(
+        farmer=request.user
+    ).select_related("storage").order_by("-requested_at")
+
+    active_bookings = bookings.filter(
+        status__in=["pending", "accepted"]
+    )
+
+    booking_history = bookings.filter(
+        status__in=["rejected", "completed"]
+    )
+
+    context = {
+        "active_bookings": active_bookings,
+        "booking_history": booking_history,
+    }
+
+    return render(
+        request,
+        "farmer/my_bookings.html",
+        context
+    )

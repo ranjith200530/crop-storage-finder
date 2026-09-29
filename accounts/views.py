@@ -12,9 +12,13 @@ from .models import District, SubDistrict
 # Create your views here.
 
 def buyer(req):
-    return render(req,"buyer/buyer_dashborad.html",{"user":req.user})
+    user = req.user
+    full_name = user.first_name + " " + user.last_name
+    return render(req,"buyer/buyer_dashborad.html",{"user":full_name})
 def farmer(req):
-    return render(req,"farmer/farmer_dashboard.html",{"user":req.user})
+    user = req.user
+    full_name = user.first_name + " " + user.last_name
+    return render(req,"farmer/farmer_dashboard.html",{"user":full_name})
 
 
 def staff(request):
@@ -22,7 +26,9 @@ def staff(request):
     staff_assignment = StaffAssignment.objects.get(
         user=request.user
     )
-
+    user=request.user
+    full_name= user.first_name + " " + user.last_name
+ 
     storage = staff_assignment.storage
 
     return render(
@@ -30,6 +36,7 @@ def staff(request):
         "staff_templates/staff_home.html",
         {
             "storage": storage,
+            "user":full_name
         }
     )
 # def login_view(request):
