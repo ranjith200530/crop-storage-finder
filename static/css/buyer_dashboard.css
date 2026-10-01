@@ -67,7 +67,44 @@ body {
         0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
+/* =========================================
+   DASHBOARD CONTENT
+========================================= */
 
+.dashboard-content {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.messages-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    width: 100%;
+
+    padding: 11px 18px;
+
+    background: #dff3e5;
+    color: #176b3a;
+
+    border-left: 4px solid #2e9d5b;
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1.5;
+
+    box-sizing: border-box;
+}
 /* =========================================
    DASHBOARD HEADER
 ========================================= */

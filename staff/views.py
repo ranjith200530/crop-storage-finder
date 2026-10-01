@@ -6,6 +6,7 @@ from admin_panel.models import Storage
 from django.utils import timezone
 from django.http import JsonResponse
 from decimal import Decimal
+from django.contrib import messages
 
 def booking_request(request):
 
@@ -51,7 +52,10 @@ def booking_request(request):
             storage=storage,
             status="pending"
         )
-
+        messages.success(
+            request,
+            "Booking request successfully sent!"
+        )
         # After successful booking
         return redirect("farmer")
 

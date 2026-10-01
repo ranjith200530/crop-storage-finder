@@ -134,7 +134,8 @@ def register_storage(request):
 
             additional_contact_number=additional_contact_number
         )
-
+        
+        messages.success(request, "Storage registered successfully!")
 
         return redirect("admin_home")
 

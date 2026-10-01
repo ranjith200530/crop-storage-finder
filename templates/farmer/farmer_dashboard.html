@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -18,6 +17,34 @@
 <body>
 
     <main class="dashboard-container">
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        {% if messages %}
+
+            <div class="messages-container">
+
+                {% for message in messages %}
+
+                    <div class="success-message">
+
+                        <span class="success-icon">
+                            ✓
+                        </span>
+
+                        <span>
+                            {{ message }}
+                        </span>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
 
         <!-- HEADER -->
 
@@ -99,25 +126,27 @@
                 </span>
 
             </a>
+
+
             <a href="{% url 'my_bookings' %}" class="dashboard-card">
 
-    <div class="card-content">
+                <div class="card-content">
 
-        <h2>
-            My Bookings
-        </h2>
+                    <h2>
+                        My Bookings
+                    </h2>
 
-        <p>
-            View your active storage bookings and booking history.
-        </p>
+                    <p>
+                        View your active storage bookings and booking history.
+                    </p>
 
-    </div>
+                </div>
 
-    <span class="card-arrow">
-        →
-    </span>
+                <span class="card-arrow">
+                    →
+                </span>
 
-</a>
+            </a>
 
 
         </section>
@@ -138,4 +167,3 @@
 </body>
 
 </html>
-

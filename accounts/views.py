@@ -375,24 +375,35 @@ def register(request):
 
         # Automatically login the newly registered user
 
+        # Automatically login the newly registered user
+
         login(request, user)
 
 
-        # Redirect according to group
+# Redirect according to group
 
         if user.groups.filter(name="Farmer").exists():
+            messages.success(
+             request,
+            "Registration successful! Welcome to the Farmer Dashboard."
+            )
             return redirect("farmer")
 
-
-        elif user.groups.filter(name="Storage_staff").exists():
-            return redirect("staff_dashboard")
-
-
+ 
         elif user.groups.filter(name="Buyer").exists():
+            messages.success(
+           request,
+        "Registration successful! Welcome to the Buyer Dashboard."
+         )
             return redirect("buyer")
 
 
+
+
     return render(request, "accounts/register_page.html")
+
+
+
 
 def logout_view(request):
     logout(request)
