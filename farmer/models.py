@@ -5,19 +5,6 @@ from accounts.models import State, District, SubDistrict
 
 class FarmerCropListing(models.Model):
 
-    QUANTITY_UNIT_CHOICES = (
-        ('kg', 'Kg'),
-        ('quintal', 'Quintal'),
-        ('ton', 'Ton'),
-    )
-
-    PRICE_UNIT_CHOICES = (
-        ('kg', 'Per Kg'),
-        ('quintal', 'Per Quintal'),
-        ('ton', 'Per Ton'),
-    )
-
-
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
@@ -31,7 +18,7 @@ class FarmerCropListing(models.Model):
 
     quantity_unit = models.CharField(
         max_length=20,
-        choices=QUANTITY_UNIT_CHOICES
+        
     )
 
 
@@ -42,7 +29,6 @@ class FarmerCropListing(models.Model):
 
     price_unit = models.CharField(
         max_length=20,
-        choices=PRICE_UNIT_CHOICES
     )
 
 

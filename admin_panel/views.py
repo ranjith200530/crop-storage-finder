@@ -48,11 +48,6 @@ def register_storage(request):
             "additional_contact_number"
         )
 
-
-        # -----------------------------------
-        # GET STATE, DISTRICT, SUBDISTRICT
-        # -----------------------------------
-
         state = get_object_or_404(
             State,
             id=state_id
@@ -84,11 +79,6 @@ def register_storage(request):
         )
         
         data = response.json()
-        
-
-        # -----------------------------------
-        # GET LATITUDE AND LONGITUDE
-        # -----------------------------------
 
         latitude = None
         longitude = None
@@ -99,11 +89,6 @@ def register_storage(request):
 
             latitude = location["latitude"]
             longitude = location["longitude"]
-
-
-        # -----------------------------------
-        # SAVE STORAGE
-        # -----------------------------------
 
         Storage.objects.create(
 
@@ -145,132 +130,6 @@ def register_storage(request):
         "admin_templates/storage_register.html",{"states":states}
     )
     
-# def show_storages(request):
-#     data=Storage.objects.all()
-#     return render(request,"admin_templates/all_storages.html",{"data":data})
-
-
-
-
-
-
-# def create_staff(request):
-
-#     # Get all storages
-#     storages = Storage.objects.all()
-
-#     if request.method == "POST":
-
-#         username = request.POST.get("username", "").strip()
-#         password = request.POST.get("password", "")
-#         confirm_password = request.POST.get("confirm_password", "")
-#         storage_id = request.POST.get("storage", "")
-
-#         # Username required
-#         if username == "":
-#             messages.error(request, "Username is required")
-#             return redirect("create_staff")
-
-#         # Password required
-#         if password == "":
-#             messages.error(request, "Password is required")
-#             return redirect("create_staff")
-
-#         # Confirm password required
-#         if confirm_password == "":
-#             messages.error(request, "Confirm password is required")
-#             return redirect("create_staff")
-
-#         # Storage required
-#         if storage_id == "":
-#             messages.error(request, "Please select a storage")
-#             return redirect("create_staff")
-
-#         # Username already exists
-#         if User.objects.filter(username=username).exists():
-#             messages.error(request, "Username already exists")
-#             return redirect("create_staff")
-
-#         # Passwords must match
-#         if password != confirm_password:
-#             messages.error(request, "Passwords do not match")
-#             return redirect("create_staff")
-
-#         # Password length
-#         if len(password) < 8:
-#             messages.error(
-#                 request,
-#                 "Password must contain at least 8 characters"
-#             )
-#             return redirect("create_staff")
-
-#         # Uppercase
-#         if not re.search(r"[A-Z]", password):
-#             messages.error(
-#                 request,
-#                 "Password must contain at least one uppercase letter (A-Z)"
-#             )
-#             return redirect("create_staff")
-
-#         # Lowercase
-#         if not re.search(r"[a-z]", password):
-#             messages.error(
-#                 request,
-#                 "Password must contain at least one lowercase letter (a-z)"
-#             )
-#             return redirect("create_staff")
-
-#         # Number
-#         if not re.search(r"[0-9]", password):
-#             messages.error(
-#                 request,
-#                 "Password must contain at least one number (0-9)"
-#             )
-#             return redirect("create_staff")
-
-#         # Special character
-#         if not re.search(r"[@#$%^&+=]", password):
-#             messages.error(
-#                 request,
-#                 "Password must contain at least one special character (@#$%^&+=)"
-#             )
-#             return redirect("create_staff")
-
-#         # Get selected storage
-#         storage = Storage.objects.get(id=storage_id)
-
-#         # Create staff user
-#         staff = User.objects.create_user(
-#             username=username,
-#             password=password
-#         )
-
-#         # Make user a staff member
-#         staff.is_staff = True
-#         staff.save()
-#         storage_staff_group = Group.objects.get(name="Storage_staff")
-#         staff.groups.add(storage_staff_group)
- 
-#         # Assign staff to storage
-#         StaffAssignment.objects.create(
-#             user=staff,
-#             storage=storage
-#         )
-
-#         messages.success(
-#             request,
-#             "Staff account created and assigned to storage successfully."
-#         )
-
-#         return redirect("admin_home")
-
-#     return render(
-#         request,
-#         "admin_templates/staff_assignment.html",
-#         {
-#             "storages": storages
-#         }
-#     )
 
 def create_staff(request):
 
@@ -410,17 +269,6 @@ def create_staff(request):
         }
     )
     
-# def show_my_staff(request):
-
-#     staff_members = StaffAssignment.objects.all()
-
-#     return render(
-#         request,
-#         "admin_templates/my_staff.html",
-#         {
-#             "staff_members": staff_members
-#         }
-#     )
 
 
 def show_storages(request):

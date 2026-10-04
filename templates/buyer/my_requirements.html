@@ -50,10 +50,7 @@
             {% for requirement in requirements %}
 
 
-            <div
-                class="requirement-card"
-                id="requirement-card-{{ requirement.id }}"
-            >
+            <div class="requirement-card" id="requirement-card-{{ requirement.id }}">
 
 
                 <h3>
@@ -119,28 +116,19 @@
                 <div class="actions">
 
 
-                    <a
-                        href="{% url 'find_farmers' requirement.id %}"
-                        class="btn btn-find"
-                    >
+                    <a href="{% url 'find_farmers' requirement.id %}" class="btn btn-find">
                         Find Farmers
                     </a>
 
 
 
-                    <a
-                        href="{% url 'edit_requirement' requirement.id %}"
-                        class="btn btn-edit"
-                    >
+                    <a href="{% url 'edit_requirement' requirement.id %}" class="btn btn-edit">
                         Edit Requirement
                     </a>
 
 
 
-                    <a
-                        href="{% url 'delete_requirement' requirement.id %}"
-                        class="btn btn-delete delete-requirement"
-                    >
+                    <a href="{% url 'delete_requirement' requirement.id %}" class="btn btn-delete delete-requirement">
                         Delete Requirement
                     </a>
 

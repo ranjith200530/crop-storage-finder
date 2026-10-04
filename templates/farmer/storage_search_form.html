@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -50,13 +49,8 @@
                             Name
                         </label>
 
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value="{{user.first_name}} {{user.last_name}}"
-                            required
-                        >
+                        <input type="text" id="name" name="name" value="{{user.first_name}} {{user.last_name}}"
+                            required>
 
                     </div>
 
@@ -67,14 +61,8 @@
                             Mobile Number
                         </label>
 
-                        <input
-                            type="tel"
-                            id="mobile"
-                            name="mobile"
-                            placeholder="Enter mobile number"
-                            maxlength="10"
-                            required
-                        >
+                        <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" maxlength="10"
+                            required>
 
                     </div>
 
@@ -94,13 +82,7 @@
                             Crop Name
                         </label>
 
-                        <input
-                            type="text"
-                            id="crop_name"
-                            name="crop_name"
-                            placeholder="e.g. Rice"
-                            required
-                        >
+                        <input type="text" id="crop_name" name="crop_name" placeholder="e.g. Rice" required>
 
                     </div>
 
@@ -111,13 +93,7 @@
                             Quantity
                         </label>
 
-                        <input
-                            type="number"
-                            id="quantity"
-                            name="quantity"
-                            placeholder="Enter quantity"
-                            required
-                        >
+                        <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required>
 
                     </div>
 
@@ -128,11 +104,7 @@
                             Quantity Unit
                         </label>
 
-                        <select
-                            id="quantity_unit"
-                            name="quantity_unit"
-                            required
-                        >
+                        <select id="quantity_unit" name="quantity_unit" required>
 
                             <option value="" selected disabled>
                                 Select Unit
@@ -177,12 +149,7 @@
                             Address / Nearby Landmark
                         </label>
 
-                        <input
-                            type="text"
-                            id="address"
-                            name="address"
-                            placeholder="Enter nearby landmark or address"
-                        >
+                        <input type="text" id="address" name="address" placeholder="Enter nearby landmark or address">
 
                     </div>
 
@@ -191,10 +158,7 @@
 
                 <!-- SUBMIT -->
 
-                <button
-                    type="submit"
-                    class="submit-btn"
-                >
+                <button type="submit" class="submit-btn">
                     Search Storage
                 </button>
 
@@ -210,4 +174,3 @@
 </body>
 
 </html>
-

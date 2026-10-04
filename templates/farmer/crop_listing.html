@@ -1,8 +1,8 @@
-
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,230 +14,173 @@
 
 <body>
 
-<div class="crop-page">
+    <div class="crop-page">
 
-    <div class="crop-card">
+        <div class="crop-card">
 
-        <!-- =========================================
-             HEADER
-        ========================================== -->
 
-        <div class="crop-header">
 
-            <h1>Crop Listing</h1>
+            <div class="crop-header">
 
-            <p>
-                Enter the details of your crop.
-            </p>
+                <h1>Crop Listing</h1>
+
+                <p>
+                    Enter the details of your crop.
+                </p>
+
+            </div>
+
+
+
+
+            <form method="POST" class="crop-form">
+
+                {% csrf_token %}
+
+                <div class="form-section">
+
+                    <h2>Basic Details</h2>
+
+
+                    <div class="form-group">
+
+                        <label for="fullname">
+                            Full Name
+                        </label>
+
+                        <input type="text" id="fullname" name="Fullname" placeholder="Enter full name">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact">
+                            Mobile Number
+                        </label>
+
+                        <input type="text" id="contact" name="Contact" placeholder="Enter your contact number">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="crop_name">
+                            Crop Name
+                        </label>
+
+                        <input type="text" id="crop_name" name="crop_name" placeholder="Enter crop name">
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-section">
+
+                    <h2>Crop Quantity</h2>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="quantity">
+                                Quantity
+                            </label>
+
+                            <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" min="0"
+                                step="any">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="quantity_unit">
+                                Unit
+                            </label>
+
+                            <select id="quantity_unit" name="quantity_unit">
+
+                                <option value="Kg">Kg</option>
+                                <option value="Quintal">Quintal</option>
+                                <option value="Ton">Ton</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-section">
+
+                    <h2>Expected Price</h2>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="price">
+                                Expected Price
+                            </label>
+
+                            <input type="number" id="price" name="price" placeholder="Enter expected price" min="0"
+                                step="any">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="price_unit">
+                                Price Unit
+                            </label>
+
+                            <select id="price_unit" name="price_unit">
+
+                                <option value="Kg">Per Kg</option>
+                                <option value="Quintal">Per Quintal</option>
+                                <option value="Ton">Per Ton</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-section">
+
+                    <h2>Location</h2>
+
+                    {% include "locations/locations_dropdown.html" %}
+
+                </div>
+
+
+
+
+                <button type="submit" class="submit-button">
+                    Submit
+                </button>
+
+            </form>
 
         </div>
 
-
-        <!-- =========================================
-             FORM
-        ========================================== -->
-
-        <form method="POST" class="crop-form">
-
-            {% csrf_token %}
-
-
-            <!-- =========================================
-                 USER DETAILS
-            ========================================== -->
-
-            <div class="form-section">
-
-                <h2>Basic Details</h2>
-
-
-                <div class="form-group">
-
-                    <label for="fullname">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="fullname"
-                        name="Fullname"
-                        placeholder="Enter full name"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="contact">
-                        Mobile Number
-                    </label>
-
-                    <input
-                        type="text"
-                        id="contact"
-                        name="Contact"
-                        placeholder="Enter your contact number"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="crop_name">
-                        Crop Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="crop_name"
-                        name="crop_name"
-                        placeholder="Enter crop name"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 QUANTITY
-            ========================================== -->
-
-            <div class="form-section">
-
-                <h2>Crop Quantity</h2>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="quantity">
-                            Quantity
-                        </label>
-
-                        <input
-                            type="number"
-                            id="quantity"
-                            name="quantity"
-                            placeholder="Enter quantity"
-                            min="0"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="quantity_unit">
-                            Unit
-                        </label>
-
-                        <select
-                            id="quantity_unit"
-                            name="quantity_unit"
-                        >
-
-                            <option value="Kg">Kg</option>
-                            <option value="Quintal">Quintal</option>
-                            <option value="Ton">Ton</option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 PRICE
-            ========================================== -->
-
-            <div class="form-section">
-
-                <h2>Expected Price</h2>
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label for="price">
-                            Expected Price
-                        </label>
-
-                        <input
-                            type="number"
-                            id="price"
-                            name="price"
-                            placeholder="Enter expected price"
-                            min="0"
-                            step="any"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="price_unit">
-                            Price Unit
-                        </label>
-
-                        <select
-                            id="price_unit"
-                            name="price_unit"
-                        >
-
-                            <option value="Kg">Per Kg</option>
-                            <option value="Quintal">Per Quintal</option>
-                            <option value="Ton">Per Ton</option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 LOCATION
-            ========================================== -->
-
-            <div class="form-section">
-
-                <h2>Location</h2>
-
-                {% include "locations/locations_dropdown.html" %}
-
-            </div>
-
-
-            <!-- =========================================
-                 SUBMIT
-            ========================================== -->
-
-            <button
-                type="submit"
-                class="submit-button"
-            >
-                Submit
-            </button>
-
-        </form>
-
     </div>
 
-</div>
 
-
-<script src="{% static 'js/locations.js' %}"></script>
+    <script src="{% static 'js/locations.js' %}"></script>
 
 </body>
-</html>
 
+</html>

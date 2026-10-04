@@ -45,10 +45,7 @@
 
             {% for crop in listings %}
 
-            <article
-                class="crop-card"
-                id="crop-card-{{ crop.id }}"
-            >
+            <article class="crop-card" id="crop-card-{{ crop.id }}">
 
 
                 <!-- CARD HEADER -->
@@ -91,8 +88,6 @@
 
                     </div>
 
-
-
                     <div class="detail-item">
 
                         <span class="detail-label">
@@ -126,8 +121,6 @@
 
                     </div>
 
-
-
                     <div class="detail-item">
 
                         <span class="detail-label">
@@ -142,7 +135,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -152,28 +144,19 @@
                 <div class="card-actions">
 
 
-                    <a
-                        href="{% url 'find_buyer' crop.id %}"
-                        class="btn btn-primary"
-                    >
+                    <a href="{% url 'find_buyer' crop.id %}" class="btn btn-primary">
                         Find Buyers
                     </a>
 
 
 
-                    <a
-                        href="{% url 'edit_farmer_crop' crop.id %}"
-                        class="btn btn-secondary"
-                    >
+                    <a href="{% url 'edit_farmer_crop' crop.id %}" class="btn btn-secondary">
                         Edit Listing
                     </a>
 
 
 
-                    <a
-                        href="{% url 'delete_crop' crop.id %}"
-                        class="btn btn-danger delete-listing"
-                    >
+                    <a href="{% url 'delete_crop' crop.id %}" class="btn btn-danger delete-listing">
                         Delete Listing
                     </a>
 

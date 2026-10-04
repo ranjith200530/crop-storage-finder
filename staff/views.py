@@ -7,30 +7,20 @@ from django.utils import timezone
 from django.http import JsonResponse
 from decimal import Decimal
 from django.contrib import messages
+from decimal import Decimal
+from django.shortcuts import get_object_or_404, redirect
+
 
 def booking_request(request):
 
     if request.method == "POST":
 
-        # -------------------------
-        # Get farmer details
-        # -------------------------
-
+      
         farmer_name = request.POST.get("farmer_name")
         mobile = request.POST.get("mobile")
-
-        # -------------------------
-        # Get crop details
-        # -------------------------
-
         crop_name = request.POST.get("crop_name")
         quantity = request.POST.get("quantity")
         quantity_unit = request.POST.get("quantity_unit")
-
-        # -------------------------
-        # Get storage
-        # -------------------------
-
         storage_id = request.POST.get("storage_id")
 
         storage = get_object_or_404(
@@ -38,10 +28,7 @@ def booking_request(request):
             id=storage_id
         )
 
-        # -------------------------
-        # Create booking request
-        # -------------------------
-
+    #saving the reuqest 
         BookingRequest.objects.create(
             farmer=request.user,
             farmer_name=farmer_name,
@@ -84,93 +71,6 @@ def staff_booking_requests(request,id):
     )
     
 
-from decimal import Decimal
-from django.shortcuts import get_object_or_404, redirect
-
-# def update_booking_status(request, id):
-
-#     booking = get_object_or_404(
-#         BookingRequest,
-#         id=id
-#     )
-
-#     if request.method == "POST":
-
-#         status = request.POST.get("status")
-
-#         if status == "accepted":
-
-#             storage = booking.storage
-
-#             # -----------------------------
-#             # Convert storage capacity to KG
-#             # -----------------------------
-#             if storage.capacity_unit == "Kg":
-#                 available_kg = storage.available_capacity
-
-#             elif storage.capacity_unit == "Quintal":
-#                 available_kg = storage.available_capacity * Decimal("100")
-
-#             elif storage.capacity_unit == "Ton":
-#                 available_kg = storage.available_capacity * Decimal("1000")
-
-#             else:
-#                 available_kg = storage.available_capacity
-
-
-#             # -----------------------------
-#             # Convert farmer quantity to KG
-#             # -----------------------------
-#             if booking.quantity_unit == "Kg":
-#                 required_kg = booking.quantity
-
-#             elif booking.quantity_unit == "Quintal":
-#                 required_kg = booking.quantity * Decimal("100")
-
-#             elif booking.quantity_unit == "Ton":
-#                 required_kg = booking.quantity * Decimal("1000")
-
-#             else:
-#                 required_kg = booking.quantity
-
-
-#             # -----------------------------
-#             # Check capacity
-#             # -----------------------------
-#             if available_kg >= required_kg:
-#                 required_mt = required_kg / 1000
-
-#                 storage.available_capacity -= required_mt
-#                 storage.save()
-
-#                 booking.status = "accepted"
-#                 booking.save()
-#             # if available_kg >= required_kg:
-#             #     storage.available_capacity = storage.available_capacity - required_kg
-#             #     storage.save()
-
-#             #     booking.status = "accepted"
-#             #     booking.save()
-
-#             else:
-
-#                 booking.status = "rejected"
-#                 booking.save()
-
-
-#         elif status == "rejected":
-
-#             booking.status = "rejected"
-#             booking.save()
-
-
-        
-
-#     return redirect(
-#         "staff_booking_requests",
-#         id=booking.storage.id
-#     )
-    
 
 
 def update_booking_status(request, id):
@@ -187,18 +87,9 @@ def update_booking_status(request, id):
         if status == "accepted":  
 
             storage = booking.storage  
-
-
-            # -----------------------------------
-            # Storage capacity is stored in MT
-            # -----------------------------------  
+ 
 
             available_mt = storage.available_capacity  
-
-
-            # -----------------------------------
-            # Convert farmer quantity to KG
-            # -----------------------------------
 
             if booking.quantity_unit == "Kg":
 
@@ -228,11 +119,6 @@ def update_booking_status(request, id):
             required_mt = (
                 required_kg / Decimal("1000")
             )
-
-
-            # -----------------------------------
-            # Check storage capacity
-            # -----------------------------------
 
             if available_mt >= required_mt:
 
@@ -385,20 +271,12 @@ def calculate_charge(request, id):
         id=id
     )
 
-    # --------------------------------
-    # Check booking status
-    # --------------------------------
-
     if booking.status != "accepted":
 
         return JsonResponse({
             "success": False,
             "message": "This booking is not accepted."
         })
-
-    # --------------------------------
-    # Check accepted date
-    # --------------------------------
 
     if booking.accepted_on is None:
 
@@ -407,9 +285,6 @@ def calculate_charge(request, id):
             "message": "Booking accepted date is missing."
         })
 
-    # --------------------------------
-    # Convert quantity to KG
-    # --------------------------------
 
     if booking.quantity_unit == "Kg":
 
@@ -436,9 +311,7 @@ def calculate_charge(request, id):
             "message": "Invalid quantity unit."
         })
 
-    # --------------------------------
-    # Calculate storage days
-    # --------------------------------
+    #calculating storage days
 
     today = timezone.localdate()
 
@@ -449,36 +322,34 @@ def calculate_charge(request, id):
         accepted_date
     ).days + 1
 
-    # --------------------------------
+   
     # Calculate monthly charge
-    # --------------------------------
+    
 
     monthly_charge = (
         quantity_kg *
         booking.storage.price_per_kg
     )
 
-    # --------------------------------
+  
     # Calculate daily charge
-    # --------------------------------
+  
 
     daily_charge = (
         monthly_charge /
         Decimal("30")
     )
 
-    # --------------------------------
+    
     # Calculate total charge
-    # --------------------------------
+   
 
     total_charge = (
         daily_charge *
         Decimal(days)
     )
 
-    # --------------------------------
-    # Return result
-    # --------------------------------
+
 
     return JsonResponse({
 

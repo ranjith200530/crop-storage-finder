@@ -3,32 +3,7 @@ from django.contrib.auth.models import User
 
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        related_name='profile'
-    )
 
-    username = models.CharField(
-        max_length=150
-    )
-
-    role = models.CharField(
-        max_length=20
-    )
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=['username', 'role'],
-                name='unique_username_per_role'
-            )
-        ]
-
-    def __str__(self):
-        return f"{self.username} - {self.role}"
-    
 
 
 

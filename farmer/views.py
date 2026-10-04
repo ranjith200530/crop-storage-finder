@@ -179,256 +179,6 @@ def delete_farmer_requirement(request, id):
 
 
 
-
-# def find_storage(request):
-#     states=State.objects.all()
-#     if request.method == "POST":
-
-#         # =====================================================
-#         # 1. FARMER DETAILS
-#         # =====================================================
-
-#         name = request.POST.get("name")
-#         mobile = request.POST.get("mobile")
-
-#         # =====================================================
-#         # 2. CROP DETAILS
-#         # =====================================================
-
-#         crop_name = request.POST.get("crop_name")
-#         quantity = Decimal(request.POST.get("quantity"))
-#         quantity_unit = request.POST.get("quantity_unit")
-
-#         # =====================================================
-#         # 3. LOCATION DETAILS
-#         # =====================================================
-
-#         state_id = request.POST.get("state")
-#         district_id = request.POST.get("district")
-#         subdistrict_id = request.POST.get("sub_district")
-
-#         state = State.objects.get(id=state_id)
-#         district = District.objects.get(id=district_id)
-#         subdistrict = SubDistrict.objects.get(id=subdistrict_id)
-
-#         # =====================================================
-#         # 4. CONVERT FARMER QUANTITY TO KG
-#         # =====================================================
-
-#         if quantity_unit == "Kg":
-
-#             required_kg = quantity
-
-#         elif quantity_unit == "Quintal":
-
-#             required_kg = quantity * Decimal("100")
-
-#         elif quantity_unit == "Ton":
-
-#             required_kg = quantity * Decimal("1000")
-
-#         else:
-
-#             required_kg = quantity
-
-#         # =====================================================
-#         # 5. RECOMMEND STORAGE TYPE BASED ON CROP
-#         # =====================================================
-
-#         crop = crop_name.lower().strip()
-
-#         warehouse_crops = [
-#             "paddy",
-#             "rice",
-#             "wheat",
-#             "maize",
-#             "corn",
-#             "millet",
-#             "bajra",
-#             "jowar",
-#             "barley",
-#             "pulses",
-#             "gram",
-#             "chickpea",
-#         ]
-
-#         cold_storage_crops = [
-#             "potato",
-#             "tomato",
-#             "onion",
-#             "carrot",
-#             "cabbage",
-#             "cauliflower",
-#             "peas",
-#             "apple",
-#             "orange",
-#             "grapes",
-#             "mango",
-#             "banana",
-#             "vegetables",
-#             "fruits",
-#         ]
-
-#         if crop in warehouse_crops:
-
-#             recommended_type = "warehouse"
-
-#         elif crop in cold_storage_crops:
-
-#             recommended_type = "cold_storage"
-
-#         else:
-
-#             recommended_type = None
-
-#         # =====================================================
-#         # 6. FUNCTION TO CHECK AVAILABLE CAPACITY
-#         # =====================================================
-
-#         def has_capacity(storage):
-
-#             if storage.capacity_unit == "Kg":
-
-#                 available_kg = storage.available_capacity
-
-#             elif storage.capacity_unit == "Quintal":
-
-#                 available_kg = (
-#                     storage.available_capacity * Decimal("100")
-#                 )
-
-#             elif storage.capacity_unit == "Ton":
-
-#                 available_kg = (
-#                     storage.available_capacity * Decimal("1000")
-#                 )
-
-#             else:
-
-#                 available_kg = storage.available_capacity
-
-#             return available_kg >= required_kg
-
-#         # =====================================================
-#         # 7. SEARCH SUBDISTRICT FIRST
-#         # =====================================================
-
-#         suitable_storages = []
-
-#         if recommended_type:
-
-#             # Search only for the recommended storage type
-#             storages = Storage.objects.filter(
-#                 subdistrict=subdistrict,
-#                 storage_type=recommended_type
-#             )
-
-#         else:
-
-#             # If crop is unknown, search both storage types
-#             storages = Storage.objects.filter(
-#                 subdistrict=subdistrict
-#             )
-
-#         for storage in storages:
-
-#             if has_capacity(storage):
-
-#                 suitable_storages.append(storage)
-
-#         location_level = "SubDistrict"
-
-#         # =====================================================
-#         # 8. IF NO SUITABLE STORAGE → SEARCH DISTRICT
-#         # =====================================================
-
-#         if not suitable_storages:
-
-#             if recommended_type:
-
-#                 storages = Storage.objects.filter(
-#                     district=district,
-#                     storage_type=recommended_type
-#                 )
-
-#             else:
-
-#                 storages = Storage.objects.filter(
-#                     district=district
-#                 )
-
-#             for storage in storages:
-
-#                 if has_capacity(storage):
-
-#                     suitable_storages.append(storage)
-
-#             location_level = "District"
-
-        
-
-#         recommended_storages = []
-#         other_storages = []
-
-#         if recommended_type:
-
-#             for storage in suitable_storages:
-
-#                 if storage.storage_type == recommended_type:
-
-#                     recommended_storages.append(storage)
-
-#                 else:
-
-#                     other_storages.append(storage)
-
-#         else:
-
-#             other_storages = suitable_storages
-
-      
-
-#         context = {
-
-#             # Farmer details
-#             "name": name,
-#             "mobile": mobile,
-
-#             # Crop details
-#             "crop_name": crop_name,
-#             "quantity": quantity,
-#             "quantity_unit": quantity_unit,
-#             "required_kg": required_kg,
-
-#             # Location
-#             "state": state,
-#             "district": district,
-#             "subdistrict": subdistrict,
-
-#             # Search information
-#             "location_level": location_level,
-
-#             # Recommendation
-#             "recommended_type": recommended_type,
-
-#             # Results
-#             "recommended_storages": recommended_storages,
-#             "other_storages": other_storages,
-#         }
-
-#         return render(
-#             request,
-#             "farmer/nearby_storages.html",
-#             context
-#         )
-
-    
-#     return render(
-#         request,
-#         "farmer/storage_search_form.html",
-#         {"states":states}
-#     )
-    
 def find_storage(request):
 
     states = State.objects.all()
@@ -438,19 +188,11 @@ def find_storage(request):
 
         name = request.POST.get("name")
         mobile = request.POST.get("mobile")
-
-        # =====================================================
-        # 2. CROP DETAILS
-        # =====================================================
-
         crop_name = request.POST.get("crop_name")
+        
         quantity = Decimal(request.POST.get("quantity"))
         quantity_unit = request.POST.get("quantity_unit")
-
-        # =====================================================
-        # 3. LOCATION DETAILS
-        # =====================================================
-
+        
         state_id = request.POST.get("state")
         district_id = request.POST.get("district")
         subdistrict_id = request.POST.get("sub_district")
@@ -495,9 +237,7 @@ def find_storage(request):
 
                 longitude = location["longitude"]
 
-        # =====================================================
-        # 4. CONVERT FARMER QUANTITY TO KG
-        # =====================================================
+#CONVERTING THE UNIT INTO KG 
 
         if quantity_unit == "Kg":
 
@@ -525,10 +265,7 @@ def find_storage(request):
 
             required_kg = quantity
 
-        # =====================================================
-        # 5. RECOMMEND STORAGE TYPE BASED ON CROP
-        # =====================================================
-
+#LISTED CROPS ACCORDING TO THE STORAGES
         crop = crop_name.lower().strip()
 
         warehouse_crops = [
@@ -575,25 +312,15 @@ def find_storage(request):
 
             recommended_type = None
 
-        # =====================================================
-        # 6. FUNCTION TO CHECK AVAILABLE CAPACITY
-        # =====================================================
+       #THIS FUNCTON CHECK WHETHER THE STORAGE HAS THE CAPACITY TO ACCEPT THE STORAGE OR NOT 
 
         def has_capacity(storage):
-
-            # -------------------------------------------------
-            # Storage capacity is stored in KG
-            # -------------------------------------------------
 
             if storage.capacity_unit == "Kg":
 
                 available_kg = (
                     storage.available_capacity
                 )
-
-            # -------------------------------------------------
-            # 1 QUINTAL = 100 KG
-            # -------------------------------------------------
 
             elif storage.capacity_unit == "Quintal":
 
@@ -602,20 +329,12 @@ def find_storage(request):
                     * Decimal("100")
                 )
 
-            # -------------------------------------------------
-            # 1 TON = 1000 KG
-            # -------------------------------------------------
-
             elif storage.capacity_unit == "Ton":
 
                 available_kg = (
                     storage.available_capacity
                     * Decimal("1000")
                 )
-
-            # -------------------------------------------------
-            # 1 MT = 1000 KG
-            # -------------------------------------------------
 
             elif storage.capacity_unit == "MT":
 
@@ -630,15 +349,10 @@ def find_storage(request):
                     storage.available_capacity
                 )
 
-            # -------------------------------------------------
-            # Compare storage capacity with farmer requirement
-            # -------------------------------------------------
 
             return available_kg >= required_kg
 
-        # =====================================================
-        # 7. SEARCH SUBDISTRICT FIRST
-        # =====================================================
+      
 
         suitable_storages = []
 
@@ -661,9 +375,7 @@ def find_storage(request):
 
         location_level = "SubDistrict"
 
-        # =====================================================
-        # 8. IF NO SUITABLE STORAGE → SEARCH DISTRICT
-        # =====================================================
+      
 
         if not suitable_storages:
 
@@ -685,10 +397,6 @@ def find_storage(request):
                     suitable_storages.append(storage)
 
             location_level = "District"
-
-        # =====================================================
-        # 9. ONLY RECOMMENDED STORAGES
-        # =====================================================
 
         recommended_storages = suitable_storages
         

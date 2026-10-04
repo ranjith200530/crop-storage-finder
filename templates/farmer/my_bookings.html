@@ -7,17 +7,11 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Bookings</title>
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/my_bookings.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'css/my_bookings.css' %}">
 
 </head>
 
@@ -41,7 +35,7 @@
 
             </div>
 
-            
+
         </section>
 
 
@@ -64,114 +58,108 @@
 
             {% if active_bookings %}
 
-                <div class="booking-grid">
+            <div class="booking-grid">
 
-                    {% for booking in active_bookings %}
+                {% for booking in active_bookings %}
 
-                        <article class="booking-card">
+                <article class="booking-card">
 
-                            <div class="booking-card-header">
+                    <div class="booking-card-header">
 
-                                <div>
+                        <div>
 
-                                    <h3>
-                                        {{ booking.storage.storage_name }}
-                                    </h3>
+                            <h3>
+                                {{ booking.storage.storage_name }}
+                            </h3>
 
-                                    <p class="crop-name">
-                                        {{ booking.crop_name }}
-                                    </p>
+                            <p class="crop-name">
+                                {{ booking.crop_name }}
+                            </p>
 
-                                </div>
+                        </div>
 
+                        {% if booking.status == "pending" %}
 
-                                {% if booking.status == "pending" %}
+                        <span class="status status-pending">
+                            Pending
+                        </span>
 
-                                    <span class="status status-pending">
-                                        Pending
-                                    </span>
+                        {% elif booking.status == "accepted" %}
 
-                                {% elif booking.status == "accepted" %}
+                        <span class="status status-accepted">
+                            Accepted
+                        </span>
 
-                                    <span class="status status-accepted">
-                                        Accepted
-                                    </span>
+                        {% endif %}
 
-                                {% endif %}
-
-                            </div>
-
-
-                            <div class="booking-details">
-
-                                <div class="detail-item">
-
-                                    <span class="detail-label">
-                                        Quantity
-                                    </span>
-
-                                    <span class="detail-value">
-                                        {{ booking.quantity }}
-                                        {{ booking.quantity_unit }}
-                                    </span>
-
-                                </div>
+                    </div>
 
 
-                                <div class="detail-item">
+                    <div class="booking-details">
+                        <div class="detail-item">
 
-                                    <span class="detail-label">
-                                        Requested On
-                                    </span>
+                            <span class="detail-label">
+                                Quantity
+                            </span>
+                            <span class="detail-value">
+                                {{ booking.quantity }}
+                                {{ booking.quantity_unit }}
+                            </span>
 
-                                    <span class="detail-value">
-                                        {{ booking.requested_at|date:"d M Y, h:i A" }}
-                                    </span>
+                        </div>
 
-                                </div>
+                        <div class="detail-item">
 
+                            <span class="detail-label">
+                                Requested On
+                            </span>
 
-                                {% if booking.accepted_on %}
+                            <span class="detail-value">
+                                {{ booking.requested_at|date:"d M Y, h:i A" }}
+                            </span>
 
-                                    <div class="detail-item">
+                        </div>
 
-                                        <span class="detail-label">
-                                            Accepted On
-                                        </span>
+                        {% if booking.accepted_on %}
+                        <div class="detail-item">
 
-                                        <span class="detail-value">
-                                            {{ booking.accepted_on|date:"d M Y, h:i A" }}
-                                        </span>
+                            <span class="detail-label">
+                                Accepted On
+                            </span>
 
-                                    </div>
+                            <span class="detail-value">
+                                {{ booking.accepted_on|date:"d M Y, h:i A" }}
+                            </span>
 
-                                {% endif %}
+                        </div>
 
-                            </div>
+                        {% endif %}
 
-                        </article>
+                    </div>
 
-                    {% endfor %}
+                </article>
 
-                </div>
+                {% endfor %}
+
+            </div>
 
             {% else %}
 
-                <div class="empty-state">
+            <div class="empty-state">
 
-                    <div class="empty-icon">
-                        📦
-                    </div>
-
-                    <h3>
-                        No active bookings
-                    </h3>
-
-                    <p>
-                        You currently have no pending or accepted bookings.
-                    </p>
-
+                <div class="empty-icon">
+                    📦
                 </div>
+
+                <h3>
+                    No active bookings
+                </h3>
+
+                <p>
+                    You currently have no pending or accepted bookings.
+                </p>
+
+            </div>
 
             {% endif %}
 
@@ -206,114 +194,114 @@
 
             {% if booking_history %}
 
-                <div class="booking-grid">
+            <div class="booking-grid">
 
-                    {% for booking in booking_history %}
+                {% for booking in booking_history %}
 
-                        <article class="booking-card history-card">
+                <article class="booking-card history-card">
 
-                            <div class="booking-card-header">
+                    <div class="booking-card-header">
 
-                                <div>
+                        <div>
 
-                                    <h3>
-                                        {{ booking.storage.storage_name }}
-                                    </h3>
+                            <h3>
+                                {{ booking.storage.storage_name }}
+                            </h3>
 
-                                    <p class="crop-name">
-                                        {{ booking.crop_name }}
-                                    </p>
+                            <p class="crop-name">
+                                {{ booking.crop_name }}
+                            </p>
 
-                                </div>
-
-
-                                {% if booking.status == "rejected" %}
-
-                                    <span class="status status-rejected">
-                                        Rejected
-                                    </span>
-
-                                {% elif booking.status == "completed" %}
-
-                                    <span class="status status-completed">
-                                        Completed
-                                    </span>
-
-                                {% endif %}
-
-                            </div>
+                        </div>
 
 
-                            <div class="booking-details">
+                        {% if booking.status == "rejected" %}
 
-                                <div class="detail-item">
+                        <span class="status status-rejected">
+                            Rejected
+                        </span>
 
-                                    <span class="detail-label">
-                                        Quantity
-                                    </span>
+                        {% elif booking.status == "completed" %}
 
-                                    <span class="detail-value">
-                                        {{ booking.quantity }}
-                                        {{ booking.quantity_unit }}
-                                    </span>
+                        <span class="status status-completed">
+                            Completed
+                        </span>
 
-                                </div>
+                        {% endif %}
 
-
-                                <div class="detail-item">
-
-                                    <span class="detail-label">
-                                        Requested On
-                                    </span>
-
-                                    <span class="detail-value">
-                                        {{ booking.requested_at|date:"d M Y, h:i A" }}
-                                    </span>
-
-                                </div>
+                    </div>
 
 
-                                {% if booking.accepted_on %}
+                    <div class="booking-details">
 
-                                    <div class="detail-item">
+                        <div class="detail-item">
 
-                                        <span class="detail-label">
-                                            Accepted On
-                                        </span>
+                            <span class="detail-label">
+                                Quantity
+                            </span>
 
-                                        <span class="detail-value">
-                                            {{ booking.accepted_on|date:"d M Y, h:i A" }}
-                                        </span>
+                            <span class="detail-value">
+                                {{ booking.quantity }}
+                                {{ booking.quantity_unit }}
+                            </span>
 
-                                    </div>
+                        </div>
 
-                                {% endif %}
 
-                            </div>
+                        <div class="detail-item">
 
-                        </article>
+                            <span class="detail-label">
+                                Requested On
+                            </span>
 
-                    {% endfor %}
+                            <span class="detail-value">
+                                {{ booking.requested_at|date:"d M Y, h:i A" }}
+                            </span>
 
-                </div>
+                        </div>
+
+
+                        {% if booking.accepted_on %}
+
+                        <div class="detail-item">
+
+                            <span class="detail-label">
+                                Accepted On
+                            </span>
+
+                            <span class="detail-value">
+                                {{ booking.accepted_on|date:"d M Y, h:i A" }}
+                            </span>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
 
             {% else %}
 
-                <div class="empty-state">
+            <div class="empty-state">
 
-                    <div class="empty-icon">
-                        📋
-                    </div>
-
-                    <h3>
-                        No booking history
-                    </h3>
-
-                    <p>
-                        Your rejected and completed bookings will appear here.
-                    </p>
-
+                <div class="empty-icon">
+                    📋
                 </div>
+
+                <h3>
+                    No booking history
+                </h3>
+
+                <p>
+                    Your rejected and completed bookings will appear here.
+                </p>
+
+            </div>
 
             {% endif %}
 
@@ -324,10 +312,7 @@
 
         <div class="page-footer">
 
-            <a
-                href="{% url 'farmer' %}"
-                class="dashboard-link"
-            >
+            <a href="{% url 'farmer' %}" class="dashboard-link">
                 ← Back to Farmer Dashboard
             </a>
 

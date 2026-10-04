@@ -23,25 +23,25 @@
 
         {% if messages %}
 
-            <div class="messages-container">
+        <div class="messages-container">
 
-                {% for message in messages %}
+            {% for message in messages %}
 
-                    <div class="success-message">
+            <div class="success-message">
 
-                        <span class="success-icon">
-                            ✓
-                        </span>
+                <span class="success-icon">
+                    ✓
+                </span>
 
-                        <span>
-                            {{ message }}
-                        </span>
-
-                    </div>
-
-                {% endfor %}
+                <span>
+                    {{ message }}
+                </span>
 
             </div>
+
+            {% endfor %}
+
+        </div>
 
         {% endif %}
 
@@ -59,7 +59,6 @@
             </p>
 
         </section>
-
 
         <!-- DASHBOARD OPTIONS -->
 

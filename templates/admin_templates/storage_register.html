@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,249 +14,189 @@
 
 <body>
 
-<div class="storage-page">
+    <div class="storage-page">
 
-    <div class="storage-card">
+        <div class="storage-card">
 
-        <div class="form-header">
-            <h2>Register Storage</h2>
-            <p>Add your storage facility details</p>
-        </div>
-
-        <form method="POST">
-
-            {% csrf_token %}
-
-            <!-- =========================
-                 STORAGE INFORMATION
-            ========================== -->
-
-            <div class="form-section">
-
-                <h3>Storage Information</h3>
-
-                <div class="form-group">
-                    <label for="storage_name">Storage Name</label>
-
-                    <input
-                        type="text"
-                        id="storage_name"
-                        name="storage_name"
-                        placeholder="Enter storage name"
-                        required
-                    >
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="storage_type">Storage Type</label>
-
-                    <select
-                        id="storage_type"
-                        name="storage_type"
-                        required
-                    >
-                        <option value="">Select Storage Type</option>
-
-                        <option value="cold_storage">
-                            Cold Storage
-                        </option>
-
-                        <option value="warehouse">
-                            Warehouse
-                        </option>
-                    </select>
-
-                </div>
-
+            <div class="form-header">
+                <h2>Register Storage</h2>
+                <p>Add your storage facility details</p>
             </div>
 
+            <form method="POST">
 
-            <!-- =========================
-                 CAPACITY
-            ========================== -->
+                {% csrf_token %}
+             
 
-            <div class="form-section">
+                <div class="form-section">
 
-                <h3>Capacity</h3>
-
-                <div class="form-row">
+                    <h3>Storage Information</h3>
 
                     <div class="form-group">
+                        <label for="storage_name">Storage Name</label>
 
-                        <label for="capacity">
-                            Total Capacity
-                        </label>
-
-                        <input
-                            type="number"
-                            id="capacity"
-                            name="capacity"
-                            min="1"
-                            step="0.01"
-                            placeholder="Enter total capacity"
-                            required
-                        >
-
+                        <input type="text" id="storage_name" name="storage_name" placeholder="Enter storage name"
+                            required>
                     </div>
 
 
                     <div class="form-group">
 
-                        <label for="capacity_unit">
-                            Capacity Unit
-                        </label>
+                        <label for="storage_type">Storage Type</label>
 
-                        <select
-                            id="capacity_unit"
-                            name="capacity_unit"
-                            required
-                        >
-                            <option value="">Select Unit</option>
-                            <option value="Ton">Ton</option>
-                            <option value="MT">MT</option>
+                        <select id="storage_type" name="storage_type" required>
+                            <option value="">Select Storage Type</option>
+
+                            <option value="cold_storage">
+                                Cold Storage
+                            </option>
+
+                            <option value="warehouse">
+                                Warehouse
+                            </option>
                         </select>
 
                     </div>
 
                 </div>
 
-            </div>
 
 
-            <!-- =========================
-                 STORAGE CHARGE
-            ========================== -->
+                <div class="form-section">
 
-            <div class="form-section">
+                    <h3>Capacity</h3>
 
-                <h3>Storage Charges</h3>
+                    <div class="form-row">
 
-                <div class="form-group">
+                        <div class="form-group">
 
-                    <label for="price_per_kg">
-                        Storage Charge
-                    </label>
+                            <label for="capacity">
+                                Total Capacity
+                            </label>
 
-                    <div class="input-with-unit">
+                            <input type="number" id="capacity" name="capacity" min="1" step="0.01"
+                                placeholder="Enter total capacity" required>
 
-                        <input
-                            type="number"
-                            id="price_per_kg"
-                            name="price_per_kg"
-                            min="0"
-                            step="0.01"
-                            placeholder="Enter charge"
-                            required
-                        >
+                        </div>
 
-                        <span>₹ / kg / month</span>
+
+                        <div class="form-group">
+
+                            <label for="capacity_unit">
+                                Capacity Unit
+                            </label>
+
+                            <select id="capacity_unit" name="capacity_unit" required>
+                                <option value="">Select Unit</option>
+                                <option value="Ton">Ton</option>
+                                <option value="MT">MT</option>
+                            </select>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
 
+               
+                <div class="form-section">
 
-            <!-- =========================
-                 LOCATION
-            ========================== -->
+                    <h3>Storage Charges</h3>
 
-            <div class="form-section">
+                    <div class="form-group">
 
-                <h3>Storage Location</h3>
+                        <label for="price_per_kg">
+                            Storage Charge
+                        </label>
 
-                <div class="location-wrapper">
+                        <div class="input-with-unit">
 
-                    {% include "locations/locations_dropdown.html" %}
+                            <input type="number" id="price_per_kg" name="price_per_kg" min="0" step="1"
+                                placeholder="Enter charge" required>
 
-                </div>
+                            <span>₹ / kg / month</span>
 
+                        </div>
 
-                <div class="form-group">
-
-                    <label for="address">
-                        Complete Local Address
-                    </label>
-
-                    <textarea
-                        id="address"
-                        name="address"
-                        rows="4"
-                        placeholder="Enter complete local address"
-                        required
-                    ></textarea>
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================
-                 CONTACT INFORMATION
-            ========================== -->
-
-            <div class="form-section">
-
-                <h3>Contact Information</h3>
-
-                <div class="form-group">
-
-                    <label for="main_contact_number">
-                        Main Contact Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="main_contact_number"
-                        name="main_contact_number"
-                        placeholder="Enter main contact number"
-                        required
-                    >
+                    </div>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-section">
 
-                    <label for="additional_contact_number">
-                        Additional Contact Number
-                    </label>
+                    <h3>Storage Location</h3>
 
-                    <input
-                        type="tel"
-                        id="additional_contact_number"
-                        name="additional_contact_number"
-                        placeholder="Enter additional contact number"
-                    >
+                    <div class="location-wrapper">
+
+                        {% include "locations/locations_dropdown.html" %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Complete Local Address
+                        </label>
+
+                        <textarea id="address" name="address" rows="4" placeholder="Enter complete local address"
+                            required></textarea>
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <div class="form-section">
+
+                    <h3>Contact Information</h3>
+
+                    <div class="form-group">
+
+                        <label for="main_contact_number">
+                            Main Contact Number
+                        </label>
+
+                        <input type="tel" id="main_contact_number" name="main_contact_number"
+                            placeholder="Enter main contact number" required>
+
+                    </div>
 
 
-            <!-- =========================
-                 SUBMIT
-            ========================== -->
+                    <div class="form-group">
 
-            <div class="submit-section">
+                        <label for="additional_contact_number">
+                            Additional Contact Number
+                        </label>
 
-                <button type="submit">
-                    Register Storage
-                </button>
+                        <input type="tel" id="additional_contact_number" name="additional_contact_number"
+                            placeholder="Enter additional contact number">
 
-            </div>
+                    </div>
 
-        </form>
+                </div>
+
+
+
+                <div class="submit-section">
+
+                    <button type="submit">
+                        Register Storage
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
 
     </div>
 
-</div>
 
-
-<script src="{% static 'js/locations.js' %}"></script>
+    <script src="{% static 'js/locations.js' %}"></script>
 
 </body>
+
 </html>

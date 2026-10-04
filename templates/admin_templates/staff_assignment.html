@@ -19,211 +19,175 @@
 
 <body>
 
-<div class="staff-page">
+    <div class="staff-page">
 
-    <div class="staff-card">
+        <div class="staff-card">
 
-        <!-- =========================
+            <!-- =========================
              HEADER
         ========================== -->
 
-        <div class="form-header">
+            <div class="form-header">
 
-            <div class="header-icon">
-                +
+                <div class="header-icon">
+                    +
+                </div>
+
+                <h2>Create Staff Account</h2>
+
+                <p>
+                    Create an account and assign a storage facility
+                </p>
+
             </div>
 
-            <h2>Create Staff Account</h2>
 
-            <p>
-                Create an account and assign a storage facility
-            </p>
-
-        </div>
-
-
-        <!-- =========================
+            <!-- =========================
              FORM
         ========================== -->
 
-        <form method="POST">
+            <form method="POST">
 
-            {% csrf_token %}
+                {% csrf_token %}
 
 
-            <!-- =========================
+                <!-- =========================
                  ACCOUNT INFORMATION
             ========================== -->
 
-            <div class="form-section">
+                <div class="form-section">
 
-                <h3>Account Information</h3>
-
-
-                <!-- First Name -->
-
-                <div class="form-group">
-
-                    <label for="first_name">
-                        First Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        placeholder="Enter first name"
-                        autocomplete="given-name"
-                        required
-                    >
-
-                </div>
+                    <h3>Account Information</h3>
 
 
-                <!-- Last Name -->
+                    <!-- First Name -->
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label for="last_name">
-                        Last Name
-                    </label>
+                        <label for="first_name">
+                            First Name
+                        </label>
 
-                    <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        placeholder="Enter last name"
-                        autocomplete="family-name"
-                        required
-                    >
+                        <input type="text" id="first_name" name="first_name" placeholder="Enter first name"
+                            autocomplete="given-name" required>
 
-                </div>
+                    </div>
 
 
-                <!-- Email -->
+                    <!-- Last Name -->
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label for="username">
-                        Email
-                    </label>
+                        <label for="last_name">
+                            Last Name
+                        </label>
 
-                    <input
-                        type="email"
-                        id="username"
-                        name="username"
-                        placeholder="Enter email"
-                        autocomplete="username"
-                        required
-                    >
+                        <input type="text" id="last_name" name="last_name" placeholder="Enter last name"
+                            autocomplete="family-name" required>
 
-                </div>
+                    </div>
 
 
-                <!-- Password -->
+                    <!-- Email -->
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label for="password">
-                        Password
-                    </label>
+                        <label for="username">
+                            Email
+                        </label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter password"
-                        autocomplete="new-password"
-                        required
-                    >
+                        <input type="email" id="username" name="username" placeholder="Enter email"
+                            autocomplete="username" required>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input type="password" id="password" name="password" placeholder="Enter password"
+                            autocomplete="new-password" required>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label for="confirm_password">
+                            Re-enter Password
+                        </label>
+
+                        <input type="password" id="confirm_password" name="confirm_password"
+                            placeholder="Re-enter password" autocomplete="new-password" required>
+
+                    </div>
 
                 </div>
 
 
-                <!-- Confirm Password -->
+            
 
-                <div class="form-group">
+                <div class="form-section">
 
-                    <label for="confirm_password">
-                        Re-enter Password
-                    </label>
+                    <h3>Storage Assignment</h3>
 
-                    <input
-                        type="password"
-                        id="confirm_password"
-                        name="confirm_password"
-                        placeholder="Re-enter password"
-                        autocomplete="new-password"
-                        required
-                    >
+                    <div class="form-group">
 
-                </div>
+                        <label for="storage">
+                            Assign Storage
+                        </label>
 
-            </div>
+                        <select id="storage" name="storage" required>
+
+                            <option value="">
+                                -- Select Storage --
+                            </option>
 
 
-            <!-- =========================
-                 STORAGE ASSIGNMENT
-            ========================== -->
-
-            <div class="form-section">
-
-                <h3>Storage Assignment</h3>
-
-                <div class="form-group">
-
-                    <label for="storage">
-                        Assign Storage
-                    </label>
-
-                    <select
-                        id="storage"
-                        name="storage"
-                        required
-                    >
-
-                        <option value="">
-                            -- Select Storage --
-                        </option>
-
-
-                        {% for storage in storages %}
+                            {% for storage in storages %}
 
                             <option value="{{ storage.id }}">
                                 {{ storage.storage_name }}
                             </option>
 
-                        {% endfor %}
+                            {% endfor %}
 
-                    </select>
+                        </select>
 
-                    <p class="field-help">
-                        Select the storage facility where this staff
-                        member will work.
-                    </p>
+                        <p class="field-help">
+                            Select the storage facility where this staff
+                            member will work.
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
 
-
-            <!-- =========================
+                <!-- =========================
                  SUBMIT
             ========================== -->
 
-            <div class="submit-section">
+                <div class="submit-section">
 
-                <button type="submit">
-                    Create Staff
-                </button>
+                    <button type="submit">
+                        Create Staff
+                    </button>
 
-            </div>
+                </div>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 
 </body>
 

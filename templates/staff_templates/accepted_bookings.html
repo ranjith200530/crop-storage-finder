@@ -6,17 +6,11 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Accepted Bookings</title>
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/accepted_bookings.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'css/accepted_bookings.css' %}">
 
 </head>
 
@@ -47,224 +41,205 @@
 
         {% if bookings %}
 
-            <!-- BOOKINGS CONTAINER -->
+        <!-- BOOKINGS CONTAINER -->
 
-            <section class="bookings-container">
+        <section class="bookings-container">
 
-                {% for booking in bookings %}
+            {% for booking in bookings %}
 
-                    <!-- BOOKING CARD -->
+            <!-- BOOKING CARD -->
 
-                    <div
-                        class="booking-card"
-                        id="booking-{{ booking.id }}"
-                    >
+            <div class="booking-card" id="booking-{{ booking.id }}">
 
-                        <!-- BOOKING HEADER -->
+                <!-- BOOKING HEADER -->
 
-                        <div class="booking-header">
+                <div class="booking-header">
 
-                            <div class="farmer-avatar">
+                    <div class="farmer-avatar">
 
-                                {{ booking.farmer.first_name|first|upper }}
-
-                            </div>
-
-                            <div class="farmer-info">
-
-                                <span class="booking-label">
-                                    FARMER
-                                </span>
-
-                                <h2>
-
-                                    {{ booking.farmer.first_name }}
-                                    {{ booking.farmer.last_name }}
-
-                                </h2>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- BOOKING DETAILS -->
-
-                        <div class="booking-details">
-
-                            <!-- CROP -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Crop
-                                </span>
-
-                                <span
-                                    class="detail-value crop-name"
-                                >
-
-                                    {{ booking.crop_name }}
-
-                                </span>
-
-                            </div>
-
-
-                            <!-- QUANTITY -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Quantity
-                                </span>
-
-                                <span class="detail-value">
-
-                                    {{ booking.quantity }}
-                                    {{ booking.quantity_unit }}
-
-                                </span>
-
-                            </div>
-
-
-                            <!-- CONTACT NUMBER -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Contact Number
-                                </span>
-
-                                <span class="detail-value">
-
-                                    {{ booking.mobile }}
-
-                                </span>
-
-                            </div>
-
-
-                            <!-- STATUS -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Status
-                                </span>
-
-                                <span class="detail-value">
-
-                                    {{ booking.status }}
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- STORAGE CHARGE -->
-
-                        <div class="storage-charge">
-
-                            <div class="charge-item">
-
-                                <span class="detail-label">
-                                    Storage Days
-                                </span>
-
-                                <span
-                                    class="detail-value"
-                                    id="days-{{ booking.id }}"
-                                >
-
-                                    Not calculated
-
-                                </span>
-
-                            </div>
-
-
-                            <div class="charge-item">
-
-                                <span class="detail-label">
-                                    Total Storage Charge
-                                </span>
-
-                                <span
-                                    class="detail-value"
-                                    id="charge-{{ booking.id }}"
-                                >
-
-                                    Not calculated
-
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- CALCULATE BUTTON -->
-
-                        <a
-                            class="action-button calculate-button"
-                            data-booking-id="{{ booking.id }}"
-                            onclick="calculateCharge(
-                                event,
-                                this.dataset.bookingId
-                            )"
-                        >
-
-                            Calculate
-
-                        </a>
-
-
-                        <!-- REMOVE BUTTON -->
-
-                        <a
-                            class="action-button remove-button"
-                            data-booking-id="{{ booking.id }}"
-                            onclick="removeBooking(
-                                event,
-                                this.dataset.bookingId
-                            )"
-                        >
-
-                            Remove
-
-                        </a>
+                        {{ booking.farmer.first_name|first|upper }}
 
                     </div>
 
-                {% endfor %}
+                    <div class="farmer-info">
 
-            </section>
+                        <span class="booking-label">
+                            FARMER
+                        </span>
+
+                        <h2>
+
+                            {{ booking.farmer.first_name }}
+                            {{ booking.farmer.last_name }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOOKING DETAILS -->
+
+                <div class="booking-details">
+
+                    <!-- CROP -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Crop
+                        </span>
+
+                        <span class="detail-value crop-name">
+
+                            {{ booking.crop_name }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Quantity
+                        </span>
+
+                        <span class="detail-value">
+
+                            {{ booking.quantity }}
+                            {{ booking.quantity_unit }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONTACT NUMBER -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Contact Number
+                        </span>
+
+                        <span class="detail-value">
+
+                            {{ booking.mobile }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Status
+                        </span>
+
+                        <span class="detail-value">
+
+                            {{ booking.status }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STORAGE CHARGE -->
+
+                <div class="storage-charge">
+
+                    <div class="charge-item">
+
+                        <span class="detail-label">
+                            Storage Days
+                        </span>
+
+                        <span class="detail-value" id="days-{{ booking.id }}">
+
+                            Not calculated
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="charge-item">
+
+                        <span class="detail-label">
+                            Total Storage Charge
+                        </span>
+
+                        <span class="detail-value" id="charge-{{ booking.id }}">
+
+                            Not calculated
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CALCULATE BUTTON -->
+
+                <a class="action-button calculate-button" data-booking-id="{{ booking.id }}" onclick="calculateCharge(
+                                event,
+                                this.dataset.bookingId
+                            )">
+
+                    Calculate
+
+                </a>
+
+
+                <!-- REMOVE BUTTON -->
+
+                <a class="action-button remove-button" data-booking-id="{{ booking.id }}" onclick="removeBooking(
+                                event,
+                                this.dataset.bookingId
+                            )">
+
+                    Remove
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
 
 
         {% else %}
 
-            <!-- EMPTY STATE -->
+        <!-- EMPTY STATE -->
 
-            <section class="empty-state">
+        <section class="empty-state">
 
-                <div class="empty-icon">
-                    📋
-                </div>
+            <div class="empty-icon">
+                📋
+            </div>
 
-                <h2>
-                    No Accepted Bookings
-                </h2>
+            <h2>
+                No Accepted Bookings
+            </h2>
 
-                <p>
-                    There are currently no accepted bookings
-                    for this storage facility.
-                </p>
+            <p>
+                There are currently no accepted bookings
+                for this storage facility.
+            </p>
 
-            </section>
+        </section>
 
         {% endif %}
 

@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -44,166 +43,153 @@
 
         {% if booking_requests %}
 
-            <!-- BOOKING LIST -->
+        <!-- BOOKING LIST -->
 
-            <section class="booking-list">
+        <section class="booking-list">
 
-                {% for booking in booking_requests %}
+            {% for booking in booking_requests %}
 
-                    <!-- BOOKING CARD -->
+            <!-- BOOKING CARD -->
 
-                    <div class="booking-card">
+            <div class="booking-card">
 
-                        <!-- BOOKING HEADER -->
+                <!-- BOOKING HEADER -->
 
-                        <div class="booking-header">
+                <div class="booking-header">
 
-                            <div class="farmer-avatar">
-                                {{ booking.farmer.username|first|upper }}
-                            </div>
+                    <div class="farmer-avatar">
+                        {{ booking.farmer.username|first|upper }}
+                    </div>
 
-                            <div class="farmer-info">
+                    <div class="farmer-info">
 
-                                <span class="booking-label">
-                                    FARMER
-                                </span>
+                        <span class="booking-label">
+                            FARMER
+                        </span>
 
-                                <h3>
-                                    {{ booking.farmer.first_name|capfirst }} {{ booking.farmer.last_name|capfirst }}
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- BOOKING DETAILS -->
-
-                        <div class="booking-details">
-
-                            <!-- CROP -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Crop
-                                </span>
-
-                                <span class="detail-value crop-name">
-                                    {{ booking.crop_name }}
-                                </span>
-
-                            </div>
-
-
-                            <!-- QUANTITY -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Quantity
-                                </span>
-
-                                <span class="detail-value">
-                                    {{ booking.quantity }}
-                                    {{ booking.quantity_unit }}
-                                </span>
-
-                            </div>
-
-
-                            <!-- CONTACT NUMBER -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Contact Number
-                                </span>
-
-                                <span class="detail-value">
-                                    {{ booking.mobile }}
-                                </span>
-
-                            </div>
-
-
-                            <!-- STATUS -->
-
-                            <div class="detail-item">
-
-                                <span class="detail-label">
-                                    Status
-                                </span>
-
-                                <span class="status-badge {{ booking.status }}">
-                                    {{ booking.status }}
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- ACTIONS -->
-
-                        <div class="booking-actions">
-
-                            <form
-                                method="POST"
-                                action="{% url 'update_booking_status' booking.id %}"
-                            >
-
-                                {% csrf_token %}
-
-                                <button
-                                    type="submit"
-                                    name="status"
-                                    value="accepted"
-                                    class="action-button accept-button"
-                                >
-                                    Accept
-                                </button>
-
-
-                                <button
-                                    type="submit"
-                                    name="status"
-                                    value="rejected"
-                                    class="action-button reject-button"
-                                >
-                                    Reject
-                                </button>
-
-                            </form>
-
-                        </div>
+                        <h3>
+                            {{ booking.farmer.first_name|capfirst }} {{ booking.farmer.last_name|capfirst }}
 
                     </div>
 
-                {% endfor %}
+                </div>
 
-            </section>
+
+                <!-- BOOKING DETAILS -->
+
+                <div class="booking-details">
+
+                    <!-- CROP -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Crop
+                        </span>
+
+                        <span class="detail-value crop-name">
+                            {{ booking.crop_name }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Quantity
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.quantity }}
+                            {{ booking.quantity_unit }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONTACT NUMBER -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Contact Number
+                        </span>
+
+                        <span class="detail-value">
+                            {{ booking.mobile }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="detail-item">
+
+                        <span class="detail-label">
+                            Status
+                        </span>
+
+                        <span class="status-badge {{ booking.status }}">
+                            {{ booking.status }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="booking-actions">
+
+                    <form method="POST" action="{% url 'update_booking_status' booking.id %}">
+
+                        {% csrf_token %}
+
+                        <button type="submit" name="status" value="accepted" class="action-button accept-button">
+                            Accept
+                        </button>
+
+
+                        <button type="submit" name="status" value="rejected" class="action-button reject-button">
+                            Reject
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
 
 
         {% else %}
 
-            <!-- EMPTY STATE -->
+        <!-- EMPTY STATE -->
 
-            <section class="empty-state">
+        <section class="empty-state">
 
-                <div class="empty-icon">
-                    📋
-                </div>
+            <div class="empty-icon">
+                📋
+            </div>
 
-                <h2>
-                    No Pending Booking Requests
-                </h2>
+            <h2>
+                No Pending Booking Requests
+            </h2>
 
-                <p>
-                    There are currently no booking requests
-                    available for this storage facility.
-                </p>
+            <p>
+                There are currently no booking requests
+                available for this storage facility.
+            </p>
 
-            </section>
+        </section>
 
         {% endif %}
 
