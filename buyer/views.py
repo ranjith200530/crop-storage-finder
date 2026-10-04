@@ -60,12 +60,14 @@ def requiremnt_listing(request):
 
     # GET request
     states = State.objects.all()
-
+    user=request.user
+    full_name=user.first_name +" "+ user.last_name
     return render(
         request,
         "farmer/crop_listing.html",
         {
-            "states": states
+            "states": states,
+            "fullname":full_name
         }
     )
 

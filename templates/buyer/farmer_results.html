@@ -127,14 +127,16 @@
                         </span>
 
                         <span class="detail-value">
+
                             {{ farmer.quantity }}
-                            {{ farmer.get_quantity_unit_display }}
+                            {{ farmer.quantity_unit }}
+
                         </span>
 
                     </div>
 
 
-                    <!-- PRICE -->
+                    <!-- EXPECTED PRICE -->
 
                     <div class="detail-item">
 
@@ -144,11 +146,8 @@
 
                         <span class="detail-value price">
 
-                            ₹{{ farmer.price }}
-
-                            <small>
-                                {{ farmer.get_price_unit_display }}
-                            </small>
+                            ₹{{ farmer.price|floatformat:2 }}
+                            {{ farmer.price_unit }}
 
                         </span>
 

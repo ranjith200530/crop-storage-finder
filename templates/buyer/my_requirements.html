@@ -59,6 +59,8 @@
 
 
 
+                <!-- REQUIRED QUANTITY -->
+
                 <div class="info">
 
                     <span class="info-label">
@@ -68,13 +70,15 @@
                     <span class="info-value">
 
                         {{ requirement.quantity }}
-                        {{ requirement.get_quantity_unit_display }}
+                        {{ requirement.quantity_unit }}
 
                     </span>
 
                 </div>
 
 
+
+                <!-- EXPECTED PRICE -->
 
                 <div class="info">
 
@@ -84,14 +88,16 @@
 
                     <span class="info-value">
 
-                        ₹{{ requirement.price }}
-                        {{ requirement.get_price_unit_display }}
+                        ₹{{ requirement.price|floatformat:2 }}
+                        {{ requirement.price_unit }}
 
                     </span>
 
                 </div>
 
 
+
+                <!-- LOCATION -->
 
                 <div class="info">
 
